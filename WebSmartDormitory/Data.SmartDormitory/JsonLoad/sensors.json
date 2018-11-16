@@ -1,0 +1,19 @@
+﻿[
+  {
+    "ID": "93fa9fca-44e6-47bd-a2ad-28ea404ba855",
+    "Name": "Temperature Sensor",
+    "Value": 5,
+    "Description": "ome description here",
+    "URLSensorData": "url for test",
+    "PoolInterval": 40,
+    "MeasurmentType": "%",
+    "Latitude": 0,
+    "Longitude": 0,
+    "ValueRangeMin": 150,
+    "ValueRangeMax": -40,
+    "Alarm": false,
+    "IsPublic": true,
+    "IsDeleted": false,
+    "UserId": "676ce4b1-6641-4909-a478-11b173180b3c"
+  }
+]
