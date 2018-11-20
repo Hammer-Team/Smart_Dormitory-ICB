@@ -1,26 +1,38 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Caching.Memory;
 using SmartDormitory.Data.Data;
 using SmartDormitory.Services.Contracts;
 using SmartDormitory.Web.Models;
+using System;
 using System.Threading.Tasks;
 
 namespace SmartDormitory.Web.Controllers
 {
     public class SensorController : Controller
     {
-        private readonly IUserManager<User> _userManager; // To do
+        private readonly UserManager<User> _userManager; // To do
         private readonly IMemoryCache _memoryCache; // To Do
         private readonly ISensorService sensorServices; // To Do
         private string StatusMessage { get; set; }
 
-        public SensorController(ISensorService sensorService, IMemoryCache memoryCache, IUserManager<User> userManager)
+        public SensorController(ISensorService sensorService, IMemoryCache memoryCache, UserManager<User> userManager)
         {
             this._userManager = userManager;
             this._memoryCache = memoryCache;
             this.sensorServices = sensorServices;
         }
-        
+
+        [HttpGet]
+        public async Task<IActionResult> Create()
+        {
+            var newSensor = new SensorViewModel
+            {
+
+            };
+            return View(newSensor);
+        }
+
         [HttpPost]
         public async Task<IActionResult> Create(SensorViewModel sensorViewModel)
         {
