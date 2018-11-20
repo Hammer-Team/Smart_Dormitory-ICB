@@ -16,6 +16,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\SmartDormitory.Data\SmartDormitory.Data.csproj" />
+    <ProjectReference Include="..\SmartDormitory.Services\SmartDormitory.Services.csproj" />
   </ItemGroup>
 
   <ItemGroup>

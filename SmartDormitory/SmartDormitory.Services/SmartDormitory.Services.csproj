@@ -8,4 +8,12 @@
     <PackageReference Include="Microsoft.AspNetCore.All" Version="2.1.6" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Exceptions\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\SmartDormitory.Data\SmartDormitory.Data.csproj" />
+  </ItemGroup>
+
 </Project>
