@@ -8,6 +8,9 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using SmartDormitory.Data.Context;
 using SmartDormitory.Data.Data;
+using SmartDormitory.Data.Repository;
+using SmartDormitory.Services.Contracts;
+using SmartDormitory.Services;
 
 namespace SmartDormitory
 {
@@ -35,8 +38,9 @@ namespace SmartDormitory
                     Configuration.GetConnectionString("DefaultConnection")));
             services.AddDefaultIdentity<User>()
                 .AddEntityFrameworkStores<DormitoryContext>();
+            services.AddScoped(typeof(IRepository<>), typeof(Repository<>));
+            services.AddScoped<ISensorService, SensorServices>();
 
-            
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
 
         }
