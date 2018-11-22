@@ -1,21 +1,23 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using System.Threading.Tasks;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Caching.Memory;
+using SmartDormitory.Data.Models;
 using SmartDormitory.Services.Contracts;
 using SmartDormitory.Web.Models;
-using System.Threading.Tasks;
+using SmartDormitory.Web.Providers;
 
 namespace SmartDormitory.Web.Controllers
 {
     public class SensorController : Controller
     {
-        //private readonly UserManager<User> _userManager; // To do
+        private readonly IUserManager<User> _userManager; // To do
         private readonly IMemoryCache _memoryCache; // To Do
         private readonly ISensorService sensorService; // To Do
         private string StatusMessage { get; set; }
 
-        public SensorController(ISensorService sensorService, IMemoryCache memoryCache/*, UserManager<User> userManager*/)
+        public SensorController(ISensorService sensorService, IMemoryCache memoryCache, IUserManager<User> userManager)
         {
-            //this._userManager = userManager;
+            this._userManager = userManager;
             this._memoryCache = memoryCache;
             this.sensorService = sensorService;
         }
@@ -23,6 +25,7 @@ namespace SmartDormitory.Web.Controllers
         [HttpGet]
         public async Task<IActionResult> Create()
         {
+
             return View();
         }
 
@@ -36,7 +39,7 @@ namespace SmartDormitory.Web.Controllers
             var newMovie = await sensorService.CreateSensorAsync(sensorViewModel.Name, sensorViewModel.Description, sensorViewModel.URL, sensorViewModel.Type,
                 sensorViewModel.Latitude, sensorViewModel.Longitude, sensorViewModel.Alarm, sensorViewModel.IsPublic);
 
-            return this.RedirectToAction("Details", "Movie", new { id = newMovie.ID });
+            return View();
         }
     }
 }

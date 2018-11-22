@@ -11,6 +11,7 @@ using SmartDormitory.Data.Models;
 using SmartDormitory.Data.Repository;
 using SmartDormitory.Services.Contracts;
 using SmartDormitory.Services;
+using SmartDormitory.Web.Providers;
 
 namespace SmartDormitory
 {
@@ -34,11 +35,14 @@ namespace SmartDormitory
             });
             
             services.AddDbContext<DormitoryContext>(options =>
-                options.UseSqlServer(
-                    Configuration.GetConnectionString("DefaultConnection")));
+                options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
+
             services.AddDefaultIdentity<User>()
                 .AddEntityFrameworkStores<DormitoryContext>();
+
             services.AddScoped(typeof(IRepository<>), typeof(Repository<>));
+            services.AddScoped(typeof(IUserManager<>), typeof(UserManagerWrapper<>));
+
             services.AddScoped<ISensorService, SensorServices>();
 
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);

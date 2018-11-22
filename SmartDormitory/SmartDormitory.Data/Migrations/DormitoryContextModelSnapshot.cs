@@ -135,10 +135,13 @@ namespace SmartDormitory.Data.Migrations
 
             modelBuilder.Entity("SmartDormitory.Data.Models.Sensor", b =>
                 {
-                    b.Property<string>("ID")
-                        .ValueGeneratedOnAdd();
+                    b.Property<int>("ID")
+                        .ValueGeneratedOnAdd()
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
                     b.Property<bool>("Alarm");
+
+                    b.Property<string>("ApiId");
 
                     b.Property<string>("Description");
 
@@ -156,7 +159,9 @@ namespace SmartDormitory.Data.Migrations
 
                     b.Property<int>("PoolInterval");
 
-                    b.Property<string>("SensorTypeId");
+                    b.Property<int>("SensorTypeId");
+
+                    b.Property<string>("SensorTypeId1");
 
                     b.Property<string>("URLSensorData");
 
@@ -170,7 +175,7 @@ namespace SmartDormitory.Data.Migrations
 
                     b.HasKey("ID");
 
-                    b.HasIndex("SensorTypeId");
+                    b.HasIndex("SensorTypeId1");
 
                     b.HasIndex("UserId");
 
@@ -289,7 +294,7 @@ namespace SmartDormitory.Data.Migrations
                 {
                     b.HasOne("SmartDormitory.Data.Models.SensorType", "SensorType")
                         .WithMany("Sensors")
-                        .HasForeignKey("SensorTypeId");
+                        .HasForeignKey("SensorTypeId1");
 
                     b.HasOne("SmartDormitory.Data.Models.User", "User")
                         .WithMany("Sensors")

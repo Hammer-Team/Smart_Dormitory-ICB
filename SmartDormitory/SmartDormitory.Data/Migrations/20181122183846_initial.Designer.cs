@@ -10,7 +10,7 @@ using SmartDormitory.Data.Context;
 namespace SmartDormitory.Data.Migrations
 {
     [DbContext(typeof(DormitoryContext))]
-    [Migration("20181119192558_initial")]
+    [Migration("20181122183846_initial")]
     partial class initial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -135,12 +135,15 @@ namespace SmartDormitory.Data.Migrations
                     b.ToTable("AspNetUserTokens");
                 });
 
-            modelBuilder.Entity("SmartDormitory.Data.Data.Sensor", b =>
+            modelBuilder.Entity("SmartDormitory.Data.Models.Sensor", b =>
                 {
-                    b.Property<string>("ID")
-                        .ValueGeneratedOnAdd();
+                    b.Property<int>("ID")
+                        .ValueGeneratedOnAdd()
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
                     b.Property<bool>("Alarm");
+
+                    b.Property<string>("ApiId");
 
                     b.Property<string>("Description");
 
@@ -158,6 +161,8 @@ namespace SmartDormitory.Data.Migrations
 
                     b.Property<int>("PoolInterval");
 
+                    b.Property<string>("SensorTypeId");
+
                     b.Property<string>("URLSensorData");
 
                     b.Property<string>("UserId");
@@ -170,12 +175,26 @@ namespace SmartDormitory.Data.Migrations
 
                     b.HasKey("ID");
 
+                    b.HasIndex("SensorTypeId");
+
                     b.HasIndex("UserId");
 
                     b.ToTable("Sensors");
                 });
 
-            modelBuilder.Entity("SmartDormitory.Data.Data.User", b =>
+            modelBuilder.Entity("SmartDormitory.Data.Models.SensorType", b =>
+                {
+                    b.Property<string>("Id")
+                        .ValueGeneratedOnAdd();
+
+                    b.Property<string>("Type");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("SensorType");
+                });
+
+            modelBuilder.Entity("SmartDormitory.Data.Models.User", b =>
                 {
                     b.Property<string>("Id")
                         .ValueGeneratedOnAdd();
@@ -236,7 +255,7 @@ namespace SmartDormitory.Data.Migrations
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserClaim<string>", b =>
                 {
-                    b.HasOne("SmartDormitory.Data.Data.User")
+                    b.HasOne("SmartDormitory.Data.Models.User")
                         .WithMany()
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade);
@@ -244,7 +263,7 @@ namespace SmartDormitory.Data.Migrations
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserLogin<string>", b =>
                 {
-                    b.HasOne("SmartDormitory.Data.Data.User")
+                    b.HasOne("SmartDormitory.Data.Models.User")
                         .WithMany()
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade);
@@ -257,7 +276,7 @@ namespace SmartDormitory.Data.Migrations
                         .HasForeignKey("RoleId")
                         .OnDelete(DeleteBehavior.Cascade);
 
-                    b.HasOne("SmartDormitory.Data.Data.User")
+                    b.HasOne("SmartDormitory.Data.Models.User")
                         .WithMany()
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade);
@@ -265,16 +284,20 @@ namespace SmartDormitory.Data.Migrations
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserToken<string>", b =>
                 {
-                    b.HasOne("SmartDormitory.Data.Data.User")
+                    b.HasOne("SmartDormitory.Data.Models.User")
                         .WithMany()
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade);
                 });
 
-            modelBuilder.Entity("SmartDormitory.Data.Data.Sensor", b =>
+            modelBuilder.Entity("SmartDormitory.Data.Models.Sensor", b =>
                 {
-                    b.HasOne("SmartDormitory.Data.Data.User", "User")
-                        .WithMany()
+                    b.HasOne("SmartDormitory.Data.Models.SensorType", "SensorType")
+                        .WithMany("Sensors")
+                        .HasForeignKey("SensorTypeId");
+
+                    b.HasOne("SmartDormitory.Data.Models.User", "User")
+                        .WithMany("Sensors")
                         .HasForeignKey("UserId");
                 });
 #pragma warning restore 612, 618
