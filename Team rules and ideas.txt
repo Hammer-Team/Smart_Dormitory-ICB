@@ -1,0 +1,2 @@
+- When someone finish some task in the project, he must explain in details to other 'what he done' and 'how it works'. Same rule for changes in the Kanban Board
+- Use gitflow - branches for every task

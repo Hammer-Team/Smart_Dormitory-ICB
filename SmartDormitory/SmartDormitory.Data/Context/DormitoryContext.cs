@@ -1,9 +1,6 @@
 ﻿using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
-using SmartDormitory.Data.Data;
-using System;
-using System.Collections.Generic;
-using System.Text;
+using SmartDormitory.Data.Models;
 
 namespace SmartDormitory.Data.Context
 {
@@ -12,7 +9,7 @@ namespace SmartDormitory.Data.Context
         public DbSet<Sensor> Sensors { get; set; }
 
         public DormitoryContext(DbContextOptions<DormitoryContext> options)
-            :base (options)
+            : base(options)
         {
         }
 

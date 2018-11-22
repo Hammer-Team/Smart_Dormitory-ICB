@@ -1,14 +1,14 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace SmartDormitory.Data.Data
+﻿namespace SmartDormitory.Data.Models
 {
     public class Sensor
-    { 
+    {
         public string ID { get; set; }
 
         public string Name { get; set; }
+
+        public string SensorTypeId { get; set; }
+
+        public SensorType SensorType { get; set; }
 
         public double Value { get; set; }
 

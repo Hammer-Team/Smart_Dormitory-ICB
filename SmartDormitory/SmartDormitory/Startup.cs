@@ -7,10 +7,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using SmartDormitory.Data.Context;
-using SmartDormitory.Data.Data;
-using SmartDormitory.Data.Repository;
-using SmartDormitory.Services.Contracts;
-using SmartDormitory.Services;
+using SmartDormitory.Data.Models;
 
 namespace SmartDormitory
 {

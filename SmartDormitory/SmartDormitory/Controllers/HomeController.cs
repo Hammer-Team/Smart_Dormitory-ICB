@@ -3,11 +3,13 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using SmartDormitory.Models;
 
 namespace SmartDormitory.Controllers
 {
+    
     public class HomeController : Controller
     {
         public IActionResult Index()
@@ -22,10 +24,11 @@ namespace SmartDormitory.Controllers
             return View();
         }
 
+        [Authorize(Roles = "Admin")]
         public IActionResult Contact()
         {
             ViewData["Message"] = "Your contact page.";
-
+           
             return View();
         }
 

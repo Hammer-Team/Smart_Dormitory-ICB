@@ -6,7 +6,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using SmartDormitory.Data.Context;
-using SmartDormitory.Data.Data;
+using SmartDormitory.Data.Models;
 
 [assembly: HostingStartup(typeof(SmartDormitory.Web.Areas.Identity.IdentityHostingStartup))]
 namespace SmartDormitory.Web.Areas.Identity
