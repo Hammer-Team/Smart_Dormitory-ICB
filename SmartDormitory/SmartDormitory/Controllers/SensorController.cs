@@ -1,10 +1,7 @@
-﻿using Microsoft.AspNetCore.Identity;
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Caching.Memory;
-using SmartDormitory.Data.Data;
 using SmartDormitory.Services.Contracts;
 using SmartDormitory.Web.Models;
-using System;
 using System.Threading.Tasks;
 
 namespace SmartDormitory.Web.Controllers
@@ -36,7 +33,7 @@ namespace SmartDormitory.Web.Controllers
             {
                 return this.View();
             }
-            var newMovie = await sensorService.CreateSensorAsync(sensorViewModel.Name, sensorViewModel.Description, sensorViewModel.URL, sensorViewModel.Type, 
+            var newMovie = await sensorService.CreateSensorAsync(sensorViewModel.Name, sensorViewModel.Description, sensorViewModel.URL, sensorViewModel.Type,
                 sensorViewModel.Latitude, sensorViewModel.Longitude, sensorViewModel.Alarm, sensorViewModel.IsPublic);
 
             return this.RedirectToAction("Details", "Movie", new { id = newMovie.ID });

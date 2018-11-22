@@ -8,6 +8,9 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using SmartDormitory.Data.Context;
 using SmartDormitory.Data.Models;
+using SmartDormitory.Data.Repository;
+using SmartDormitory.Services.Contracts;
+using SmartDormitory.Services;
 
 namespace SmartDormitory
 {

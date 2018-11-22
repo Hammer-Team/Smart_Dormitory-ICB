@@ -1,7 +1,4 @@
-﻿using SmartDormitory.Data.Data;
-using System;
-using System.Collections.Generic;
-using System.Text;
+﻿using SmartDormitory.Data.Models;
 using System.Threading.Tasks;
 
 namespace SmartDormitory.Services.Contracts

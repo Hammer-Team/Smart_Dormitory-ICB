@@ -1,9 +1,6 @@
-﻿using SmartDormitory.Data.Data;
+﻿using SmartDormitory.Data.Models;
 using SmartDormitory.Data.Repository;
 using SmartDormitory.Services.Contracts;
-using System;
-using System.Collections.Generic;
-using System.Text;
 using System.Threading.Tasks;
 
 namespace SmartDormitory.Services
@@ -18,7 +15,7 @@ namespace SmartDormitory.Services
             this.sensorRepo = sensorRepo;
         }
 
-        public async Task<Sensor> CreateSensorAsync(string name, string description, string url, string type, 
+        public async Task<Sensor> CreateSensorAsync(string name, string description, string url, string type,
             string latitude, string longitude, bool alarm, bool isPublic)
         {
             var sensorToAdd = new Sensor()
