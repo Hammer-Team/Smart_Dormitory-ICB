@@ -37,7 +37,7 @@ namespace SmartDormitory.Web.Controllers
             var newMovie = await sensorService.CreateSensorAsync(sensorViewModel.Name, sensorViewModel.Description, sensorViewModel.URL, sensorViewModel.Type,
                 sensorViewModel.Latitude, sensorViewModel.Longitude, sensorViewModel.Alarm, sensorViewModel.IsPublic);
 
-            return this.RedirectToAction("Details", "Movie", new { id = newMovie.ID });
+            return View();
         }
     }
 }
