@@ -1,4 +1,5 @@
 ﻿using System.Threading.Tasks;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Caching.Memory;
 using SmartDormitory.Data.Models;
@@ -23,13 +24,14 @@ namespace SmartDormitory.Web.Controllers
         }
 
         [HttpGet]
+        [Authorize]
         public async Task<IActionResult> Create()
         {
-
-            return View();
+             return View();
         }
 
         [HttpPost]
+        [Authorize]
         public async Task<IActionResult> Create(SensorViewModel sensorViewModel)
         {
             if (!this.ModelState.IsValid)
