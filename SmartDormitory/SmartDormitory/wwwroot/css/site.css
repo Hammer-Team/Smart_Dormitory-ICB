@@ -35,3 +35,29 @@ body {
         display: none;
     }
 }
+
+section {
+    height: 480px;
+}
+
+#map {
+    height: 400px;
+}
+
+.title {
+    text-align: center;
+}
+
+.section-title {
+    text-align: center;
+}
+
+#sign-in-container {
+    margin: auto;
+}
+
+.center-vertical {
+    position: relative;
+    top: 50%;
+    transform: perspective(1px) translateY(-50%);
+}
