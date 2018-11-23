@@ -1,10 +1,23 @@
-﻿
+﻿@model SmartDormitory.Web.Models.SensorViewModel
 @{
     ViewData["Title"] = "Create";
 }
 <h2>Create</h2>
 <div class="row">
     <div class="col-md-4">
-       <h1> VIEWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWW</h1>
+        <form asp-controller="Sensor" asp-action="Create" method="post">
+            <div asp-validation-summary="All" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="Name"></label>
+                <input asp-for="Name" class="form-control" />
+                <span asp-validation-for="Name" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Type"></label>
+                <select asp-for="Type" class="selectpicker"  name="Type" asp-items="@Model.Type"></select>
+            </div>
+            <button type="submit" class="btn btn-default">Create</button>
+        </form>
     </div>
 </div>
+

@@ -23,7 +23,8 @@ namespace SmartDormitory.Web.Controllers
         [HttpGet]
         public async Task<IActionResult> Create()
         {
-            return View();
+            var newSensor = new SensorViewModel();
+            return View(newSensor);
         }
 
         [HttpPost]

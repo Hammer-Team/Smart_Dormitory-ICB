@@ -38,7 +38,9 @@ namespace SmartDormitory
                     Configuration.GetConnectionString("DefaultConnection")));
             services.AddDefaultIdentity<User>()
                 .AddEntityFrameworkStores<DormitoryContext>();
+
             services.AddScoped(typeof(IRepository<>), typeof(Repository<>));
+
             services.AddScoped<ISensorService, SensorServices>();
 
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
