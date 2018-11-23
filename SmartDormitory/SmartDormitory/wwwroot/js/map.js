@@ -12,7 +12,7 @@
         { lat: -33.848588, lng: 151.209834 },
         { lat: -33.851702, lng: 151.216968 },
     ]
-
+     
     let labels = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
 
     let markers = locations.map(function (location, i) {
