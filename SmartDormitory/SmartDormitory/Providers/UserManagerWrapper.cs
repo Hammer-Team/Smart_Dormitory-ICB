@@ -9,40 +9,42 @@ namespace SmartDormitory.Web.Providers
 {
     public class UserManagerWrapper<T> : IUserManager<T> where T : class
     {
-        public IQueryable<T> Users => throw new NotImplementedException();
+        private UserManager<T> _userManager;
 
-        public IList<IPasswordValidator<T>> PasswordValidators => throw new NotImplementedException();
-
-        public UserManager<T> Instance => throw new NotImplementedException();
-
-        public Task<IdentityResult> AddPasswordAsync(T user, string password)
+        public UserManagerWrapper(UserManager<T> userManager)
         {
-            throw new NotImplementedException();
+            this._userManager = userManager;
         }
 
-        public Task<T> GetUserAsync(ClaimsPrincipal claimsPrincipal)
+        public UserManager<T> Instance => _userManager;
+        public IQueryable<T> Users => _userManager.Users;
+        public IList<IPasswordValidator<T>> PasswordValidators => _userManager.PasswordValidators;
+
+        public async Task<IdentityResult> SetLockoutEndDateAsync(T user, DateTimeOffset? lockoutEnd)
         {
-            throw new NotImplementedException();
+            return await _userManager.SetLockoutEndDateAsync(user, lockoutEnd);
+        }
+        public async Task<IdentityResult> SetLockoutEnabledAsync(T user, bool enabled)
+        {
+            return await _userManager.SetLockoutEnabledAsync(user, enabled);
+        }
+        public async Task<IdentityResult> RemovePasswordAsync(T user)
+        {
+            return await _userManager.RemovePasswordAsync(user);
         }
 
-        public Task<string> GetUserIdAsync(T user)
+        public async Task<IdentityResult> AddPasswordAsync(T user, string password)
         {
-            throw new NotImplementedException();
+            return await _userManager.AddPasswordAsync(user, password);
         }
 
-        public Task<IdentityResult> RemovePasswordAsync(T user)
+        public async Task<string> GetUserIdAsync(T user)
         {
-            throw new NotImplementedException();
+            return await _userManager.GetUserIdAsync(user);
         }
-
-        public Task<IdentityResult> SetLockoutEnabledAsync(T user, bool enabled)
+        public async Task<T> GetUserAsync(ClaimsPrincipal claimsPrincipal)
         {
-            throw new NotImplementedException();
-        }
-
-        public Task<IdentityResult> SetLockoutEndDateAsync(T usrer, DateTimeOffset? lockoutEnd)
-        {
-            throw new NotImplementedException();
+            return await _userManager.GetUserAsync(claimsPrincipal);
         }
     }
 }

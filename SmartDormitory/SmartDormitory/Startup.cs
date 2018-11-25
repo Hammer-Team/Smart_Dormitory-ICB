@@ -37,7 +37,7 @@ namespace SmartDormitory
             services.AddDbContext<DormitoryContext>(options =>
                 options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
 
-            services.AddDefaultIdentity<User>()
+            services.AddIdentity<User, IdentityRole>()
                 .AddEntityFrameworkStores<DormitoryContext>();
 
             services.AddScoped(typeof(IRepository<>), typeof(Repository<>));
