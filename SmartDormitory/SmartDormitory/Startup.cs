@@ -12,6 +12,8 @@ using SmartDormitory.Data.Repository;
 using SmartDormitory.Services.Contracts;
 using SmartDormitory.Services;
 using SmartDormitory.Web.Providers;
+using SmartDormitory.Web.Areas.Identity.Services;
+using Microsoft.AspNetCore.Identity.UI.Services;
 
 namespace SmartDormitory
 {
@@ -33,7 +35,10 @@ namespace SmartDormitory
                 options.CheckConsentNeeded = context => true;
                 options.MinimumSameSitePolicy = SameSiteMode.None;
             });
-            
+
+            services.AddTransient<IEmailSender, EmailSender>();
+            //services.AddTransient<IEmailSender, YourSmsSender>();
+
             services.AddDbContext<DormitoryContext>(options =>
                 options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
 
