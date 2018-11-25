@@ -3,15 +3,17 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using SmartDormitory.Data.Context;
 
 namespace SmartDormitory.Data.Migrations
 {
     [DbContext(typeof(DormitoryContext))]
-    partial class DormitoryContextModelSnapshot : ModelSnapshot
+    [Migration("20181125174732_jsonMigration")]
+    partial class jsonMigration
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
