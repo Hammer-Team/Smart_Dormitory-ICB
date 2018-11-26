@@ -5,13 +5,24 @@
         center: { lat: 42.650815, lng: 23.379388 }
     });
 
-    let locations = [
-        { lat: 42.658442, lng: 23.362691 },
-        { lat: 42.665868, lng: 23.393298 },
-        { lat: 42.712275, lng: 23.404959 },
-        { lat: -33.848588, lng: 151.209834 },
-        { lat: -33.851702, lng: 151.216968 },
-    ]
+    let allLocations = document.getElementsByClassName('sensor-location');
+
+    let locations = [];
+    for (loc of allLocations) {
+        locations.push({
+
+            lat: loc.childNodes.getElementsByClassName('sensor-lat')[0].textContent,
+            lng: loc.childNodes.getElementsByClassName('sensor-lng')[0].textContent
+        });
+    }
+
+    //let locations = [
+    //    { lat: 42.658442, lng: 23.362691 },
+    //    { lat: 42.665868, lng: 23.393298 },
+    //    { lat: 42.712275, lng: 23.404959 },
+    //    { lat: -33.848588, lng: 151.209834 },
+    //    { lat: -33.851702, lng: 151.216968 },
+    //]
      
     let labels = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
 
