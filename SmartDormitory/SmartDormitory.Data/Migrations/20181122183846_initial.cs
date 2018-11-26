@@ -48,6 +48,18 @@ namespace SmartDormitory.Data.Migrations
                 });
 
             migrationBuilder.CreateTable(
+                name: "SensorType",
+                columns: table => new
+                {
+                    Id = table.Column<string>(nullable: false),
+                    Type = table.Column<string>(nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_SensorType", x => x.Id);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "AspNetRoleClaims",
                 columns: table => new
                 {
@@ -157,8 +169,11 @@ namespace SmartDormitory.Data.Migrations
                 name: "Sensors",
                 columns: table => new
                 {
-                    ID = table.Column<string>(nullable: false),
+                    ID = table.Column<int>(nullable: false)
+                        .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
+                    ApiId = table.Column<string>(nullable: true),
                     Name = table.Column<string>(nullable: true),
+                    SensorTypeId = table.Column<string>(nullable: true),
                     Value = table.Column<double>(nullable: false),
                     Description = table.Column<string>(nullable: true),
                     URLSensorData = table.Column<string>(nullable: true),
@@ -176,6 +191,12 @@ namespace SmartDormitory.Data.Migrations
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Sensors", x => x.ID);
+                    table.ForeignKey(
+                        name: "FK_Sensors_SensorType_SensorTypeId",
+                        column: x => x.SensorTypeId,
+                        principalTable: "SensorType",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Restrict);
                     table.ForeignKey(
                         name: "FK_Sensors_AspNetUsers_UserId",
                         column: x => x.UserId,
@@ -224,6 +245,11 @@ namespace SmartDormitory.Data.Migrations
                 filter: "[NormalizedUserName] IS NOT NULL");
 
             migrationBuilder.CreateIndex(
+                name: "IX_Sensors_SensorTypeId",
+                table: "Sensors",
+                column: "SensorTypeId");
+
+            migrationBuilder.CreateIndex(
                 name: "IX_Sensors_UserId",
                 table: "Sensors",
                 column: "UserId");
@@ -251,6 +277,9 @@ namespace SmartDormitory.Data.Migrations
 
             migrationBuilder.DropTable(
                 name: "AspNetRoles");
+
+            migrationBuilder.DropTable(
+                name: "SensorType");
 
             migrationBuilder.DropTable(
                 name: "AspNetUsers");

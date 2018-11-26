@@ -11,6 +11,9 @@ using SmartDormitory.Data.Models;
 using SmartDormitory.Data.Repository;
 using SmartDormitory.Services.Contracts;
 using SmartDormitory.Services;
+using SmartDormitory.Web.Providers;
+using SmartDormitory.Web.Areas.Identity.Services;
+using Microsoft.AspNetCore.Identity.UI.Services;
 
 namespace SmartDormitory
 {
@@ -32,14 +35,18 @@ namespace SmartDormitory
                 options.CheckConsentNeeded = context => true;
                 options.MinimumSameSitePolicy = SameSiteMode.None;
             });
-            
+
+            services.AddTransient<IEmailSender, EmailSender>();
+            //services.AddTransient<IEmailSender, YourSmsSender>();
+
             services.AddDbContext<DormitoryContext>(options =>
-                options.UseSqlServer(
-                    Configuration.GetConnectionString("DefaultConnection")));
-            services.AddDefaultIdentity<User>()
+                options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
+
+            services.AddIdentity<User, IdentityRole>()
                 .AddEntityFrameworkStores<DormitoryContext>();
 
             services.AddScoped(typeof(IRepository<>), typeof(Repository<>));
+            services.AddScoped(typeof(IUserManager<>), typeof(UserManagerWrapper<>));
 
             services.AddScoped<ISensorService, SensorServices>();
 
@@ -69,6 +76,10 @@ namespace SmartDormitory
 
             app.UseMvc(routes =>
             {
+                routes.MapRoute(
+                   name: "adminArea",
+                   template: "{area:exists}/{controller=Users}/{action=Index}/{id?}");
+
                 routes.MapRoute(
                     name: "default",
                     template: "{controller=Home}/{action=Index}/{id?}");

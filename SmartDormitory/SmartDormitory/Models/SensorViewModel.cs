@@ -1,13 +1,10 @@
 ﻿using SmartDormitory.Data.Models;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 
 namespace SmartDormitory.Web.Models
 {
     public class SensorViewModel
     {
+        public int ID { get; set; }
         public string Name { get; set; }
         public string Description { get; set; }
         public string URL { get; set; }
@@ -19,13 +16,20 @@ namespace SmartDormitory.Web.Models
 
         public SensorViewModel()
         {
+
         }
 
         public SensorViewModel(Sensor sensor)
         {
+            this.ID = ID;
             this.Name = Name;
             this.Description = Description;
             this.URL = URL;
+            this.Type = Type;
+            this.Latitude = Latitude;
+            this.Longitude = Longitude;
+            this.Alarm = Alarm;
+            this.IsPublic = IsPublic;
         }
     }
 }

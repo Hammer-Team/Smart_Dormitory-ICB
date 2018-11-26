@@ -2,11 +2,13 @@
 {
     public class Sensor
     {
-        public string ID { get; set; }
+        public int ID { get; set; }
+
+        public string ApiId { get; set; }
 
         public string Name { get; set; }
 
-        public string SensorTypeId { get; set; }
+        public int SensorTypeId { get; set; }
 
         public SensorType SensorType { get; set; }
 

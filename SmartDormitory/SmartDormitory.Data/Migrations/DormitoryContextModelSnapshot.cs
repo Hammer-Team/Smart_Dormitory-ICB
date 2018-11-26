@@ -41,6 +41,11 @@ namespace SmartDormitory.Data.Migrations
                         .HasFilter("[NormalizedName] IS NOT NULL");
 
                     b.ToTable("AspNetRoles");
+
+                    b.HasData(
+                        new { Id = "959596e5-93e4-4272-8cfb-6e71a4254370", ConcurrencyStamp = "20d35162-b35c-4b2e-80c1-81a15bc1b2f3", Name = "Administrator", NormalizedName = "ADMINISTRATOR" },
+                        new { Id = "5197310d-5d42-4337-bb59-2fd06e6a8fcd", ConcurrencyStamp = "a3bc9d45-276b-442f-bc6b-b1a5763df30d", Name = "User", NormalizedName = "USER" }
+                    );
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
@@ -114,6 +119,11 @@ namespace SmartDormitory.Data.Migrations
                     b.HasIndex("RoleId");
 
                     b.ToTable("AspNetUserRoles");
+
+                    b.HasData(
+                        new { UserId = "45a3335a-44de-44f7-b77c-bfa7d3c10a7c", RoleId = "959596e5-93e4-4272-8cfb-6e71a4254370" },
+                        new { UserId = "31d4807f-7f5f-4ffa-90c1-a131e2d3855e", RoleId = "5197310d-5d42-4337-bb59-2fd06e6a8fcd" }
+                    );
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserToken<string>", b =>
@@ -135,10 +145,13 @@ namespace SmartDormitory.Data.Migrations
 
             modelBuilder.Entity("SmartDormitory.Data.Models.Sensor", b =>
                 {
-                    b.Property<string>("ID")
-                        .ValueGeneratedOnAdd();
+                    b.Property<int>("ID")
+                        .ValueGeneratedOnAdd()
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
                     b.Property<bool>("Alarm");
+
+                    b.Property<string>("ApiId");
 
                     b.Property<string>("Description");
 
@@ -156,7 +169,9 @@ namespace SmartDormitory.Data.Migrations
 
                     b.Property<int>("PoolInterval");
 
-                    b.Property<string>("SensorTypeId");
+                    b.Property<int>("SensorTypeId");
+
+                    b.Property<string>("SensorTypeId1");
 
                     b.Property<string>("URLSensorData");
 
@@ -170,7 +185,7 @@ namespace SmartDormitory.Data.Migrations
 
                     b.HasKey("ID");
 
-                    b.HasIndex("SensorTypeId");
+                    b.HasIndex("SensorTypeId1");
 
                     b.HasIndex("UserId");
 
@@ -200,6 +215,7 @@ namespace SmartDormitory.Data.Migrations
                         .IsConcurrencyToken();
 
                     b.Property<string>("Email")
+                        .IsRequired()
                         .HasMaxLength(256);
 
                     b.Property<bool>("EmailConfirmed");
@@ -225,6 +241,7 @@ namespace SmartDormitory.Data.Migrations
                     b.Property<bool>("TwoFactorEnabled");
 
                     b.Property<string>("UserName")
+                        .IsRequired()
                         .HasMaxLength(256);
 
                     b.HasKey("Id");
@@ -238,6 +255,11 @@ namespace SmartDormitory.Data.Migrations
                         .HasFilter("[NormalizedUserName] IS NOT NULL");
 
                     b.ToTable("AspNetUsers");
+
+                    b.HasData(
+                        new { Id = "45a3335a-44de-44f7-b77c-bfa7d3c10a7c", AccessFailedCount = 0, ConcurrencyStamp = "9d737330-f5d9-410c-a9e1-f8aec11903f9", Email = "shaban9726@gmail.com", EmailConfirmed = false, LockoutEnabled = false, NormalizedEmail = "SHABAN9726@GMAIL.COM", NormalizedUserName = "SHABAN9726@GMAIL.COM", PasswordHash = "AQAAAAEAACcQAAAAEFlZ3okaz7hZUfZV1qgvOLac2WRWCxSNuhzwaB9Of93MvQncQQYZj2fb6bLSH4VFRw==", PhoneNumberConfirmed = false, SecurityStamp = "FJBKMINGFQAZNGSMZAIYUUQEVK4T74RU", TwoFactorEnabled = false, UserName = "shaban9726@gmail.com" },
+                        new { Id = "31d4807f-7f5f-4ffa-90c1-a131e2d3855e", AccessFailedCount = 0, ConcurrencyStamp = "715dad2a-9a3f-4a7d-bca1-e40799bb172c", Email = "user_pesho@abv.bg", EmailConfirmed = false, LockoutEnabled = false, NormalizedEmail = "USER_PESHO@ABV.BG", NormalizedUserName = "USER_PESHO@ABV.BG", PasswordHash = "AQAAAAEAACcQAAAAECewgbwibVC/7nEpYLbJB26wOJyT9i8Dfcx6WFFCTnGy5xqwptVYNBIZEWK37eaaMA==", PhoneNumberConfirmed = false, SecurityStamp = "WNDRYHCTXU3MSZ7NYBDFJQDL5VU2LBXS", TwoFactorEnabled = false, UserName = "user_pesho@abv.bg" }
+                    );
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
@@ -289,7 +311,7 @@ namespace SmartDormitory.Data.Migrations
                 {
                     b.HasOne("SmartDormitory.Data.Models.SensorType", "SensorType")
                         .WithMany("Sensors")
-                        .HasForeignKey("SensorTypeId");
+                        .HasForeignKey("SensorTypeId1");
 
                     b.HasOne("SmartDormitory.Data.Models.User", "User")
                         .WithMany("Sensors")

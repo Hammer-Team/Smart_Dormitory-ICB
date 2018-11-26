@@ -1,0 +1,22 @@
+﻿[
+  {
+    "Id": "45a3335a-44de-44f7-b77c-bfa7d3c10a7c",
+    "Username": "shaban9726@gmail.com",
+    "NormalizedUsername": "SHABAN9726@GMAIL.COM",
+    "Email": "shaban9726@gmail.com",
+    "NormalizedEmail": "SHABAN9726@GMAIL.COM",
+    "PasswordHash": "AQAAAAEAACcQAAAAEFlZ3okaz7hZUfZV1qgvOLac2WRWCxSNuhzwaB9Of93MvQncQQYZj2fb6bLSH4VFRw==",
+    "SecurityStamp": "FJBKMINGFQAZNGSMZAIYUUQEVK4T74RU",
+    "ConcurrencyStamp": "9d737330-f5d9-410c-a9e1-f8aec11903f9"
+  },
+  {
+    "Id": "31d4807f-7f5f-4ffa-90c1-a131e2d3855e",
+    "Username": "user_pesho@abv.bg",
+    "NormalizedUsername": "USER_PESHO@ABV.BG",
+    "Email": "user_pesho@abv.bg",
+    "NormalizedEmail": "USER_PESHO@ABV.BG",
+    "PasswordHash": "AQAAAAEAACcQAAAAECewgbwibVC/7nEpYLbJB26wOJyT9i8Dfcx6WFFCTnGy5xqwptVYNBIZEWK37eaaMA==",
+    "SecurityStamp": "WNDRYHCTXU3MSZ7NYBDFJQDL5VU2LBXS",
+    "ConcurrencyStamp": "715dad2a-9a3f-4a7d-bca1-e40799bb172c"
+  }
+]

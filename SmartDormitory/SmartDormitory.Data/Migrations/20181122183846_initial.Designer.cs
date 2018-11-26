@@ -10,8 +10,8 @@ using SmartDormitory.Data.Context;
 namespace SmartDormitory.Data.Migrations
 {
     [DbContext(typeof(DormitoryContext))]
-    [Migration("20181122121145_sersorTypes")]
-    partial class sersorTypes
+    [Migration("20181122183846_initial")]
+    partial class initial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -137,10 +137,13 @@ namespace SmartDormitory.Data.Migrations
 
             modelBuilder.Entity("SmartDormitory.Data.Models.Sensor", b =>
                 {
-                    b.Property<string>("ID")
-                        .ValueGeneratedOnAdd();
+                    b.Property<int>("ID")
+                        .ValueGeneratedOnAdd()
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
                     b.Property<bool>("Alarm");
+
+                    b.Property<string>("ApiId");
 
                     b.Property<string>("Description");
 
