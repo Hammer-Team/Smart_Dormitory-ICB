@@ -16,7 +16,7 @@ namespace SmartDormitory.Web.Areas.Admin.Controllers
     public class UsersController : Controller
     {
         private readonly IUserManager<User> _userManager;
-        private readonly int PAGE_SIZE = 1;
+        private readonly int PAGE_SIZE = 20;
 
         [TempData]
         public string StatusMessage { get; set; }
@@ -33,6 +33,7 @@ namespace SmartDormitory.Web.Areas.Admin.Controllers
 
             return View(indexViewModel);
         }
+
         public IActionResult UserGrid(int? page)
         {
             var pagedUsers = _userManager.Users
@@ -40,6 +41,7 @@ namespace SmartDormitory.Web.Areas.Admin.Controllers
                                          .ToPagedList(page ?? 1, PAGE_SIZE);
             return PartialView("_UserGrid", pagedUsers);
         }
+
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> LockUser(UserModalModelView input)
@@ -66,6 +68,7 @@ namespace SmartDormitory.Web.Areas.Admin.Controllers
             this.StatusMessage = "The user has been successfully locked for 10 years!";
             return this.RedirectToAction(nameof(Index));
         }
+
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> UnlockUser(UserModalModelView input)
@@ -86,6 +89,7 @@ namespace SmartDormitory.Web.Areas.Admin.Controllers
             this.StatusMessage = "The user has been successfully unlocked!";
             return this.RedirectToAction(nameof(Index));
         }
+
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> ChangePassword(UserModalModelView input)
