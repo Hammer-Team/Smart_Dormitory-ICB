@@ -2,47 +2,87 @@
     ViewData["Title"] = "Home Page";
 }
 
-<div class="title">
-    <h1>Smart Dormitory</h1>
+@using SmartDormitory.Data.Models
+
+@model IEnumerable<Sensor>
+
+<div class="hidden">
+    @foreach (Sensor sensor in Model)
+    {
+        <div class="sensor-location">
+            <p class="sensor-lat">@sensor.Latitude</p>
+            <p class="sensor-lng">@sensor.Longitude</p>
+        </div>
+    }
 </div>
 
-<section class="row container-fluid">
-    <div class="col-md-6 container center-vertical">
+@if (!User.Identity.IsAuthenticated)
+{
+    <div class="title">
+        <h1>Smart Dormitory</h1>
+    </div>
+
+    <section class="row container-fluid">
+        <div class="col-md-6 container center-vertical">
+            <div class="section-title">
+                <h3>Join our system of partners today!</h3>
+            </div>
+            <div id="sign-in-container center-vertical">
+                <button class="btn btn-primary">Register</button>
+                <button class="btn btn-success">Login</button>
+            </div>
+
+        </div>
+        <div class="col-md-6 container">
+            <div class="section-title"><h3>See public sensors on map</h3></div>
+            <div id="map"></div> <!--Here's the magic Google Map-->
+        </div>
+    </section>
+
+    <hr />
+
+    <section>
         <div class="section-title">
-            <h3>Join our system of partners today!</h3>
+            <h3>What is aur system all about</h3>
         </div>
-        <div id="sign-in-container center-vertical">
-            <button class="btn btn-primary">Register</button>
-            <button class="btn btn-success">Login</button>
+        <div>
+            <p>We provide high-end technology which allow you to track various data from your students in order to see their performance... blah blah blah</p>
+            <ul>
+                <li>First Feature</li>
+                <li>Second Feature</li>
+                <li>Third Feature</li>
+            </ul>
         </div>
+    </section>
 
-    </div>
-    <div class="col-md-6 container">
-        <div class="section-title"><h3>See public sensors on map</h3></div>
-        <div id="map"></div> <!--Here's the magic Google Map-->
-    </div>
-</section>
+    <script src="~/js/map.js">
+    </script>
+    <script src="https://developers.google.com/maps/documentation/javascript/examples/markerclusterer/markerclusterer.js">
+    </script>
+    <script async defer
+            src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDw2VAqsgmqjD7eQlISWs55-wVWnhHBM58&callback=initMap">
+    </script>
+}
+else
+{
+    <p>Logged</p>
 
-<hr />
-
-<section>
-    <div class="section-title">
-        <h3>What is aur system all about</h3>
-    </div>
-    <div>
-        <p>We provide high-end technology which allow you to track various data from your students in order to see their performance... blah blah blah</p>
-        <ul>
-            <li>First Feature</li>
-            <li>Second Feature</li>
-            <li>Third Feature</li>
-        </ul>
-    </div>
-</section>
-
-<script src="~/js/map.js">
-</script>
-<script src="https://developers.google.com/maps/documentation/javascript/examples/markerclusterer/markerclusterer.js">
-</script>
-<script async defer
-        src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDw2VAqsgmqjD7eQlISWs55-wVWnhHBM58&callback=initMap">
-</script>
+    <table class="table table-hover">
+        <tr>
+            <th>Name</th>
+            <th>Description</th>
+            <th>Value</th>
+            <th>Access Level</th>
+        </tr>
+        @foreach (Sensor sensor in Model)
+        {
+            <tr>
+                <td>@sensor.Name</td>
+                <td>@sensor.Description</td>
+                <td>@($"{sensor.Value} {sensor.MeasurmentType}")</td>
+                <td>@sensor.IsPublic</td>
+                <td><button class="btn btn-success">Details</button></td>
+            </tr>
+        }
+    </table>
+}
