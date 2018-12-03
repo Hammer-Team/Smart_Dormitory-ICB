@@ -2,7 +2,9 @@
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 using Newtonsoft.Json;
+using SmartDormitory.Data.JsonTools;
 using SmartDormitory.Data.Models;
+using System;
 using System.IO;
 
 namespace SmartDormitory.Data.Context
@@ -14,29 +16,39 @@ namespace SmartDormitory.Data.Context
         public DormitoryContext(DbContextOptions<DormitoryContext> options)
             : base(options)
         {
+
         }
 
         private void LoadJsonDataInDatabase(ModelBuilder modelBuilder)
         {
-            try
-            {
-                var usersJson = File.ReadAllText(@"..\SmartDormitory.Data\JsonData\users.json");
-                var userRolesJson = File.ReadAllText(@"..\SmartDormitory.Data\JsonData\userRoles.json");
-                var rolesJson = File.ReadAllText(@"..\SmartDormitory.Data\JsonData\roles.json");
+            var jsonManager = new JsonManager(modelBuilder);
 
-                var users = JsonConvert.DeserializeObject<User[]>(usersJson);
-                var roles = JsonConvert.DeserializeObject<IdentityRole[]>(rolesJson);
-                var userRoles = JsonConvert.DeserializeObject<IdentityUserRole<string>[]>(userRolesJson);
+            //try
+            //{
+                jsonManager.RegisterJson<User>("users.json");
+                jsonManager.RegisterJson<IdentityUserRole<string>>("userRoles.json");
+                jsonManager.RegisterJson<IdentityRole>("roles.json");
+                jsonManager.RegisterJson<Sensor>("sensors.json");
+                jsonManager.RegisterJson<SensorType>("sensorTypes.json");
 
-                modelBuilder.Entity<User>().HasData(users);
-                modelBuilder.Entity<IdentityRole>().HasData(roles);
-                modelBuilder.Entity<IdentityUserRole<string>>().HasData(userRoles);
+                //var usersJson = File.ReadAllText(@".\JsonData\users.json");
+                //var userRolesJson = File.ReadAllText(@".\JsonData\roles.json");
+                //var rolesJson = File.ReadAllText(@".\JsonData\roles.json");
+                //var sensorsJson = File.ReadAllText(@".\JsonData\roles.json");
 
-            }
-            catch (System.Exception)
-            {
-                return;
-            }
+                //var users = JsonConvert.DeserializeObject<User[]>(usersJson);
+                //var roles = JsonConvert.DeserializeObject<IdentityRole[]>(rolesJson);
+                //var userRoles = JsonConvert.DeserializeObject<IdentityUserRole<string>[]>(userRolesJson);
+
+                //modelBuilder.Entity<User>().HasData(users);
+                //modelBuilder.Entity<IdentityRole>().HasData(roles);
+                //modelBuilder.Entity<IdentityUserRole<string>>().HasData(userRoles);
+
+            //}
+            //catch (Exception)
+            //{
+            //    return;
+            //}
         }
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
