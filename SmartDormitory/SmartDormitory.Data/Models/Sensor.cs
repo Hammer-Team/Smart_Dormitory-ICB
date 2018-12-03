@@ -3,7 +3,7 @@
     public class Sensor
     {
         public int ID { get; set; }
-
+        
         public string ApiId { get; set; }
 
         public string Name { get; set; }

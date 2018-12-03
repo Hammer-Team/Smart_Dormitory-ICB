@@ -1,4 +1,9 @@
-﻿using SmartDormitory.Data.Models;
+﻿using Microsoft.AspNetCore.Mvc.Rendering;
+using SmartDormitory.Data.Models;
+using System.Collections;
+using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
+using System.Linq;
 
 namespace SmartDormitory.Web.Models
 {
@@ -13,6 +18,9 @@ namespace SmartDormitory.Web.Models
         public string Longitude { get; set; }
         public bool Alarm { get; set; }
         public bool IsPublic { get; set; }
+        public string UserId { get; set; }
+        public IEnumerable<SelectListItem> TypeList { get; set; }
+        public ICollection<string> Types { get; set; }
 
         public SensorViewModel()
         {
@@ -30,6 +38,7 @@ namespace SmartDormitory.Web.Models
             this.Longitude = Longitude;
             this.Alarm = Alarm;
             this.IsPublic = IsPublic;
+            this.UserId = UserId;
         }
     }
 }

@@ -1,4 +1,5 @@
-﻿using SmartDormitory.Data.Models;
+﻿using Microsoft.EntityFrameworkCore;
+using SmartDormitory.Data.Models;
 using SmartDormitory.Data.Repository;
 using SmartDormitory.Services.Contracts;
 using System.Collections.Generic;
@@ -11,14 +12,16 @@ namespace SmartDormitory.Services
     {
 
         private readonly IRepository<Sensor> sensorRepo;
+        private readonly IRepository<SensorType> sensorTypeRepo;
 
-        public SensorServices(IRepository<Sensor> sensorRepo)
+        public SensorServices(IRepository<Sensor> sensorRepo, IRepository<SensorType> sensorTypeRepo)
         {
             this.sensorRepo = sensorRepo;
+            this.sensorTypeRepo = sensorTypeRepo;
         }
 
         public async Task<Sensor> CreateSensorAsync(string name, string description, string url, string type,
-            string latitude, string longitude, bool alarm, bool isPublic)
+            string latitude, string longitude, bool alarm, bool isPublic, string UserId)
         {
             var sensorToAdd = new Sensor()
             {
@@ -29,7 +32,8 @@ namespace SmartDormitory.Services
                 Latitude = latitude,
                 Longitude = longitude,
                 Alarm = alarm,
-                IsPublic = isPublic
+                IsPublic = isPublic,
+                UserId = UserId
             };
             await sensorRepo.AddAsync(sensorToAdd);
             await sensorRepo.SaveAsync();
@@ -41,6 +45,11 @@ namespace SmartDormitory.Services
             return sensorRepo.All();
         }
 
+        public async Task<IEnumerable<SensorType>> GetSensorTypesAsync()
+        {
+            return await sensorTypeRepo.All().ToListAsync();
+        }
+
         public IEnumerable<Sensor> GetAllPublicSensors()
         {
             return sensorRepo.All()
@@ -49,7 +58,7 @@ namespace SmartDormitory.Services
 
         public IEnumerable<Sensor> GetSensorsByUsername(string username)
         {
-            return sensorRepo.All()
+            return  sensorRepo.All()
                 .Where(s => s.User.UserName == username);
         }
     }
