@@ -1,0 +1,10 @@
+[
+  {
+    "Id": "1",
+    "Type": "TemperatureSensor1"
+  },
+  {
+    "Id": "2",
+    "Type": "TemperatureSensor5"
+  }
+]

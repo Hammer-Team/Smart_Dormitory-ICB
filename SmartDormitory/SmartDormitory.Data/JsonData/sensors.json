@@ -1,0 +1,21 @@
+[
+  {
+    "ID": 384,
+    "ApiId": "f1796a28-642e-401f-8129-fd7465417061",
+    "Name": "First sensor",
+    "SensorTypeId": "1",
+    "Value": 21.0,
+    "Description": "Pre-defined sensor for development testing",
+    "URLSensorData": "http://telerikacademy.icb.bg/api/sensor/f1796a28-642e-401f-8129-fd7465417061",
+    "PoolInterval": 40,
+    "MeasurmentType": "°C",
+    "Latitude": "42.671892",
+    "Longitude": "23.373758",
+    "ValueRangeMin": 18.0,
+    "ValueRangeMax": 28.0,
+    "Alarm": true,
+    "IsPublic": true,
+    "IsDeleted": false,
+    "UserId": "d01398e6-5a53-4826-98d1-543051f1f650"
+  }
+]
