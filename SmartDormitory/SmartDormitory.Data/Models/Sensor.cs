@@ -8,7 +8,7 @@
 
         public string Name { get; set; }
 
-        public int SensorTypeId { get; set; }
+        public string SensorTypeId { get; set; }
 
         public SensorType SensorType { get; set; }
 

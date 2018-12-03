@@ -8,14 +8,14 @@
     let allLocations = document.getElementsByClassName('sensor-location');
 
     let locations = [];
+
     for (loc of allLocations) {
         locations.push({
-
-            lat: loc.childNodes.getElementsByClassName('sensor-lat')[0].textContent,
-            lng: loc.childNodes.getElementsByClassName('sensor-lng')[0].textContent
+            lat: parseFloat(loc.getElementsByClassName('sensor-lat')[0].textContent),
+            lng: parseFloat(loc.getElementsByClassName('sensor-lng')[0].textContent)
         });
     }
-
+    
     //let locations = [
     //    { lat: 42.658442, lng: 23.362691 },
     //    { lat: 42.665868, lng: 23.393298 },
