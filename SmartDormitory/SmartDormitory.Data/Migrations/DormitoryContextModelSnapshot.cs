@@ -90,11 +90,9 @@ namespace SmartDormitory.Data.Migrations
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserLogin<string>", b =>
                 {
-                    b.Property<string>("LoginProvider")
-                        .HasMaxLength(128);
+                    b.Property<string>("LoginProvider");
 
-                    b.Property<string>("ProviderKey")
-                        .HasMaxLength(128);
+                    b.Property<string>("ProviderKey");
 
                     b.Property<string>("ProviderDisplayName");
 
@@ -122,7 +120,8 @@ namespace SmartDormitory.Data.Migrations
 
                     b.HasData(
                         new { UserId = "45a3335a-44de-44f7-b77c-bfa7d3c10a7c", RoleId = "959596e5-93e4-4272-8cfb-6e71a4254370" },
-                        new { UserId = "31d4807f-7f5f-4ffa-90c1-a131e2d3855e", RoleId = "5197310d-5d42-4337-bb59-2fd06e6a8fcd" }
+                        new { UserId = "31d4807f-7f5f-4ffa-90c1-a131e2d3855e", RoleId = "5197310d-5d42-4337-bb59-2fd06e6a8fcd" },
+                        new { UserId = "d01398e6-5a53-4826-98d1-543051f1f650", RoleId = "959596e5-93e4-4272-8cfb-6e71a4254370" }
                     );
                 });
 
@@ -130,11 +129,9 @@ namespace SmartDormitory.Data.Migrations
                 {
                     b.Property<string>("UserId");
 
-                    b.Property<string>("LoginProvider")
-                        .HasMaxLength(128);
+                    b.Property<string>("LoginProvider");
 
-                    b.Property<string>("Name")
-                        .HasMaxLength(128);
+                    b.Property<string>("Name");
 
                     b.Property<string>("Value");
 
@@ -258,7 +255,8 @@ namespace SmartDormitory.Data.Migrations
 
                     b.HasData(
                         new { Id = "45a3335a-44de-44f7-b77c-bfa7d3c10a7c", AccessFailedCount = 0, ConcurrencyStamp = "9d737330-f5d9-410c-a9e1-f8aec11903f9", Email = "shaban9726@gmail.com", EmailConfirmed = false, LockoutEnabled = false, NormalizedEmail = "SHABAN9726@GMAIL.COM", NormalizedUserName = "SHABAN9726@GMAIL.COM", PasswordHash = "AQAAAAEAACcQAAAAEFlZ3okaz7hZUfZV1qgvOLac2WRWCxSNuhzwaB9Of93MvQncQQYZj2fb6bLSH4VFRw==", PhoneNumberConfirmed = false, SecurityStamp = "FJBKMINGFQAZNGSMZAIYUUQEVK4T74RU", TwoFactorEnabled = false, UserName = "shaban9726@gmail.com" },
-                        new { Id = "31d4807f-7f5f-4ffa-90c1-a131e2d3855e", AccessFailedCount = 0, ConcurrencyStamp = "715dad2a-9a3f-4a7d-bca1-e40799bb172c", Email = "user_pesho@abv.bg", EmailConfirmed = false, LockoutEnabled = false, NormalizedEmail = "USER_PESHO@ABV.BG", NormalizedUserName = "USER_PESHO@ABV.BG", PasswordHash = "AQAAAAEAACcQAAAAECewgbwibVC/7nEpYLbJB26wOJyT9i8Dfcx6WFFCTnGy5xqwptVYNBIZEWK37eaaMA==", PhoneNumberConfirmed = false, SecurityStamp = "WNDRYHCTXU3MSZ7NYBDFJQDL5VU2LBXS", TwoFactorEnabled = false, UserName = "user_pesho@abv.bg" }
+                        new { Id = "31d4807f-7f5f-4ffa-90c1-a131e2d3855e", AccessFailedCount = 0, ConcurrencyStamp = "715dad2a-9a3f-4a7d-bca1-e40799bb172c", Email = "user_pesho@abv.bg", EmailConfirmed = false, LockoutEnabled = false, NormalizedEmail = "USER_PESHO@ABV.BG", NormalizedUserName = "USER_PESHO@ABV.BG", PasswordHash = "AQAAAAEAACcQAAAAECewgbwibVC/7nEpYLbJB26wOJyT9i8Dfcx6WFFCTnGy5xqwptVYNBIZEWK37eaaMA==", PhoneNumberConfirmed = false, SecurityStamp = "WNDRYHCTXU3MSZ7NYBDFJQDL5VU2LBXS", TwoFactorEnabled = false, UserName = "user_pesho@abv.bg" },
+                        new { Id = "d01398e6-5a53-4826-98d1-543051f1f650", AccessFailedCount = 0, ConcurrencyStamp = "a5d37987-755a-455c-99f5-491cba1653f3", Email = "nikitoo@google.com", EmailConfirmed = false, LockoutEnabled = false, NormalizedEmail = "NIKITOO@GOOGLE.COM", NormalizedUserName = "NIKITOO@GOOGLE.COM", PasswordHash = "AQAAAAEAACcQAAAAEEBCEzE8UM/ctn9iYHx0yXeqwIePVskLBU69PYeUnFP2/P618XhOG2H+ySKQrto0fw==", PhoneNumberConfirmed = false, SecurityStamp = "6Z332ORFPW5MUHETB564A4IZTGKNCJ6U", TwoFactorEnabled = false, UserName = "nikitoo@google.com" }
                     );
                 });
 

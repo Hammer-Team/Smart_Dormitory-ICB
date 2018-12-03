@@ -5,12 +5,14 @@
 
 <div id="content">
     <div class="panel-body">
-        <table class="table  table-bordered table-hover">
+        <table class="table table-striped table-hover">
             <thead>
                 <tr>
                     <th>UsernameName</th>
                     <th>Email</th>
                     <th>Id</th>
+                    <th></th>
+                    <th></th>
                 </tr>
             </thead>
             <tbody>
@@ -21,6 +23,8 @@
                         <td>@user.UserName</td>
                         <td>@user.Email</td>
                         <td data-user-id="@user.ID"> @user.ID </td>
+                        <td></td>
+                        <td><button type="button" class="btn btn-success">Manage</button></td>
                     </tr>
                 }
             </tbody>

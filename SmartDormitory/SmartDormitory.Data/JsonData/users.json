@@ -18,5 +18,15 @@
     "PasswordHash": "AQAAAAEAACcQAAAAECewgbwibVC/7nEpYLbJB26wOJyT9i8Dfcx6WFFCTnGy5xqwptVYNBIZEWK37eaaMA==",
     "SecurityStamp": "WNDRYHCTXU3MSZ7NYBDFJQDL5VU2LBXS",
     "ConcurrencyStamp": "715dad2a-9a3f-4a7d-bca1-e40799bb172c"
+  },
+  {
+    "Id": "d01398e6-5a53-4826-98d1-543051f1f650",
+    "Username": "nikitoo@google.com",
+    "NormalizedUsername": "NIKITOO@GOOGLE.COM",
+    "Email": "nikitoo@google.com",
+    "NormalizedEmail": "NIKITOO@GOOGLE.COM",
+    "PasswordHash": "AQAAAAEAACcQAAAAEEBCEzE8UM/ctn9iYHx0yXeqwIePVskLBU69PYeUnFP2/P618XhOG2H+ySKQrto0fw==",
+    "SecurityStamp": "6Z332ORFPW5MUHETB564A4IZTGKNCJ6U",
+    "ConcurrencyStamp": "a5d37987-755a-455c-99f5-491cba1653f3"
   }
 ]

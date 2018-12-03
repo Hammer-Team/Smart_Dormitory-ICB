@@ -10,8 +10,8 @@ using SmartDormitory.Data.Context;
 namespace SmartDormitory.Data.Migrations
 {
     [DbContext(typeof(DormitoryContext))]
-    [Migration("20181122183846_initial")]
-    partial class initial
+    [Migration("20181126101118_addednikiToAdmins")]
+    partial class addednikiToAdmins
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -87,11 +87,9 @@ namespace SmartDormitory.Data.Migrations
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserLogin<string>", b =>
                 {
-                    b.Property<string>("LoginProvider")
-                        .HasMaxLength(128);
+                    b.Property<string>("LoginProvider");
 
-                    b.Property<string>("ProviderKey")
-                        .HasMaxLength(128);
+                    b.Property<string>("ProviderKey");
 
                     b.Property<string>("ProviderDisplayName");
 
@@ -122,11 +120,9 @@ namespace SmartDormitory.Data.Migrations
                 {
                     b.Property<string>("UserId");
 
-                    b.Property<string>("LoginProvider")
-                        .HasMaxLength(128);
+                    b.Property<string>("LoginProvider");
 
-                    b.Property<string>("Name")
-                        .HasMaxLength(128);
+                    b.Property<string>("Name");
 
                     b.Property<string>("Value");
 
@@ -161,7 +157,9 @@ namespace SmartDormitory.Data.Migrations
 
                     b.Property<int>("PoolInterval");
 
-                    b.Property<string>("SensorTypeId");
+                    b.Property<int>("SensorTypeId");
+
+                    b.Property<string>("SensorTypeId1");
 
                     b.Property<string>("URLSensorData");
 
@@ -175,7 +173,7 @@ namespace SmartDormitory.Data.Migrations
 
                     b.HasKey("ID");
 
-                    b.HasIndex("SensorTypeId");
+                    b.HasIndex("SensorTypeId1");
 
                     b.HasIndex("UserId");
 
@@ -205,6 +203,7 @@ namespace SmartDormitory.Data.Migrations
                         .IsConcurrencyToken();
 
                     b.Property<string>("Email")
+                        .IsRequired()
                         .HasMaxLength(256);
 
                     b.Property<bool>("EmailConfirmed");
@@ -230,6 +229,7 @@ namespace SmartDormitory.Data.Migrations
                     b.Property<bool>("TwoFactorEnabled");
 
                     b.Property<string>("UserName")
+                        .IsRequired()
                         .HasMaxLength(256);
 
                     b.HasKey("Id");
@@ -294,7 +294,7 @@ namespace SmartDormitory.Data.Migrations
                 {
                     b.HasOne("SmartDormitory.Data.Models.SensorType", "SensorType")
                         .WithMany("Sensors")
-                        .HasForeignKey("SensorTypeId");
+                        .HasForeignKey("SensorTypeId1");
 
                     b.HasOne("SmartDormitory.Data.Models.User", "User")
                         .WithMany("Sensors")

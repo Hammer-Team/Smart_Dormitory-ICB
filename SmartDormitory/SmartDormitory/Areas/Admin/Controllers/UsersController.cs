@@ -39,6 +39,7 @@ namespace SmartDormitory.Web.Areas.Admin.Controllers
             var pagedUsers = _userManager.Users
                                          .Select(u => new UserViewModel(u))
                                          .ToPagedList(page ?? 1, PAGE_SIZE);
+
             return PartialView("_UserGrid", pagedUsers);
         }
 
@@ -130,6 +131,17 @@ namespace SmartDormitory.Web.Areas.Admin.Controllers
                 return this.RedirectToAction(nameof(Index));
             }
             this.StatusMessage = "The user's password has been changed!";
+            return this.RedirectToAction(nameof(Index));
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> AsignAdminRole(UserModalModelView input)
+        {
+            User user = _userManager.Users.Where(u => u.Id == input.ID).FirstOrDefault();
+
+            await _userManager.Instance.AddToRoleAsync(user, "Administrator");
+
             return this.RedirectToAction(nameof(Index));
         }
     }

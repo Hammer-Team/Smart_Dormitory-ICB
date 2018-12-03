@@ -4,7 +4,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace SmartDormitory.Data.Migrations
 {
-    public partial class initial : Migration
+    public partial class addednikiToAdmins : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -27,9 +27,9 @@ namespace SmartDormitory.Data.Migrations
                 columns: table => new
                 {
                     Id = table.Column<string>(nullable: false),
-                    UserName = table.Column<string>(maxLength: 256, nullable: true),
+                    UserName = table.Column<string>(maxLength: 256, nullable: false),
                     NormalizedUserName = table.Column<string>(maxLength: 256, nullable: true),
-                    Email = table.Column<string>(maxLength: 256, nullable: true),
+                    Email = table.Column<string>(maxLength: 256, nullable: false),
                     NormalizedEmail = table.Column<string>(maxLength: 256, nullable: true),
                     EmailConfirmed = table.Column<bool>(nullable: false),
                     PasswordHash = table.Column<string>(nullable: true),
@@ -105,8 +105,8 @@ namespace SmartDormitory.Data.Migrations
                 name: "AspNetUserLogins",
                 columns: table => new
                 {
-                    LoginProvider = table.Column<string>(maxLength: 128, nullable: false),
-                    ProviderKey = table.Column<string>(maxLength: 128, nullable: false),
+                    LoginProvider = table.Column<string>(nullable: false),
+                    ProviderKey = table.Column<string>(nullable: false),
                     ProviderDisplayName = table.Column<string>(nullable: true),
                     UserId = table.Column<string>(nullable: false)
                 },
@@ -150,8 +150,8 @@ namespace SmartDormitory.Data.Migrations
                 columns: table => new
                 {
                     UserId = table.Column<string>(nullable: false),
-                    LoginProvider = table.Column<string>(maxLength: 128, nullable: false),
-                    Name = table.Column<string>(maxLength: 128, nullable: false),
+                    LoginProvider = table.Column<string>(nullable: false),
+                    Name = table.Column<string>(nullable: false),
                     Value = table.Column<string>(nullable: true)
                 },
                 constraints: table =>
@@ -173,7 +173,8 @@ namespace SmartDormitory.Data.Migrations
                         .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
                     ApiId = table.Column<string>(nullable: true),
                     Name = table.Column<string>(nullable: true),
-                    SensorTypeId = table.Column<string>(nullable: true),
+                    SensorTypeId = table.Column<int>(nullable: false),
+                    SensorTypeId1 = table.Column<string>(nullable: true),
                     Value = table.Column<double>(nullable: false),
                     Description = table.Column<string>(nullable: true),
                     URLSensorData = table.Column<string>(nullable: true),
@@ -192,8 +193,8 @@ namespace SmartDormitory.Data.Migrations
                 {
                     table.PrimaryKey("PK_Sensors", x => x.ID);
                     table.ForeignKey(
-                        name: "FK_Sensors_SensorType_SensorTypeId",
-                        column: x => x.SensorTypeId,
+                        name: "FK_Sensors_SensorType_SensorTypeId1",
+                        column: x => x.SensorTypeId1,
                         principalTable: "SensorType",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Restrict);
@@ -245,9 +246,9 @@ namespace SmartDormitory.Data.Migrations
                 filter: "[NormalizedUserName] IS NOT NULL");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Sensors_SensorTypeId",
+                name: "IX_Sensors_SensorTypeId1",
                 table: "Sensors",
-                column: "SensorTypeId");
+                column: "SensorTypeId1");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Sensors_UserId",
