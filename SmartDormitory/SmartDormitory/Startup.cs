@@ -14,6 +14,10 @@ using SmartDormitory.Services;
 using SmartDormitory.Web.Providers;
 using SmartDormitory.Web.Areas.Identity.Services;
 using Microsoft.AspNetCore.Identity.UI.Services;
+using SmartDormitory.Services.External.Contracts;
+using SmartDormitory.Services.External;
+using System;
+using System.Net.Http;
 
 namespace SmartDormitory
 {
@@ -50,8 +54,17 @@ namespace SmartDormitory
 
             services.AddScoped<ISensorService, SensorServices>();
 
+            // Services External
+            services.AddScoped<HttpClient>();
+            services.AddScoped<IRestClientService, RestClientService>();
+
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
 
+        }
+
+        private int HttpClient()
+        {
+            throw new NotImplementedException();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

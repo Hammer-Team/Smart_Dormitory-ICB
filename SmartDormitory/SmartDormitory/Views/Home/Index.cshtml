@@ -80,7 +80,15 @@ else
                 <td>@sensor.Name</td>
                 <td>@sensor.Description</td>
                 <td>@($"{sensor.Value} {sensor.MeasurmentType}")</td>
-                <td>@sensor.IsPublic</td>
+                <td>@if (sensor.IsPublic)
+                {
+                    <span>public</span>
+                }
+                else
+                {
+                    <span>private</span>
+                }
+                </td>
                 <td><button class="btn btn-success">Details</button></td>
             </tr>
         }

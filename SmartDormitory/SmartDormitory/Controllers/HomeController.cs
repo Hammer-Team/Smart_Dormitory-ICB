@@ -8,20 +8,26 @@ using Microsoft.AspNetCore.Mvc;
 using SmartDormitory.Data.Models;
 using SmartDormitory.Models;
 using SmartDormitory.Services.Contracts;
+using SmartDormitory.Services.External.Contracts;
 
 namespace SmartDormitory.Controllers
 {
     public class HomeController : Controller
     {
         private readonly ISensorService sensorService;
+        private readonly IRestClientService test;
 
-        public HomeController(ISensorService sensorService)
+        public HomeController(ISensorService sensorService, IRestClientService test)
         {
             this.sensorService = sensorService;
+            this.test = test;
         }
 
-        public IActionResult Index()
+        public async Task<IActionResult> Index()
         {
+            var testData = await test.GetAllSensorsAsync("all", "8e4c46fe-5e1d-4382-b7fc-19541f7bf3b0");
+            var testData2 = await test.GetSensorById("8e4c46fe-5e1d-4382-b7fc-19541f7bf3b0", "f1796a28-642e-401f-8129-fd7465417061");
+            
             IEnumerable<Sensor> sensors;
             bool isUserLogged = User.Identity.IsAuthenticated;
 
@@ -49,7 +55,7 @@ namespace SmartDormitory.Controllers
         public IActionResult Contact()
         {
             ViewData["Message"] = "Your contact page.";
-           
+
             return View();
         }
 
