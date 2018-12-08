@@ -54,6 +54,7 @@ namespace SmartDormitory
 
             services.AddScoped<ISensorService, SensorServices>();
 
+            services.AddHostedService<TimedHostedService>();
             // Services External
             services.AddScoped<HttpClient>();
             services.AddScoped<IRestClientService, RestClientService>();

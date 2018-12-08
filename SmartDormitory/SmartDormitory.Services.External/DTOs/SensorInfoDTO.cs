@@ -15,5 +15,7 @@ namespace SmartDormitory.Services.External.DTOs
 
         [JsonProperty(PropertyName = "valueType")]
         public string ValueType { get; set; }
+
+        //public double MinPollingIntervalInSeconds { get; set; }
     }
 }

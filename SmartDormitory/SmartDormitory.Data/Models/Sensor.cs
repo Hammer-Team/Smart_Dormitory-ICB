@@ -1,4 +1,6 @@
-﻿namespace SmartDormitory.Data.Models
+﻿using System;
+
+namespace SmartDormitory.Data.Models
 {
     public class Sensor
     {
@@ -12,7 +14,7 @@
 
         public SensorType SensorType { get; set; }
 
-        public double Value { get; set; }
+        public decimal Value { get; set; }
 
         public string Description { get; set; }
 
@@ -37,6 +39,8 @@
         public bool IsDeleted { get; set; }
 
         public string UserId { get; set; }
+
+        public string TimeStamp { get; set; }
 
         public User User { get; set; }
     }

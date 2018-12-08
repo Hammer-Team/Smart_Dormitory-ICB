@@ -21,5 +21,7 @@ namespace SmartDormitory.Services.External.DTOs
 
         [JsonProperty(PropertyName = "measureType")]
         public string MeasureType { get; set; }
+
+        public DateTime TimeStamp { get; set; }
     }
 }

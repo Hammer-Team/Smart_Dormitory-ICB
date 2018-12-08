@@ -168,11 +168,13 @@ namespace SmartDormitory.Data.Migrations
 
                     b.Property<string>("SensorTypeId");
 
+                    b.Property<string>("TimeStamp");
+
                     b.Property<string>("URLSensorData");
 
                     b.Property<string>("UserId");
 
-                    b.Property<double>("Value");
+                    b.Property<decimal>("Value");
 
                     b.Property<double>("ValueRangeMax");
 
@@ -187,7 +189,7 @@ namespace SmartDormitory.Data.Migrations
                     b.ToTable("Sensors");
 
                     b.HasData(
-                        new { ID = 384, Alarm = true, ApiId = "f1796a28-642e-401f-8129-fd7465417061", Description = "Pre-defined sensor for development testing", IsDeleted = false, IsPublic = true, Latitude = "42.671892", Longitude = "23.373758", MeasurmentType = "�C", Name = "First sensor", PoolInterval = 40, SensorTypeId = "1", URLSensorData = "http://telerikacademy.icb.bg/api/sensor/f1796a28-642e-401f-8129-fd7465417061", UserId = "d01398e6-5a53-4826-98d1-543051f1f650", Value = 21.0, ValueRangeMax = 28.0, ValueRangeMin = 18.0 }
+                        new { ID = 384, Alarm = true, ApiId = "f1796a28-642e-401f-8129-fd7465417061", Description = "Pre-defined sensor for development testing", IsDeleted = false, IsPublic = true, Latitude = "42.671892", Longitude = "23.373758", MeasurmentType = "�C", Name = "First sensor", PoolInterval = 40, SensorTypeId = "1", URLSensorData = "http://telerikacademy.icb.bg/api/sensor/f1796a28-642e-401f-8129-fd7465417061", UserId = "d01398e6-5a53-4826-98d1-543051f1f650", Value = 21.0m, ValueRangeMax = 28.0, ValueRangeMin = 18.0 }
                     );
                 });
 
@@ -200,7 +202,7 @@ namespace SmartDormitory.Data.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("SensorType");
+                    b.ToTable("SensorTypes");
 
                     b.HasData(
                         new { Id = "1", Type = "TemperatureSensor1" },
