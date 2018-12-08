@@ -12,9 +12,6 @@
         <div class="sensor-location">
             <p class="sensor-lat">@sensor.Latitude</p>
             <p class="sensor-lng">@sensor.Longitude</p>
-            @*<p class="sensor-lat">12.123213</p>
-            <p class="sensor-lng">-42.124</p>*@
-
         </div>
     }
 </div>
@@ -34,7 +31,6 @@
                 <button class="btn btn-primary">Register</button>
                 <button class="btn btn-success">Login</button>
             </div>
-
         </div>
         <div class="col-md-6 container">
             <div class="section-title"><h3>See public sensors on map</h3></div>
@@ -83,16 +79,17 @@ else
                 <td>@sensor.Name</td>
                 <td>@sensor.Description</td>
                 <td>@($"{sensor.Value} {sensor.MeasurmentType}")</td>
-                <td>@if (sensor.IsPublic)
-                {
-                    <span>public</span>
-                }
-                else
-                {
-                    <span>private</span>
-                }
+                <td>
+                    @if (sensor.IsPublic)
+                    {
+                        <span>public</span>
+                    }
+                    else
+                    {
+                        <span>private</span>
+                    }
                 </td>
-                <td><button class="btn btn-success">Details</button></td>
+                <td><a class="btn btn-success" asp-controller="Sensor" asp-action="Details" asp-route-id="@sensor.ID">Details</a></td>
             </tr>
         }
     </table>

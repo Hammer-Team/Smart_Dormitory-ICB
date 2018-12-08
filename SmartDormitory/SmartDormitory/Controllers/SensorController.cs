@@ -58,5 +58,14 @@ namespace SmartDormitory.Web.Controllers
 
             return View();
         }
+
+        [HttpGet]
+        [Authorize]
+        public IActionResult Details(int id)
+        {
+            var sensor = sensorService.GetSensorById(id);
+
+            return View(sensor);
+        }
     }
 }
