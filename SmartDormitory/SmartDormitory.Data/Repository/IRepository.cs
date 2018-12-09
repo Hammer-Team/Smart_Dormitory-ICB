@@ -1,5 +1,7 @@
-﻿using System.Linq;
+﻿using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
+using SmartDormitory.Data.Models;
 
 namespace SmartDormitory.Data.Repository
 {

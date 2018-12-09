@@ -47,20 +47,20 @@ namespace SmartDormitory.Services.External
         }
 
         public IDictionary<string, Sensor> InitialSensorLoad()
+        {
+            var result = new Dictionary<string, Sensor>();
+
+            var sensors = this.context.Sensors;
+
+            foreach (var sensor in sensors)
             {
-                var result = new Dictionary<string, Sensor>();
-
-                var sensors = this.context.Sensors;
-
-                foreach (var sensor in sensors)
+                if (!result.ContainsKey(sensor.ApiId.ToString()))
                 {
-                    if (!result.ContainsKey(sensor.ApiId.ToString()))
-                    {
-                        result.Add(sensor.ApiId.ToString(), sensor);
-                    }
+                    result.Add(sensor.ApiId.ToString(), sensor);
                 }
-                return result;
             }
+            return result;
+        }
 
         public IDictionary<string, Sensor> CheckForNewSensor(IDictionary<string, Sensor> listOfSensors)
         {
@@ -103,7 +103,8 @@ namespace SmartDormitory.Services.External
                 PoolInterval = minPollInterval,
                 MeasurmentType = measureType,
                 ValueRangeMax = Math.Max(extractedValues[0], extractedValues[1]),
-                ValueRangeMin = Math.Min(extractedValues[0], extractedValues[1])
+                ValueRangeMin = Math.Min(extractedValues[0], extractedValues[1]),
+                TimeStamp = DateTime.Now.ToString()
             };
 
             this.context.Add(newSensor);
@@ -136,12 +137,13 @@ namespace SmartDormitory.Services.External
             bool isAnySensorForUpdate = false;
             foreach (var sensor in listOfSensors.Values)
             {
+                string senzorTime = sensor.TimeStamp.ToString();
                 if (DateTime.Parse(sensor.TimeStamp.ToString()).AddSeconds(sensor.PoolInterval) < DateTime.Now)
                 {
-                    var response = GetSensorById("8e4c46fe-5e1d-4382-b7fc-19541f7bf3b0", sensor.ID.ToString());
+                    var response = GetSensorById("8e4c46fe-5e1d-4382-b7fc-19541f7bf3b0", sensor.ApiId.ToString());
 
                     sensor.TimeStamp = response.TimeStamp;
-                    sensor.Value = response.Value;
+                    sensor.Value = response.Value.ToString();
 
                     sensorForUpdate.Add(sensor);
 

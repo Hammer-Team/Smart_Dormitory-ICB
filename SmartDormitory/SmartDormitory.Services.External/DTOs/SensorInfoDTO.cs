@@ -11,7 +11,7 @@ namespace SmartDormitory.Services.External.DTOs
         public string TimeStamp { get; set; }
 
         [JsonProperty(PropertyName = "value")]
-        public decimal Value { get; set; }
+        public string Value { get; set; }
 
         [JsonProperty(PropertyName = "valueType")]
         public string ValueType { get; set; }

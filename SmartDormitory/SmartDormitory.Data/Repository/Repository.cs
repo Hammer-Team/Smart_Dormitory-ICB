@@ -1,6 +1,8 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.ChangeTracking;
 using SmartDormitory.Data.Context;
+using SmartDormitory.Data.Models;
+using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 

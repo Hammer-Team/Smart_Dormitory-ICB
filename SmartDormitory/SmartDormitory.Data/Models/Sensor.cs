@@ -14,7 +14,7 @@ namespace SmartDormitory.Data.Models
 
         public SensorType SensorType { get; set; }
 
-        public decimal Value { get; set; }
+        public string Value { get; set; }
 
         public string Description { get; set; }
 

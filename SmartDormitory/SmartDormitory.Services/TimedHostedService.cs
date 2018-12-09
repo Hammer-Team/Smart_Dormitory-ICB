@@ -26,7 +26,7 @@ namespace SmartDormitory.Services
 
             string report = InitialSensorLoad();
 
-            this.timer = new Timer(CheckForNewSensor, null, TimeSpan.Zero, TimeSpan.FromSeconds(10));
+            //this.timer = new Timer(CheckForNewSensor, null, TimeSpan.Zero, TimeSpan.FromSeconds(5));
 
             this.timer = new Timer(UpdateSensor, null, TimeSpan.Zero, TimeSpan.FromSeconds(5));
 
@@ -61,6 +61,7 @@ namespace SmartDormitory.Services
             using (var scope = service.CreateScope())
             {
                 var service = scope.ServiceProvider.GetRequiredService<IRestClientService>();
+
                 listOfSensors = service.UpdateSensors(listOfSensors);
             }
         }
