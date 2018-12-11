@@ -1,13 +1,26 @@
 ﻿<!DOCTYPE html>
 <html>
 <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="icon" href="~/template/img/favicon.png" type="image/png">
     <title>@ViewData["Title"] - SmartDormitory</title>
-
     <environment include="Development">
-        <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.css" />
+        @RenderSection("headtags", required: false)
+        @*<link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.css" />*@
         <link rel="stylesheet" href="~/css/site.css" />
+        <!-- Bootstrap CSS -->
+        <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap-lux.css">
+        <link rel="stylesheet" href="~/template/vendors/linericon/style.css">
+        <link rel="stylesheet" href="~/template/css/font-awesome.min.css">
+        <link rel="stylesheet" href="~/template/vendors/owl-carousel/owl.carousel.min.css">
+        <link rel="stylesheet" href="~/template/css/magnific-popup.css">
+        <link rel="stylesheet" href="~/template/vendors/nice-select/css/nice-select.css">
+        <link rel="stylesheet" href="~/template/vendors/animate-css/animate.css">
+        <link rel="stylesheet" href="~/template/vendors/flaticon/flaticon.css">
+        <!-- Main CSS -->
+        <link rel="stylesheet" href="~/template/css/style.css">
+
     </environment>
     <environment exclude="Development">
         <link rel="stylesheet" href="https://ajax.aspnetcdn.com/ajax/bootstrap/3.3.7/css/bootstrap.min.css"
@@ -16,43 +29,187 @@
         <link rel="stylesheet" href="~/css/site.min.css" asp-append-version="true" />
     </environment>
 </head>
+
 <body>
-    <nav class="navbar navbar-inverse navbar-fixed-top">
-        <div class="container">
-            <div class="navbar-header">
-                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-                    <span class="sr-only">Toggle navigation</span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                </button>
-                <a asp-area="" asp-controller="Home" asp-action="Index" class="navbar-brand">SmartDormitory</a>
-            </div>
-            <div class="navbar-collapse collapse">
-                <ul class="nav navbar-nav">
-                    @if (User.Identity.IsAuthenticated)
-                    {
-                        <li><a asp-area="" asp-controller="Sensor" asp-action="Create">Create</a></li>
-                    }
-                    @if (User.IsInRole("Administrator"))
-                    {
-                        <li><a asp-area="Admin" asp-controller="Users" asp-action="Index">Users</a></li>
-                    }
-                </ul>
-                <partial name="_LoginPartial" />
-            </div>
+    <header class="header_area">
+        <div class="main_menu">
+            <nav class="navbar navbar-expand-sm navbar-light">
+                <div class="container">
+                    <a class="navbar-brand logo_h" asp-area="" asp-controller="Home" asp-action="Index"><img src="~/template/img/favicon.png" alt=""></a>
+                    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+                            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                    <div class="collapse navbar-collapse offset" id="navbarSupportedContent">
+                        <ul class="nav navbar-nav menu_nav justify-content-center">
+                            <li class="nav-item active"><a class="nav-link" asp-area="" asp-controller="Home" asp-action="Index">Home</a></li>
+                            <li class="nav-item"><a class="nav-link">About</a></li>
+                            <li class="nav-item"><a class="nav-link" href="gallery.html">Gallery</a>
+                            <li class="nav-item submenu dropdown">
+                                <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
+                                   aria-expanded="false">Pages</a>
+                                <ul class="dropdown-menu">
+                                    <li class="nav-item"><a class="nav-link" href="price.html">Pricing</a>
+                                    <li class="nav-item"><a class="nav-link" href="games.html">Games</a>
+                                    <li class="nav-item"><a class="nav-link" href="elements.html">Elements</a>
+                                </ul>
+                            </li>
+                            <li class="nav-item submenu dropdown">
+                                <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
+                                   aria-expanded="false">Blog</a>
+                                <ul class="dropdown-menu">
+                                    <li class="nav-item"><a class="nav-link" href="blog.html">Blog</a></li>
+                                    <li class="nav-item"><a class="nav-link" href="single-blog.html">Blog Details</a></li>
+                                </ul>
+                            </li>
+                            <li class="nav-item"><a class="nav-link" href="contact.html">Contact</a></li>
+                        </ul>
+                        <partial name="_LoginPartial" />
+                        @*<ul class="nav navbar-nav navbar-right">
+                                <li class="nav-item"><a href="#" class="primary_btn">Login</a></li>
+                            </ul>*@
+                    </div>
+                </div>
+            </nav>
         </div>
-    </nav>
+    </header>
+
+    @*<nav class="navbar navbar-inverse navbar-fixed-top">
+            <div class="container">
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                        <span class="sr-only">Toggle navigation</span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                    <a asp-area="" asp-controller="Home" asp-action="Index" class="navbar-brand">SmartDormitory</a>
+                </div>
+                <div class="navbar-collapse collapse">
+                    <ul class="nav navbar-nav">
+                        @if (User.Identity.IsAuthenticated)
+                        {
+                            <li><a asp-area="" asp-controller="Sensor" asp-action="Create">Create</a></li>
+                        }
+                        @if (User.IsInRole("Administrator"))
+                        {
+                            <li><a asp-area="Admin" asp-controller="Users" asp-action="Index">Users</a></li>
+                        }
+                    </ul>
+                    <partial name="_LoginPartial" />
+                </div>
+            </div>
+        </nav>*@
 
     <partial name="_CookieConsentPartial" />
 
-    <div class="container body-content">
+    @if (ViewData.ContainsKey("isHeadtagsRendered") && !(bool)ViewData["isHeadtagsRendered"])
+    {
+        <div class="container body-content">
+            @RenderBody()
+        </div>
+
+        ViewData["isHeadtagsRendered"] = false;
+    }
+    else
+    {
         @RenderBody()
-    </div>
+    }
+
+    <!--================Footer Area =================-->
+    <footer class="footer_area section_gap_top">
+        <div class="container">
+            <div class="row footer_inner">
+                <div class="col-lg-3 col-sm-6">
+                    <aside class="f_widget ab_widget">
+                        <div class="f_title">
+                            <h4>About Farfly</h4>
+                        </div>
+                        <ul>
+                            <li><a href="#"></a>For Business</a></li>
+                            <a href="#">
+                                <li><a href="#"></a>Premium Plans
+                            </a></li>
+                            <li><a href="#"></a>Reviews</a></li>
+                            <li><a href="#"></a>How it Works</a></li>
+                            <li><a href="#"></a>Farfly Blog</a></li>
+                        </ul>
+                    </aside>
+                </div>
+                <div class="col-lg-3 col-sm-6">
+                    <aside class="f_widget ab_widget">
+                        <div class="f_title">
+                            <h4>Company</h4>
+                        </div>
+                        <ul>
+                            <li><a href="#"></a>Product Tour</a></li>
+                            <a href="#">
+                                <li><a href="#"></a>Pricing
+                            </a></li>
+                            <li><a href="#"></a>Founding Members</a></li>
+                            <li><a href="#"></a>Case Studies</a></li>
+                            <li><a href="#"></a>Product Updates</a></li>
+                        </ul>
+                    </aside>
+                </div>
+                <div class="col-lg-3 col-sm-6">
+                    <aside class="f_widget ab_widget">
+                        <div class="f_title">
+                            <h4>Support</h4>
+                        </div>
+                        <ul>
+                            <li><a href="#"></a>Documentation</a></li>
+                            <a href="#">
+                                <li><a href="#"></a>Data Securiry
+                            </a></li>
+                            <li><a href="#"></a>Site Performance</a></li>
+                            <li><a href="#"></a>Action Plan</a></li>
+                            <li><a href="#"></a>Resources</a></li>
+                        </ul>
+                    </aside>
+                </div>
+                <div class="col-lg-3 col-sm-6">
+                    <aside class="f_widget ab_widget">
+                        <div class="f_title">
+                            <h4>Legal</h4>
+                        </div>
+                        <ul>
+                            <li><a href="#"></a>Terms and conditions</a></li>
+                            <a href="#">
+                                <li><a href="#"></a>Privacy Policy
+                            </a></li>
+                            <li><a href="#"></a>Cookie Information</a></li>
+                            <li><a href="#"></a>Opt - Out</a></li>
+                        </ul>
+                    </aside>
+                </div>
+            </div>
+            <div class="row single-footer-widget">
+                <div class="col-lg-6 col-md-6 col-sm-12">
+                    <div class="copy_right_text">
+                        <p>
+                        </p>
+                    </div>
+                </div>
+                <div class="col-lg-6 col-md-6 col-sm-12">
+                    <div class="social_widget">
+                        <a href="#"><i class="fa fa-facebook"></i></a>
+                        <a href="#"><i class="fa fa-twitter"></i></a>
+                        <a href="#"><i class="fa fa-dribbble"></i></a>
+                        <a href="#"><i class="fa fa-behance"></i></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+    <!--================End Footer Area =================-->
 
     <environment include="Development">
         <script src="~/lib/jquery/dist/jquery.js"></script>
         <script src="~/lib/bootstrap/dist/js/bootstrap.js"></script>
+        @RenderSection("scripts", required: false)
         <script src="~/js/site.js" asp-append-version="true"></script>
     </environment>
     <environment exclude="Development">
@@ -70,7 +227,5 @@
         </script>
         <script src="~/js/site.min.js" asp-append-version="true"></script>
     </environment>
-
-    @RenderSection("Scripts", required: false)
 </body>
 </html>
