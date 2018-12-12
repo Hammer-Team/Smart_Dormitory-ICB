@@ -59,6 +59,14 @@
     <!--================Start About Us Area =================-->
     <section class="about_us_area section_gap_top">
         <div class="container">
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="main_title">
+                        <h2>Who We Are?</h2>
+                        <h1>Who We Are?</h1>
+                    </div>
+                </div>
+            </div>
             <div class="row about_content align-items-center">
                 <div class="col-lg-6">
                     <div class="section_content">
@@ -161,22 +169,30 @@
                     </div>
                 </div>
             </div>
-            <div id="map"></div> <!--Here's the magic Google Map-->
         </div>
     </section>
+    <div id="map"></div>
     <!--================ End Google Map Area =================-->
-
-    <script src="~/js/map.js">
-    </script>
-    <script src="https://developers.google.com/maps/documentation/javascript/examples/markerclusterer/markerclusterer.js">
-    </script>
-    <script async defer
-            src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDw2VAqsgmqjD7eQlISWs55-wVWnhHBM58&callback=initMap">
-    </script>
 }
 else
 {
     <p>Logged</p>
+
+    <!--================ Google Map Area =================-->
+    <section class="row container-fluid">
+        <div class="col-md-12 container">
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="main_title">
+                        <h2>Public Sensors</h2>
+                        <h1>Public Sensors</h1>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <div id="map"></div>
+    <!--================ End Google Map Area =================-->
 
     <table class="table table-hover">
         <tr>
@@ -208,6 +224,15 @@ else
     </table>
 }
 
+<!--Google Maps Scripts-->
+<script src="~/js/map.js">
+</script>
+<script src="https://developers.google.com/maps/documentation/javascript/examples/markerclusterer/markerclusterer.js">
+</script>
+<script async defer
+        src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDw2VAqsgmqjD7eQlISWs55-wVWnhHBM58&callback=initMap">
+</script>
+
 @section scripts
     {
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
@@ -228,5 +253,4 @@ else
     <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCjCGmQ0Uq4exrzdcL6rvxywDDOvfAu6eE"></script>
     <script src="~/template/js/gmaps.min.js"></script>
     <script src="~/template/js/theme.js"></script>
-
 }
