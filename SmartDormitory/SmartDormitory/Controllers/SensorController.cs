@@ -53,8 +53,19 @@ namespace SmartDormitory.Web.Controllers
                 return this.View();
             }
 
-            var newMovie = await sensorService.CreateSensorAsync(sensorViewModel.Name, sensorViewModel.Description, sensorViewModel.URL, sensorViewModel.Type,
-                sensorViewModel.Latitude, sensorViewModel.Longitude, sensorViewModel.Alarm, sensorViewModel.IsPublic, User.FindFirst(ClaimTypes.NameIdentifier).Value);
+            var newMovie = await sensorService.CreateSensorAsync(
+                sensorViewModel.Name, 
+                sensorViewModel.Description, 
+                sensorViewModel.URL, 
+                sensorViewModel.Type,
+                sensorViewModel.Latitude, 
+                sensorViewModel.Longitude, 
+                sensorViewModel.Alarm, 
+                sensorViewModel.IsPublic, 
+                User.FindFirst(ClaimTypes.NameIdentifier).Value,
+                sensorViewModel.ApiId,
+                sensorViewModel.TimeStamp
+                );
 
             return View();
         }

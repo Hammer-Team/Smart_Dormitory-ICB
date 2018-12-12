@@ -4,10 +4,10 @@
 
 @using SmartDormitory.Data.Models
 
-@model IEnumerable<Sensor>
+@model IEnumerable<SensorsFromUser>
 
 <div class="hidden">
-    @foreach (Sensor sensor in Model)
+    @foreach (SensorsFromUser sensor in Model)
     {
         <div class="sensor-location">
             <p class="sensor-lat">@sensor.Latitude</p>
@@ -73,7 +73,7 @@ else
             <th>Value</th>
             <th>Access Level</th>
         </tr>
-        @foreach (Sensor sensor in Model)
+        @foreach (SensorsFromUser sensor in Model)
         {
             <tr>
                 <td>@sensor.Name</td>

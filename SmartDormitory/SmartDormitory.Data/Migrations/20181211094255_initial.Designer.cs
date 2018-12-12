@@ -10,7 +10,7 @@ using SmartDormitory.Data.Context;
 namespace SmartDormitory.Data.Migrations
 {
     [DbContext(typeof(DormitoryContext))]
-    [Migration("20181207093118_initial")]
+    [Migration("20181211094255_initial")]
     partial class initial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -148,6 +148,41 @@ namespace SmartDormitory.Data.Migrations
                         .ValueGeneratedOnAdd()
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
+                    b.Property<string>("ApiId");
+
+                    b.Property<string>("Description");
+
+                    b.Property<string>("MeasurmentType");
+
+                    b.Property<int>("PoolInterval");
+
+                    b.Property<string>("SensorTypeId");
+
+                    b.Property<string>("TimeStamp");
+
+                    b.Property<string>("UserId");
+
+                    b.Property<string>("Value");
+
+                    b.Property<double>("ValueRangeMax");
+
+                    b.Property<double>("ValueRangeMin");
+
+                    b.HasKey("ID");
+
+                    b.HasIndex("SensorTypeId");
+
+                    b.HasIndex("UserId");
+
+                    b.ToTable("Sensors");
+                });
+
+            modelBuilder.Entity("SmartDormitory.Data.Models.SensorsFromUser", b =>
+                {
+                    b.Property<int>("ID")
+                        .ValueGeneratedOnAdd()
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
                     b.Property<bool>("Alarm");
 
                     b.Property<string>("ApiId");
@@ -176,7 +211,7 @@ namespace SmartDormitory.Data.Migrations
 
                     b.Property<string>("UserId");
 
-                    b.Property<decimal>("Value");
+                    b.Property<string>("Value");
 
                     b.Property<double>("ValueRangeMax");
 
@@ -188,11 +223,7 @@ namespace SmartDormitory.Data.Migrations
 
                     b.HasIndex("UserId");
 
-                    b.ToTable("Sensors");
-
-                    b.HasData(
-                        new { ID = 384, Alarm = true, ApiId = "f1796a28-642e-401f-8129-fd7465417061", Description = "Pre-defined sensor for development testing", IsDeleted = false, IsPublic = true, Latitude = "42.671892", Longitude = "23.373758", MeasurmentType = "�C", Name = "First sensor", PoolInterval = 40, SensorTypeId = "1", URLSensorData = "http://telerikacademy.icb.bg/api/sensor/f1796a28-642e-401f-8129-fd7465417061", UserId = "d01398e6-5a53-4826-98d1-543051f1f650", Value = 21.0m, ValueRangeMax = 28.0, ValueRangeMin = 18.0 }
-                    );
+                    b.ToTable("GetSensorsFromUsers");
                 });
 
             modelBuilder.Entity("SmartDormitory.Data.Models.SensorType", b =>
@@ -205,11 +236,6 @@ namespace SmartDormitory.Data.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("SensorTypes");
-
-                    b.HasData(
-                        new { Id = "1", Type = "TemperatureSensor1" },
-                        new { Id = "2", Type = "TemperatureSensor5" }
-                    );
                 });
 
             modelBuilder.Entity("SmartDormitory.Data.Models.User", b =>
@@ -322,8 +348,19 @@ namespace SmartDormitory.Data.Migrations
                         .WithMany("Sensors")
                         .HasForeignKey("SensorTypeId");
 
-                    b.HasOne("SmartDormitory.Data.Models.User", "User")
+                    b.HasOne("SmartDormitory.Data.Models.User")
                         .WithMany("Sensors")
+                        .HasForeignKey("UserId");
+                });
+
+            modelBuilder.Entity("SmartDormitory.Data.Models.SensorsFromUser", b =>
+                {
+                    b.HasOne("SmartDormitory.Data.Models.SensorType", "SensorType")
+                        .WithMany()
+                        .HasForeignKey("SensorTypeId");
+
+                    b.HasOne("SmartDormitory.Data.Models.User", "User")
+                        .WithMany()
                         .HasForeignKey("UserId");
                 });
 #pragma warning restore 612, 618

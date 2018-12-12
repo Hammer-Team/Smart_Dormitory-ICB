@@ -36,6 +36,23 @@ body {
     }
 }
 
+table {
+    border-collapse: collapse;
+    border-spacing: 0;
+    background-color: #808080;
+    width: 100%;
+    border: 1px solid #ddd;
+}
+
+th, td {
+    text-align: left;
+    padding: 8px;
+}
+
+tr:nth-child(even) {
+    background-color: #5a5757
+}
+
 section {
     height: 480px;
 }
@@ -61,3 +78,46 @@ section {
     top: 50%;
     transform: perspective(1px) translateY(-50%);
 }
+
+
+
+.clear:before,
+.clear:after {
+    content: "";
+    display: table;
+}
+
+.clear:after {
+    clear: both;
+}
+
+.clear {
+    *zoom: 1;
+}
+
+.gauge {
+    display: block;
+    float: left;
+    box-sizing: border-box;
+    margin: 0 0 1% 0;
+}
+
+.size-1 {
+    width: 20%;
+}
+
+.size-2 {
+    width: 30%;
+}
+
+.size-3 {
+    width: 48%;
+}
+
+.h-split {
+    display: block;
+    float: left;
+    width: 1%;
+    min-height: 100px;
+}
+

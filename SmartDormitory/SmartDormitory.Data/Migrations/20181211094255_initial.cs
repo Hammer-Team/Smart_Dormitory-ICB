@@ -166,7 +166,7 @@ namespace SmartDormitory.Data.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "Sensors",
+                name: "GetSensorsFromUsers",
                 columns: table => new
                 {
                     ID = table.Column<int>(nullable: false)
@@ -174,7 +174,7 @@ namespace SmartDormitory.Data.Migrations
                     ApiId = table.Column<string>(nullable: true),
                     Name = table.Column<string>(nullable: true),
                     SensorTypeId = table.Column<string>(nullable: true),
-                    Value = table.Column<decimal>(nullable: false),
+                    Value = table.Column<string>(nullable: true),
                     Description = table.Column<string>(nullable: true),
                     URLSensorData = table.Column<string>(nullable: true),
                     PoolInterval = table.Column<int>(nullable: false),
@@ -188,6 +188,40 @@ namespace SmartDormitory.Data.Migrations
                     IsDeleted = table.Column<bool>(nullable: false),
                     UserId = table.Column<string>(nullable: true),
                     TimeStamp = table.Column<string>(nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_GetSensorsFromUsers", x => x.ID);
+                    table.ForeignKey(
+                        name: "FK_GetSensorsFromUsers_SensorTypes_SensorTypeId",
+                        column: x => x.SensorTypeId,
+                        principalTable: "SensorTypes",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Restrict);
+                    table.ForeignKey(
+                        name: "FK_GetSensorsFromUsers_AspNetUsers_UserId",
+                        column: x => x.UserId,
+                        principalTable: "AspNetUsers",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Restrict);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Sensors",
+                columns: table => new
+                {
+                    ID = table.Column<int>(nullable: false)
+                        .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
+                    ApiId = table.Column<string>(nullable: true),
+                    SensorTypeId = table.Column<string>(nullable: true),
+                    Value = table.Column<string>(nullable: true),
+                    Description = table.Column<string>(nullable: true),
+                    PoolInterval = table.Column<int>(nullable: false),
+                    MeasurmentType = table.Column<string>(nullable: true),
+                    ValueRangeMin = table.Column<double>(nullable: false),
+                    ValueRangeMax = table.Column<double>(nullable: false),
+                    TimeStamp = table.Column<string>(nullable: true),
+                    UserId = table.Column<string>(nullable: true)
                 },
                 constraints: table =>
                 {
@@ -226,28 +260,19 @@ namespace SmartDormitory.Data.Migrations
                 });
 
             migrationBuilder.InsertData(
-                table: "SensorTypes",
-                columns: new[] { "Id", "Type" },
-                values: new object[,]
-                {
-                    { "1", "TemperatureSensor1" },
-                    { "2", "TemperatureSensor5" }
-                });
+                table: "AspNetUserRoles",
+                columns: new[] { "UserId", "RoleId" },
+                values: new object[] { "45a3335a-44de-44f7-b77c-bfa7d3c10a7c", "959596e5-93e4-4272-8cfb-6e71a4254370" });
 
             migrationBuilder.InsertData(
                 table: "AspNetUserRoles",
                 columns: new[] { "UserId", "RoleId" },
-                values: new object[,]
-                {
-                    { "45a3335a-44de-44f7-b77c-bfa7d3c10a7c", "959596e5-93e4-4272-8cfb-6e71a4254370" },
-                    { "31d4807f-7f5f-4ffa-90c1-a131e2d3855e", "5197310d-5d42-4337-bb59-2fd06e6a8fcd" },
-                    { "d01398e6-5a53-4826-98d1-543051f1f650", "959596e5-93e4-4272-8cfb-6e71a4254370" }
-                });
+                values: new object[] { "31d4807f-7f5f-4ffa-90c1-a131e2d3855e", "5197310d-5d42-4337-bb59-2fd06e6a8fcd" });
 
             migrationBuilder.InsertData(
-                table: "Sensors",
-                columns: new[] { "ID", "Alarm", "ApiId", "Description", "IsDeleted", "IsPublic", "Latitude", "Longitude", "MeasurmentType", "Name", "PoolInterval", "SensorTypeId", "TimeStamp", "URLSensorData", "UserId", "Value", "ValueRangeMax", "ValueRangeMin" },
-                values: new object[] { 384, true, "f1796a28-642e-401f-8129-fd7465417061", "Pre-defined sensor for development testing", false, true, "42.671892", "23.373758", "�C", "First sensor", 40, "1", null, "http://telerikacademy.icb.bg/api/sensor/f1796a28-642e-401f-8129-fd7465417061", "d01398e6-5a53-4826-98d1-543051f1f650", 21.0m, 28.0, 18.0 });
+                table: "AspNetUserRoles",
+                columns: new[] { "UserId", "RoleId" },
+                values: new object[] { "d01398e6-5a53-4826-98d1-543051f1f650", "959596e5-93e4-4272-8cfb-6e71a4254370" });
 
             migrationBuilder.CreateIndex(
                 name: "IX_AspNetRoleClaims_RoleId",
@@ -289,6 +314,16 @@ namespace SmartDormitory.Data.Migrations
                 filter: "[NormalizedUserName] IS NOT NULL");
 
             migrationBuilder.CreateIndex(
+                name: "IX_GetSensorsFromUsers_SensorTypeId",
+                table: "GetSensorsFromUsers",
+                column: "SensorTypeId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_GetSensorsFromUsers_UserId",
+                table: "GetSensorsFromUsers",
+                column: "UserId");
+
+            migrationBuilder.CreateIndex(
                 name: "IX_Sensors_SensorTypeId",
                 table: "Sensors",
                 column: "SensorTypeId");
@@ -315,6 +350,9 @@ namespace SmartDormitory.Data.Migrations
 
             migrationBuilder.DropTable(
                 name: "AspNetUserTokens");
+
+            migrationBuilder.DropTable(
+                name: "GetSensorsFromUsers");
 
             migrationBuilder.DropTable(
                 name: "Sensors");

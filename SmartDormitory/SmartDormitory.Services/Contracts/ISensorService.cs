@@ -1,4 +1,5 @@
 ﻿using SmartDormitory.Data.Models;
+using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
@@ -6,14 +7,16 @@ namespace SmartDormitory.Services.Contracts
 {
     public interface ISensorService
     {
-        Task<Sensor> CreateSensorAsync(string name, string description, string url,
+        Task<SensorsFromUser> CreateSensorAsync(string name, string description, string url,
                                        string type, string latitude, string longitude, 
-                                       bool alarm, bool isPublic, string UserId);
-        Sensor GetSensorById(int id);
+                                       bool alarm, bool isPublic, string UserId,
+                                        string ApiId, DateTime TimeStamp);
 
-        IEnumerable<Sensor> GetAllPublicSensors();
+        SensorsFromUser GetSensorById(int id);
 
-        IEnumerable<Sensor> GetSensorsByUsername(string username);
+        IEnumerable<SensorsFromUser> GetAllPublicSensors();
+
+        IEnumerable<SensorsFromUser> GetSensorsByUsername(string username);
 
         Task<IEnumerable<SensorType>> GetSensorTypesAsync();
     }

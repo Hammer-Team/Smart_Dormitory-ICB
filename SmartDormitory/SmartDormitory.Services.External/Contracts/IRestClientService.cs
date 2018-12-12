@@ -15,10 +15,12 @@ namespace SmartDormitory.Services.External.Contracts
 
         IDictionary<string, Sensor> InitialSensorLoad();
 
+        IDictionary<string, SensorsFromUser> InitialSensorsFromUsersLoad();
+
         IDictionary<string, Sensor> CheckForNewSensor(IDictionary<string, Sensor> listOfSensors);
 
         IDictionary<string, Sensor> UpdateSensors(IDictionary<string, Sensor> listOfSensors);
 
-        
+        IDictionary<string, SensorsFromUser> UpdateSensorsFromUsers(IDictionary<string, SensorsFromUser> listOfSensors);
     }
 }

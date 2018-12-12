@@ -62,6 +62,22 @@ namespace SmartDormitory.Services.External
             return result;
         }
 
+        public IDictionary<string, SensorsFromUser> InitialSensorsFromUsersLoad()
+        {
+            var result = new Dictionary<string, SensorsFromUser>();
+
+            var sensors = this.context.GetSensorsFromUsers;
+
+            foreach (var sensor in sensors)
+            {
+                if (!result.ContainsKey(sensor.ApiId.ToString()))
+                {
+                    result.Add(sensor.ApiId.ToString(), sensor);
+                }
+            }
+            return result;
+        }
+
         public IDictionary<string, Sensor> CheckForNewSensor(IDictionary<string, Sensor> listOfSensors)
         {
             var response = GetAllSensorsAsync("all", "8e4c46fe-5e1d-4382-b7fc-19541f7bf3b0");
@@ -75,7 +91,9 @@ namespace SmartDormitory.Services.External
                     var measureType = sensor.MeasureType;
                     string tag = sensor.Tag;
                     string typeTag = tag.Substring(0, tag.IndexOf("Sensor"));
-                    var measure = "To Do!";
+                    //var SensorTypeID = context.SensorTypes.Select(t=>t.Id
+                    //.Where(t.Type.ToString().Equals(sensor.Tag.ToString())))
+                    //.FirstOrDefault();
                     //var measure = CheckForNewMeasureType(measureType);
                     var type = CheckForNewSensorType(typeTag);
                     listOfSensors.Add(sensorId, AddNewSensoreToDatabase(sensor));
@@ -133,6 +151,35 @@ namespace SmartDormitory.Services.External
         public IDictionary<string, Sensor> UpdateSensors(IDictionary<string, Sensor> listOfSensors)
         {
             ICollection<Sensor> sensorForUpdate = new List<Sensor>();
+
+            bool isAnySensorForUpdate = false;
+            foreach (var sensor in listOfSensors.Values)
+            {
+                string senzorTime = sensor.TimeStamp.ToString();
+                if (DateTime.Parse(sensor.TimeStamp.ToString()).AddSeconds(sensor.PoolInterval) < DateTime.Now)
+                {
+                    var response = GetSensorById("8e4c46fe-5e1d-4382-b7fc-19541f7bf3b0", sensor.ApiId.ToString());
+
+                    sensor.TimeStamp = response.TimeStamp;
+                    sensor.Value = response.Value.ToString();
+
+                    sensorForUpdate.Add(sensor);
+
+                    isAnySensorForUpdate = true;
+                }
+            }
+            if (isAnySensorForUpdate)
+            {
+                context.UpdateRange(sensorForUpdate);
+                context.SaveChanges();
+            }
+
+            return listOfSensors;
+        }
+
+        public IDictionary<string, SensorsFromUser> UpdateSensorsFromUsers(IDictionary<string, SensorsFromUser> listOfSensors)
+        {
+            ICollection<SensorsFromUser> sensorForUpdate = new List<SensorsFromUser>();
 
             bool isAnySensorForUpdate = false;
             foreach (var sensor in listOfSensors.Values)

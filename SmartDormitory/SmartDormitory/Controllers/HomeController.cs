@@ -28,7 +28,7 @@ namespace SmartDormitory.Controllers
             //var testData = await test.GetAllSensorsAsync("all", "8e4c46fe-5e1d-4382-b7fc-19541f7bf3b0");
             //var testData2 = await test.GetSensorById("8e4c46fe-5e1d-4382-b7fc-19541f7bf3b0", "f1796a28-642e-401f-8129-fd7465417061");
             
-            IEnumerable<Sensor> sensors;
+            IEnumerable<SensorsFromUser> sensors;
             bool isUserLogged = User.Identity.IsAuthenticated;
 
             if (!isUserLogged)

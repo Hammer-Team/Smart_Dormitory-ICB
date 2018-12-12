@@ -2,8 +2,90 @@
     ViewData["Title"] = "Details";
 }
 
-@model SmartDormitory.Data.Models.Sensor
+@model SmartDormitory.Data.Models.SensorsFromUser
 
 <h2>Details</h2>
 
 @await Html.PartialAsync("_ViewSensorDetailsPartial", Model)
+
+<br />
+
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+
+<div id="jg5" class="gauge size-2"></div>
+<div class="h-split"></div>
+
+ASD
+
+<script src="~/lib/justgage/raphael-2.1.4.min.js"></script>
+<script src="~/lib/justgage/justgage.js"></script>
+<script>
+    document.addEventListener("DOMContentLoaded", function (event) {
+        var jg1, jg2, jg3, jg4, jg5, jg6;
+
+        var defs1 = {
+            label: "label",
+            value: 50,
+            min: 0,
+            max: 100,
+            decimals: 0,
+            gaugeWidthScale: 0.6,
+            pointer: true,
+            pointerOptions: {
+                toplength: 10,
+                bottomlength: 10,
+                bottomwidth: 2
+            },
+            counter: true,
+            relativeGaugeSize: true
+        }
+
+        var defs2 = {
+            label: "asd",
+            value: @Model.Value,
+            min: 0,
+            max: 100,
+            decimals: 0,
+            gaugeWidthScale: 0.6,
+            pointer: true,
+            pointerOptions: {
+                toplength: 5,
+                bottomlength: 15,
+                bottomwidth: 2
+            },
+            counter: true,
+            donut: true,
+            relativeGaugeSize: true
+        }
+
+        jg1 = new JustGage({
+            id: "jg1",
+            defaults: defs1
+        });
+
+        jg2 = new JustGage({
+            id: "jg2",
+            defaults: defs1
+        });
+
+        jg3 = new JustGage({
+            id: "jg3",
+            defaults: defs1
+        });
+
+        jg4 = new JustGage({
+            id: "jg4",
+            defaults: defs2
+        });
+
+        jg5 = new JustGage({
+            id: "jg5",
+            defaults: defs2
+        });
+
+        jg6 = new JustGage({
+            id: "jg6",
+            defaults: defs2
+        });
+    });
+</script>

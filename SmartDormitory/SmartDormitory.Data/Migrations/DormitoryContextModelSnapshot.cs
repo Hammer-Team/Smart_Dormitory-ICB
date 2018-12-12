@@ -146,6 +146,41 @@ namespace SmartDormitory.Data.Migrations
                         .ValueGeneratedOnAdd()
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
+                    b.Property<string>("ApiId");
+
+                    b.Property<string>("Description");
+
+                    b.Property<string>("MeasurmentType");
+
+                    b.Property<int>("PoolInterval");
+
+                    b.Property<string>("SensorTypeId");
+
+                    b.Property<string>("TimeStamp");
+
+                    b.Property<string>("UserId");
+
+                    b.Property<string>("Value");
+
+                    b.Property<double>("ValueRangeMax");
+
+                    b.Property<double>("ValueRangeMin");
+
+                    b.HasKey("ID");
+
+                    b.HasIndex("SensorTypeId");
+
+                    b.HasIndex("UserId");
+
+                    b.ToTable("Sensors");
+                });
+
+            modelBuilder.Entity("SmartDormitory.Data.Models.SensorsFromUser", b =>
+                {
+                    b.Property<int>("ID")
+                        .ValueGeneratedOnAdd()
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
                     b.Property<bool>("Alarm");
 
                     b.Property<string>("ApiId");
@@ -186,7 +221,7 @@ namespace SmartDormitory.Data.Migrations
 
                     b.HasIndex("UserId");
 
-                    b.ToTable("Sensors");
+                    b.ToTable("GetSensorsFromUsers");
                 });
 
             modelBuilder.Entity("SmartDormitory.Data.Models.SensorType", b =>
@@ -311,8 +346,19 @@ namespace SmartDormitory.Data.Migrations
                         .WithMany("Sensors")
                         .HasForeignKey("SensorTypeId");
 
-                    b.HasOne("SmartDormitory.Data.Models.User", "User")
+                    b.HasOne("SmartDormitory.Data.Models.User")
                         .WithMany("Sensors")
+                        .HasForeignKey("UserId");
+                });
+
+            modelBuilder.Entity("SmartDormitory.Data.Models.SensorsFromUser", b =>
+                {
+                    b.HasOne("SmartDormitory.Data.Models.SensorType", "SensorType")
+                        .WithMany()
+                        .HasForeignKey("SensorTypeId");
+
+                    b.HasOne("SmartDormitory.Data.Models.User", "User")
+                        .WithMany()
                         .HasForeignKey("UserId");
                 });
 #pragma warning restore 612, 618

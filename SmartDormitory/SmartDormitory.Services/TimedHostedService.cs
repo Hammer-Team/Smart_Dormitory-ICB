@@ -15,6 +15,7 @@ namespace SmartDormitory.Services
         private readonly IServiceProvider service;
         private Timer timer;
         private IDictionary<string, Sensor> listOfSensors;
+        private IDictionary<string, SensorsFromUser> listOfSensorsFromUsers;
 
         public TimedHostedService( IServiceProvider service)
         {
@@ -26,9 +27,13 @@ namespace SmartDormitory.Services
 
             string report = InitialSensorLoad();
 
-            //this.timer = new Timer(CheckForNewSensor, null, TimeSpan.Zero, TimeSpan.FromSeconds(5));
+            string reportUserSensors = InitialSensorFromUsersLoad();
+
+            this.timer = new Timer(CheckForNewSensor, null, TimeSpan.Zero, TimeSpan.FromSeconds(10));
 
             this.timer = new Timer(UpdateSensor, null, TimeSpan.Zero, TimeSpan.FromSeconds(5));
+
+            this.timer = new Timer(UpdateSensorFromUsers, null, TimeSpan.Zero, TimeSpan.FromSeconds(5));
 
             return Task.CompletedTask;
         }
@@ -56,6 +61,16 @@ namespace SmartDormitory.Services
             return $"Initial sensor load was completed on {DateTime.Now.Date}";
         }
 
+        private string InitialSensorFromUsersLoad()
+        {
+            using (var scope = service.CreateScope())
+            {
+                var service = scope.ServiceProvider.GetRequiredService<IRestClientService>();
+                listOfSensorsFromUsers = service.InitialSensorsFromUsersLoad();
+            }
+            return $"Initial sensor load was completed on {DateTime.Now.Date}";
+        }
+
         private void UpdateSensor(object state)
         {
             using (var scope = service.CreateScope())
@@ -63,6 +78,16 @@ namespace SmartDormitory.Services
                 var service = scope.ServiceProvider.GetRequiredService<IRestClientService>();
 
                 listOfSensors = service.UpdateSensors(listOfSensors);
+            }
+        }
+
+        private void UpdateSensorFromUsers(object state)
+        {
+            using (var scope = service.CreateScope())
+            {
+                var service = scope.ServiceProvider.GetRequiredService<IRestClientService>();
+
+                listOfSensorsFromUsers = service.UpdateSensorsFromUsers(listOfSensorsFromUsers);
             }
         }
 
