@@ -55,8 +55,7 @@ namespace SmartDormitory.Web.Controllers
 
             var newMovie = await sensorService.CreateSensorAsync(
                 sensorViewModel.Name, 
-                sensorViewModel.Description, 
-                sensorViewModel.URL, 
+                sensorViewModel.Description,
                 sensorViewModel.Type,
                 sensorViewModel.Latitude, 
                 sensorViewModel.Longitude, 

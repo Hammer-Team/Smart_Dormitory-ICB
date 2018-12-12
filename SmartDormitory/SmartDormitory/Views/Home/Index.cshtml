@@ -4,10 +4,10 @@
 
 @using SmartDormitory.Data.Models
 
-@model IEnumerable<Sensor>
+@model IEnumerable<SensorsFromUser>
 
 <div class="hide-it">
-    @foreach (Sensor sensor in Model)
+    @foreach (SensorsFromUser sensor in Model)
     {
         <div class="sensor-location">
             <p class="sensor-lat">@sensor.Latitude</p>
@@ -82,99 +82,42 @@
     <!--================End About Us Area =================-->
 
     <hr />
-
-    <!--================ Start Gallery Area =================-->
-    <section class="gallery_area">
-        <div class="container">
-            <div class="row">
-                <div class="col-lg-12">
-                    <div class="main_title">
-                        <h2>Screens Gallery</h2>
-                        <h1>Screens Gallery</h1>
-                    </div>
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-lg-8">
+    <table>
+        <th>
+            <!--================ Start Gallery Area =================-->
+            
+            <!--================ End Gallery Area =================-->
+        </th>
+        <hr />
+        <th>
+            <!--================ Google Map Area =================-->
+            <section class="row container-fluid">
+                <div class="col-md-12 container">
                     <div class="row">
-                        <div class="col-lg-6 col-md-6 col-sm-6">
-                            <div class="single-gallery">
-                                <div class="overlay"></div>
-                                <img class="img-fluid w-100" src="~/template/img/gallery_img1.png" alt="">
-                                <div class="content">
-                                    <a class="pop-up-image" href="~/template/img/gallery_img1.png">
-                                        <i class="lnr lnr-eye"></i>
-                                    </a>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-lg-6 col-md-6 col-sm-6">
-                            <div class="single-gallery">
-                                <div class="overlay"></div>
-                                <img class="img-fluid w-100" src="~/template/img/gallery_img2.png" alt="">
-                                <div class="content">
-                                    <a class="pop-up-image" href="~/template/img/gallery_img2.png">
-                                        <i class="lnr lnr-eye"></i>
-                                    </a>
-                                </div>
-                            </div>
-                        </div>
                         <div class="col-lg-12">
-                            <div class="single-gallery">
-                                <div class="overlay"></div>
-                                <img class="img-fluid w-100" src="~/template/img/gallery_img3.png" alt="">
-                                <div class="content">
-                                    <a class="pop-up-image" href="~/template/img/gallery_img3.png">
-                                        <i class="lnr lnr-eye"></i>
-                                    </a>
-                                </div>
+                            <div class="main_title">
+                                <h2>Public Sensors</h2>
+                                <h1>Public Sensors</h1>
                             </div>
                         </div>
                     </div>
+                    <div id="map"></div> <!--Here's the magic Google Map-->
                 </div>
-                <div class="col-lg-4 hidden-md hidden-sm">
-                    <div class="single-gallery">
-                        <div class="overlay"></div>
-                        <img class="img-fluid w-100" src="~/template/img/gallery_img4.png" alt="">
-                        <div class="content">
-                            <a class="pop-up-image" href="~/template/img/gallery_img4.png">
-                                <i class="lnr lnr-eye"></i>
-                            </a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-    <!--================ End Gallery Area =================-->
+            </section>
+            <!--================ End Google Map Area =================-->
+        </th>
 
-    <hr />
+        <hr />
 
-    <!--================ Google Map Area =================-->
-    <section class="row container-fluid">
-        <div class="col-md-12 container">
-            <div class="row">
-                <div class="col-lg-12">
-                    <div class="main_title">
-                        <h2>Public Sensors</h2>
-                        <h1>Public Sensors</h1>
-                    </div>
-                </div>
-            </div>
-            <div id="map"></div> <!--Here's the magic Google Map-->
-        </div>
-    </section>
-    <!--================ End Google Map Area =================-->
-
-    <hr />
-
-    <script src="~/js/map.js">
-    </script>
-    <script src="https://developers.google.com/maps/documentation/javascript/examples/markerclusterer/markerclusterer.js">
-    </script>
-    <script async defer
-            src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDw2VAqsgmqjD7eQlISWs55-wVWnhHBM58&callback=initMap">
-    </script>
+        <script src="~/js/map.js">
+        </script>
+        <script src="https://developers.google.com/maps/documentation/javascript/examples/markerclusterer/markerclusterer.js">
+        </script>
+        <script async defer
+                src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDw2VAqsgmqjD7eQlISWs55-wVWnhHBM58&callback=initMap">
+        </script>
+    </table>
+    <h1>AKSJDHSJKDHKAJSHDKJASHDKAHSJKDHAKSJDKASHJK</H1>
 }
 else
 {
@@ -188,7 +131,7 @@ else
             <th>Access Level</th>
             <th></th>
         </tr>
-        @foreach (Sensor sensor in Model)
+        @foreach (SensorsFromUser sensor in Model)
         {
             <tr>
                 <td>@sensor.Name</td>

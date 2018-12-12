@@ -20,8 +20,6 @@ namespace SmartDormitory.Data.Models
 
         public string Description { get; set; }
 
-        public string URLSensorData { get; set; }
-
         public int PoolInterval { get; set; }
 
         public string MeasurmentType { get; set; }

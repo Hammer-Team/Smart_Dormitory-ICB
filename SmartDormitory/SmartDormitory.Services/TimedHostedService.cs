@@ -24,7 +24,6 @@ namespace SmartDormitory.Services
 
         public Task StartAsync(CancellationToken cancellationToken)
         {
-
             string report = InitialSensorLoad();
 
             string reportUserSensors = InitialSensorFromUsersLoad();
@@ -33,7 +32,7 @@ namespace SmartDormitory.Services
 
             this.timer = new Timer(UpdateSensor, null, TimeSpan.Zero, TimeSpan.FromSeconds(5));
 
-            this.timer = new Timer(UpdateSensorFromUsers, null, TimeSpan.Zero, TimeSpan.FromSeconds(5));
+            this.timer = new Timer(UpdateSensorFromUsers, null, TimeSpan.Zero, TimeSpan.FromSeconds(3));
 
             return Task.CompletedTask;
         }

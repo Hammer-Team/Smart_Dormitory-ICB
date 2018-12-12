@@ -21,14 +21,13 @@ namespace SmartDormitory.Services
             this.sensorTypeRepo = sensorTypeRepo;
         }
 
-        public async Task<SensorsFromUser> CreateSensorAsync(string name, string description, string url, string type,
+        public async Task<SensorsFromUser> CreateSensorAsync(string name, string description, string type,
             string latitude, string longitude, bool alarm, bool isPublic, string UserId, string ApiId, DateTime TimeStamp)
         {
             var sensorToAdd = new SensorsFromUser()
             {
                 Name = name,
                 Description = description,
-                URLSensorData = url,
                 MeasurmentType = type,
                 Latitude = latitude,
                 Longitude = longitude,
@@ -38,6 +37,10 @@ namespace SmartDormitory.Services
                 ApiId = ApiId,
                 TimeStamp = DateTime.Now.ToString("O")//"yyyy-MM-ddTHH:mm:ss.FFFFFFF"
             };
+            //sensorToAdd.PoolInterval = sensorRepo.All().ToList().Select(s => s.PoolInterval).Where(sensorToAdd.ApiId.Equals(ApiId));
+            //sensorToAdd.MeasurmentType = sensorRepo.All().ToList().Select(s => s.MeasurmentType).Where(sensorToAdd.ApiId.Equals(ApiId));
+            //sensorToAdd.ValueRangeMin = sensorRepo.All().ToList().Select(s => s.ValueRangeMin).Where(sensorToAdd.ApiId.Equals(ApiId));
+            //sensorToAdd.ValueRangeMax = sensorRepo.All().ToList().Select(s => s.ValueRangeMax).Where(sensorToAdd.ApiId.Equals(ApiId));
             await sensorRepo.AddAsync(sensorToAdd);
             await sensorRepo.SaveAsync();
             return sensorToAdd;

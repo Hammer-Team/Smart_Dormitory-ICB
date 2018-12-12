@@ -70,9 +70,9 @@ namespace SmartDormitory.Services.External
 
             foreach (var sensor in sensors)
             {
-                if (!result.ContainsKey(sensor.ApiId.ToString()))
+                if (!result.ContainsKey(sensor.ID.ToString()))
                 {
-                    result.Add(sensor.ApiId.ToString(), sensor);
+                    result.Add(sensor.ID.ToString(), sensor);
                 }
             }
             return result;

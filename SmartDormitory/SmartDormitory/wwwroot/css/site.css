@@ -3,6 +3,7 @@ for details on configuring this project to bundle and minify static web assets. 
 body {
     padding-top: 50px;
     padding-bottom: 20px;
+    background-color: #ddd;
 }
  
 /* Wrapping element */
@@ -39,9 +40,9 @@ body {
 table {
     border-collapse: collapse;
     border-spacing: 0;
-    background-color: #808080;
+    background-color: #fff;
     width: 100%;
-    border: 1px solid #ddd;
+    border: 0px solid #3a01b8;
 }
 
 th, td {
@@ -50,7 +51,7 @@ th, td {
 }
 
 tr:nth-child(even) {
-    background-color: #5a5757
+    background-color: #fff
 }
 
 section {
@@ -121,3 +122,11 @@ section {
     min-height: 100px;
 }
 
+.hide-it {
+    display: none;
+}
+
+.logo_h {
+    width: 5.5%;
+    height: 5.5%;
+}
