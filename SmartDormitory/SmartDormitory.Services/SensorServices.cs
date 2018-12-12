@@ -14,11 +14,13 @@ namespace SmartDormitory.Services
 
         private readonly IRepository<SensorsFromUser> sensorRepo;
         private readonly IRepository<SensorType> sensorTypeRepo;
+        private readonly IRepository<Sensor> apiSensorRepo;
 
-        public SensorServices(IRepository<SensorsFromUser> sensorRepo, IRepository<SensorType> sensorTypeRepo)
+        public SensorServices(IRepository<SensorsFromUser> sensorRepo, IRepository<SensorType> sensorTypeRepo, IRepository<Sensor> apiSensorRepo)
         {
             this.sensorRepo = sensorRepo;
             this.sensorTypeRepo = sensorTypeRepo;
+            this.apiSensorRepo = apiSensorRepo;
         }
 
         public async Task<SensorsFromUser> CreateSensorAsync(string name, string description, string type,
@@ -37,7 +39,9 @@ namespace SmartDormitory.Services
                 ApiId = ApiId,
                 TimeStamp = DateTime.Now.ToString("O")//"yyyy-MM-ddTHH:mm:ss.FFFFFFF"
             };
-            //sensorToAdd.PoolInterval = sensorRepo.All().ToList().Select(s => s.PoolInterval).Where(sensorToAdd.ApiId.Equals(ApiId));
+            var test = sensorRepo.All().Where(s => ApiId == s.ApiId).ToList();
+            var test2 = sensorRepo.All().ToList();
+            sensorToAdd.PoolInterval = apiSensorRepo.All().Where(s => ApiId == s.ApiId).Select(s => s.PoolInterval).FirstOrDefault();
             //sensorToAdd.MeasurmentType = sensorRepo.All().ToList().Select(s => s.MeasurmentType).Where(sensorToAdd.ApiId.Equals(ApiId));
             //sensorToAdd.ValueRangeMin = sensorRepo.All().ToList().Select(s => s.ValueRangeMin).Where(sensorToAdd.ApiId.Equals(ApiId));
             //sensorToAdd.ValueRangeMax = sensorRepo.All().ToList().Select(s => s.ValueRangeMax).Where(sensorToAdd.ApiId.Equals(ApiId));
