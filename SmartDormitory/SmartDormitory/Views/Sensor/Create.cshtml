@@ -7,6 +7,7 @@
 
 <div class="row">
     <div class="col-md-10">
+        
         <form asp-controller="Sensor" asp-action="Create" method="post">
             <div style="overflow-x:auto;">
                 <table>
@@ -73,6 +74,16 @@
                                 <label asp-for="ApiId"></label>
                                 <input asp-for="ApiId" class="form-control" />
                                 <span asp-validation-for="ApiId" class="text-danger"></span>
+                            </div>
+                        </th>
+                    </tr>
+                    <tr>
+                        <th>
+
+                            <div class="form-group">
+                                <label asp-for="IsPublic"></label>
+                                <input asp-for="IsPublic" class="form-control" type="checkbox"/>
+                                <span asp-validation-for="IsPublic" class="text-danger"></span>
                             </div>
                         </th>
                     </tr>

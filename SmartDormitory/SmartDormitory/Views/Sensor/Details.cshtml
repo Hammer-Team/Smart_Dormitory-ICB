@@ -20,26 +20,55 @@ ASD
 <script src="~/lib/justgage/raphael-2.1.4.min.js"></script>
 <script src="~/lib/justgage/justgage.js"></script>
 <script>
-    document.addEventListener("DOMContentLoaded", function (event) {
-        var jg1, jg2, jg3, jg4, jg5, jg6;
 
-        var defs1 = {
-            label: "label",
-            value: 50,
-            min: 0,
+    function myPeriodicMethod() {
+        
+        $.ajax({
+            url: "/Sensor/Test/@Model.ID",
+            success: function (data) {
+                test(parseFloat(data.value))
+            },
+            complete: function () {
+                setTimeout(myPeriodicMethod, 2000);
+            }
+  });
+}
+
+    // schedule the first invocation:
+    setTimeout(myPeriodicMethod, 2000);
+
+</script>
+<script>
+    addJustGade()
+    //function test(val) {
+    //    jg5.refresh(val);
+        @*var defs2 = {
+            label: "asd",
+            value: val,
+            min: @Model.ValueRangeMin,
             max: 100,
             decimals: 0,
             gaugeWidthScale: 0.6,
             pointer: true,
             pointerOptions: {
-                toplength: 10,
-                bottomlength: 10,
+                toplength: 5,
+                bottomlength: 15,
                 bottomwidth: 2
             },
             counter: true,
+            donut: true,
             relativeGaugeSize: true
-        }
-
+        }*@
+        //console.log($("#jg5")[0])
+        @*jg5 = new JustGage({
+            id: "jg5",
+            defaults: defs2
+        });*@
+    //}
+    var jg5;
+    function addJustGade() {
+       
+    document.addEventListener("DOMContentLoaded", function (event) {
         var defs2 = {
             label: "asd",
             value: @Model.Value,
@@ -58,34 +87,15 @@ ASD
             relativeGaugeSize: true
         }
 
-        jg1 = new JustGage({
-            id: "jg1",
-            defaults: defs1
-        });
-
-        jg2 = new JustGage({
-            id: "jg2",
-            defaults: defs1
-        });
-
-        jg3 = new JustGage({
-            id: "jg3",
-            defaults: defs1
-        });
-
-        jg4 = new JustGage({
-            id: "jg4",
-            defaults: defs2
-        });
-
         jg5 = new JustGage({
             id: "jg5",
             defaults: defs2
         });
-
-        jg6 = new JustGage({
-            id: "jg6",
-            defaults: defs2
         });
-    });
+    }
+    
+    function test(val) {
+        console.log("called with " + val)
+        jg5.refresh(val);
+    }
 </script>
