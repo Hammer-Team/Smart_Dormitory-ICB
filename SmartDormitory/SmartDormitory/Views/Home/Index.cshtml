@@ -4,10 +4,10 @@
 
 @using SmartDormitory.Data.Models
 
-@model IEnumerable<SensorsFromUser>
+@model IEnumerable<Sensor>
 
-<div class="hidden">
-    @foreach (SensorsFromUser sensor in Model)
+<div class="hide-it">
+    @foreach (Sensor sensor in Model)
     {
         <div class="sensor-location">
             <p class="sensor-lat">@sensor.Latitude</p>
@@ -18,41 +18,155 @@
 
 @if (!User.Identity.IsAuthenticated)
 {
-    <div class="title">
-        <h1>Smart Dormitory</h1>
-    </div>
-
-    <section class="row container-fluid">
-        <div class="col-md-6 container center-vertical">
-            <div class="section-title">
-                <h3>Join our system of partners today!</h3>
+    <!--================Home Banner Area =================-->
+    <section class="home_banner_area">
+        <div class="banner_inner">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-6">
+                        <div class="home_left_img">
+                            <img class="img-fluid" src="~/template/img/banner/home-left.png" alt="">
+                        </div>
+                    </div>
+                    <div class="col-lg-6">
+                        <div class="banner_content">
+                            <h2>
+                                Smart <br>
+                                Dormitory <br>
+                            </h2>
+                            <p>
+                                Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod temp or incididunt ut labore et dolore
+                                magna aliqua. Ut enim ad minim.
+                            </p>
+                            <div class="d-flex align-items-center">
+                                <a id="play-home-video" class="video-play-button" href="https://www.youtube.com/watch?v=AvstcGFeeu4" frameborder="0">
+                                    <span></span>
+                                </a>
+                                <div class="watch_video text-uppercase">
+                                    watch the video
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
-            <div id="sign-in-container center-vertical">
-                <button class="btn btn-primary">Register</button>
-                <button class="btn btn-success">Login</button>
-            </div>
-        </div>
-        <div class="col-md-6 container">
-            <div class="section-title"><h3>See public sensors on map</h3></div>
-            <div id="map"></div> <!--Here's the magic Google Map-->
         </div>
     </section>
+    <!--================End Home Banner Area =================-->
 
     <hr />
 
-    <section>
-        <div class="section-title">
-            <h3>What is aur system all about</h3>
-        </div>
-        <div>
-            <p>We provide high-end technology which allow you to track various data from your students in order to see their performance... blah blah blah</p>
-            <ul>
-                <li>First Feature</li>
-                <li>Second Feature</li>
-                <li>Third Feature</li>
-            </ul>
+    <!--================Start About Us Area =================-->
+    <section class="about_us_area section_gap_top">
+        <div class="container">
+            <div class="row about_content align-items-center">
+                <div class="col-lg-6">
+                    <div class="section_content">
+                        <h6>About Us</h6>
+                        <h1>We Believe that <br>Interior beauty Lasts Long</h1>
+                        <p>
+                            inappropriate behavior is often laughed off as “boys will be boys,” women face higher conduct standards
+                            especially in the workplace. That’s why it’s crucial that as women.
+                        </p>
+                        <a class="primary_btn" href="#">Learn More</a>
+                    </div>
+                </div>
+                <div class="col-lg-6">
+                    <div class="about_us_image_box justify-content-center">
+                        <img class="img-fluid w-100" src="~/template/img/about_img.png" alt="">
+                    </div>
+                </div>
+            </div>
         </div>
     </section>
+    <!--================End About Us Area =================-->
+
+    <hr />
+
+    <!--================ Start Gallery Area =================-->
+    <section class="gallery_area">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="main_title">
+                        <h2>Screens Gallery</h2>
+                        <h1>Screens Gallery</h1>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-lg-8">
+                    <div class="row">
+                        <div class="col-lg-6 col-md-6 col-sm-6">
+                            <div class="single-gallery">
+                                <div class="overlay"></div>
+                                <img class="img-fluid w-100" src="~/template/img/gallery_img1.png" alt="">
+                                <div class="content">
+                                    <a class="pop-up-image" href="~/template/img/gallery_img1.png">
+                                        <i class="lnr lnr-eye"></i>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-6 col-md-6 col-sm-6">
+                            <div class="single-gallery">
+                                <div class="overlay"></div>
+                                <img class="img-fluid w-100" src="~/template/img/gallery_img2.png" alt="">
+                                <div class="content">
+                                    <a class="pop-up-image" href="~/template/img/gallery_img2.png">
+                                        <i class="lnr lnr-eye"></i>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-12">
+                            <div class="single-gallery">
+                                <div class="overlay"></div>
+                                <img class="img-fluid w-100" src="~/template/img/gallery_img3.png" alt="">
+                                <div class="content">
+                                    <a class="pop-up-image" href="~/template/img/gallery_img3.png">
+                                        <i class="lnr lnr-eye"></i>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-4 hidden-md hidden-sm">
+                    <div class="single-gallery">
+                        <div class="overlay"></div>
+                        <img class="img-fluid w-100" src="~/template/img/gallery_img4.png" alt="">
+                        <div class="content">
+                            <a class="pop-up-image" href="~/template/img/gallery_img4.png">
+                                <i class="lnr lnr-eye"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!--================ End Gallery Area =================-->
+
+    <hr />
+
+    <!--================ Google Map Area =================-->
+    <section class="row container-fluid">
+        <div class="col-md-12 container">
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="main_title">
+                        <h2>Public Sensors</h2>
+                        <h1>Public Sensors</h1>
+                    </div>
+                </div>
+            </div>
+            <div id="map"></div> <!--Here's the magic Google Map-->
+        </div>
+    </section>
+    <!--================ End Google Map Area =================-->
+
+    <hr />
 
     <script src="~/js/map.js">
     </script>
@@ -72,8 +186,9 @@ else
             <th>Description</th>
             <th>Value</th>
             <th>Access Level</th>
+            <th></th>
         </tr>
-        @foreach (SensorsFromUser sensor in Model)
+        @foreach (Sensor sensor in Model)
         {
             <tr>
                 <td>@sensor.Name</td>
@@ -93,4 +208,27 @@ else
             </tr>
         }
     </table>
+}
+
+@section scripts
+    {
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="~/template/js/jquery-3.2.1.min.js"></script>
+    <script src="~/template/js/popper.js"></script>
+    <script src="~/template/js/bootstrap.min.js"></script>
+    <script src="~/template/js/stellar.js"></script>
+    <script src="~/template/js/jquery.magnific-popup.min.js"></script>
+    <script src="~/template/vendors/nice-select/js/jquery.nice-select.min.js"></script>
+    <script src="~/template/vendors/isotope/imagesloaded.pkgd.min.js"></script>
+    <script src="~/template/vendors/isotope/isotope-min.js"></script>
+    <script src="~/template/vendors/owl-carousel/owl.carousel.min.js"></script>
+    <script src="~/template/js/jquery.ajaxchimp.min.js"></script>
+    <script src="~/template/vendors/counter-up/jquery.waypoints.min.js"></script>
+    <script src="~/template/vendors/counter-up/jquery.counterup.min.js"></script>
+    <script src="~/template/js/mail-script.js"></script>
+    <!--gmaps Js-->
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCjCGmQ0Uq4exrzdcL6rvxywDDOvfAu6eE"></script>
+    <script src="~/template/js/gmaps.min.js"></script>
+    <script src="~/template/js/theme.js"></script>
+
 }
