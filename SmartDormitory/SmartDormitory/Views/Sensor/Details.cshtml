@@ -26,45 +26,20 @@ ASD
         $.ajax({
             url: "/Sensor/Test/@Model.ID",
             success: function (data) {
-                test(parseFloat(data.value))
+                update(parseFloat(data.value))
             },
             complete: function () {
                 setTimeout(myPeriodicMethod, 2000);
             }
   });
 }
-
-    // schedule the first invocation:
+    
     setTimeout(myPeriodicMethod, 2000);
 
 </script>
 <script>
     addJustGade()
-    //function test(val) {
-    //    jg5.refresh(val);
-        @*var defs2 = {
-            label: "asd",
-            value: val,
-            min: @Model.ValueRangeMin,
-            max: 100,
-            decimals: 0,
-            gaugeWidthScale: 0.6,
-            pointer: true,
-            pointerOptions: {
-                toplength: 5,
-                bottomlength: 15,
-                bottomwidth: 2
-            },
-            counter: true,
-            donut: true,
-            relativeGaugeSize: true
-        }*@
-        //console.log($("#jg5")[0])
-        @*jg5 = new JustGage({
-            id: "jg5",
-            defaults: defs2
-        });*@
-    //}
+   
     var jg5;
     function addJustGade() {
        
@@ -94,7 +69,7 @@ ASD
         });
     }
     
-    function test(val) {
+    function update(val) {
         console.log("called with " + val)
         jg5.refresh(val);
     }
