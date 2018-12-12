@@ -30,9 +30,9 @@ namespace SmartDormitory.Services
 
             this.timer = new Timer(CheckForNewSensor, null, TimeSpan.Zero, TimeSpan.FromSeconds(10));
 
-            this.timer = new Timer(UpdateSensor, null, TimeSpan.Zero, TimeSpan.FromSeconds(5));
+            this.timer = new Timer(UpdateSensor, null, TimeSpan.Zero, TimeSpan.FromSeconds(10));
 
-            this.timer = new Timer(UpdateSensorFromUsers, null, TimeSpan.Zero, TimeSpan.FromSeconds(3));
+            this.timer = new Timer(UpdateSensorFromUsers, null, TimeSpan.Zero, TimeSpan.FromSeconds(10));
 
             return Task.CompletedTask;
         }
