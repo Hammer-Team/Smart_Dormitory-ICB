@@ -2,6 +2,7 @@
 using Newtonsoft.Json.Linq;
 using SmartDormitory.Data.Context;
 using SmartDormitory.Data.Models;
+using SmartDormitory.Data.Repository;
 using SmartDormitory.Services.External.Contracts;
 using SmartDormitory.Services.External.DTOs;
 using System;
@@ -19,13 +20,15 @@ namespace SmartDormitory.Services.External
     {
         private readonly HttpClient _client;
         private readonly DormitoryContext context;
+        private readonly IRepository<Sensor> sensorRepo;
 
-        public RestClientService(DormitoryContext context, HttpClient client)
+        public RestClientService(DormitoryContext context, HttpClient client, IRepository<Sensor> sensorRepo)
         {
             this.context = context;
             _client = client ?? throw new ArgumentNullException(nameof(client));
             _client.BaseAddress = new Uri("http://telerikacademy.icb.bg/api/sensor");
             this._client.DefaultRequestHeaders.Add("auth-token", "8e4c46fe-5e1d-4382-b7fc-19541f7bf3b0");
+            this.sensorRepo = sensorRepo;
         }
 
         public IEnumerable<SensorDTO> GetAllSensorsAsync(string apiRoute, string authToken)
@@ -150,58 +153,49 @@ namespace SmartDormitory.Services.External
 
         public IDictionary<string, Sensor> UpdateSensors(IDictionary<string, Sensor> listOfSensors)
         {
-            ICollection<Sensor> sensorForUpdate = new List<Sensor>();
-
-            bool isAnySensorForUpdate = false;
+            //BUG HERE SOMEWHERE!!!
             foreach (var sensor in listOfSensors.Values)
             {
-                string senzorTime = sensor.TimeStamp.ToString();
+                var senzorTime = DateTime.Parse(sensor.TimeStamp.ToString()).AddSeconds(sensor.PoolInterval);
                 if (DateTime.Parse(sensor.TimeStamp.ToString()).AddSeconds(sensor.PoolInterval) < DateTime.Now)
                 {
                     var response = GetSensorById("8e4c46fe-5e1d-4382-b7fc-19541f7bf3b0", sensor.ApiId.ToString());
 
+                    if (sensor.ApiId.ToString().Equals("81a2e1b1-ea5d-4356-8266-b6b42471653e"))
+                    {
+                        var sensorTimestamp = sensor.TimeStamp;
+                        var responseTimestamp = response.TimeStamp;
+                    }
                     sensor.TimeStamp = response.TimeStamp;
                     sensor.Value = response.Value.ToString();
-
-                    sensorForUpdate.Add(sensor);
-
-                    isAnySensorForUpdate = true;
+                    context.Update(sensor);
                 }
             }
-            if (isAnySensorForUpdate)
-            {
-                context.UpdateRange(sensorForUpdate);
-                context.SaveChanges();
-            }
+            context.SaveChanges();
 
             return listOfSensors;
         }
 
         public IDictionary<string, SensorsFromUser> UpdateSensorsFromUsers(IDictionary<string, SensorsFromUser> listOfSensors)
         {
-            ICollection<SensorsFromUser> sensorForUpdate = new List<SensorsFromUser>();
-
-            bool isAnySensorForUpdate = false;
             foreach (var sensor in listOfSensors.Values)
             {
+                var date = DateTime.Parse(sensor.TimeStamp.ToString()).AddSeconds(sensor.PoolInterval);
+
                 string senzorTime = sensor.TimeStamp.ToString();
                 if (DateTime.Parse(sensor.TimeStamp.ToString()).AddSeconds(sensor.PoolInterval) < DateTime.Now)
                 {
-                    var response = GetSensorById("8e4c46fe-5e1d-4382-b7fc-19541f7bf3b0", sensor.ApiId.ToString());
+                    var response = context.Sensors
+                        .Where(s => s.ApiId.ToString()
+                        .Equals(sensor.ApiId.ToString()))
+                        .FirstOrDefault();
 
                     sensor.TimeStamp = response.TimeStamp;
                     sensor.Value = response.Value.ToString();
-
-                    sensorForUpdate.Add(sensor);
-
-                    isAnySensorForUpdate = true;
+                    context.Update(sensor);
                 }
             }
-            if (isAnySensorForUpdate)
-            {
-                context.UpdateRange(sensorForUpdate);
-                context.SaveChanges();
-            }
+            context.SaveChanges();
 
             return listOfSensors;
         }

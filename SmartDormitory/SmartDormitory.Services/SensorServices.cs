@@ -42,9 +42,10 @@ namespace SmartDormitory.Services
             var test = sensorRepo.All().Where(s => ApiId == s.ApiId).ToList();
             var test2 = sensorRepo.All().ToList();
             sensorToAdd.PoolInterval = apiSensorRepo.All().Where(s => ApiId == s.ApiId).Select(s => s.PoolInterval).FirstOrDefault();
-            //sensorToAdd.MeasurmentType = sensorRepo.All().ToList().Select(s => s.MeasurmentType).Where(sensorToAdd.ApiId.Equals(ApiId));
-            //sensorToAdd.ValueRangeMin = sensorRepo.All().ToList().Select(s => s.ValueRangeMin).Where(sensorToAdd.ApiId.Equals(ApiId));
-            //sensorToAdd.ValueRangeMax = sensorRepo.All().ToList().Select(s => s.ValueRangeMax).Where(sensorToAdd.ApiId.Equals(ApiId));
+            sensorToAdd.MeasurmentType = apiSensorRepo.All().Where(s => ApiId == s.ApiId).Select(s => s.MeasurmentType).FirstOrDefault();
+            sensorToAdd.ValueRangeMin = apiSensorRepo.All().Where(s => ApiId == s.ApiId).Select(s => s.ValueRangeMin).FirstOrDefault();
+            sensorToAdd.ValueRangeMax = apiSensorRepo.All().Where(s => ApiId == s.ApiId).Select(s => s.ValueRangeMax).FirstOrDefault();
+            
             await sensorRepo.AddAsync(sensorToAdd);
             await sensorRepo.SaveAsync();
             return sensorToAdd;
