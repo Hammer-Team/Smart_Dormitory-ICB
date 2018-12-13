@@ -2,7 +2,7 @@
 
 namespace SmartDormitory.Data.Models
 {
-    public class Sensor
+    public class SensorFromUser
     {
         public int ID { get; set; }
         

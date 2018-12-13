@@ -14,7 +14,7 @@ namespace SmartDormitory.Services
     {
         private readonly IServiceProvider service;
         private Timer timer;
-        private IDictionary<string, Sensor> listOfSensors;
+        private IDictionary<string, SensorFromUser> listOfSensors;
         private IDictionary<string, SensorsFromUser> listOfSensorsFromUsers;
 
         public TimedHostedService( IServiceProvider service)

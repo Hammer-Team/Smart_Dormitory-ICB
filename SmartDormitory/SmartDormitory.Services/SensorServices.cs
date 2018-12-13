@@ -11,12 +11,11 @@ namespace SmartDormitory.Services
 {
     public class SensorServices : ISensorService
     {
-
         private readonly IRepository<SensorsFromUser> sensorRepo;
         private readonly IRepository<SensorType> sensorTypeRepo;
-        private readonly IRepository<Sensor> apiSensorRepo;
+        private readonly IRepository<SensorFromUser> apiSensorRepo;
 
-        public SensorServices(IRepository<SensorsFromUser> sensorRepo, IRepository<SensorType> sensorTypeRepo, IRepository<Sensor> apiSensorRepo)
+        public SensorServices(IRepository<SensorsFromUser> sensorRepo, IRepository<SensorType> sensorTypeRepo, IRepository<SensorFromUser> apiSensorRepo)
         {
             this.sensorRepo = sensorRepo;
             this.sensorTypeRepo = sensorTypeRepo;
@@ -74,8 +73,13 @@ namespace SmartDormitory.Services
 
         public IEnumerable<SensorsFromUser> GetSensorsByUsername(string username)
         {
-            return  sensorRepo.All()
+            return sensorRepo.All()
                 .Where(s => s.User.UserName == username);
+        }
+
+        public void UpdateSensor(SensorsFromUser editedSensor)
+        {
+            sensorRepo.Update(editedSensor);
         }
     }
 }

@@ -13,13 +13,13 @@ namespace SmartDormitory.Services.External.Contracts
 
         SensorInfoDTO GetSensorById(string authToken, string id);
 
-        IDictionary<string, Sensor> InitialSensorLoad();
+        IDictionary<string, SensorFromUser> InitialSensorLoad();
 
         IDictionary<string, SensorsFromUser> InitialSensorsFromUsersLoad();
 
-        IDictionary<string, Sensor> CheckForNewSensor(IDictionary<string, Sensor> listOfSensors);
+        IDictionary<string, SensorFromUser> CheckForNewSensor(IDictionary<string, SensorFromUser> listOfSensors);
 
-        IDictionary<string, Sensor> UpdateSensors(IDictionary<string, Sensor> listOfSensors);
+        IDictionary<string, SensorFromUser> UpdateSensors(IDictionary<string, SensorFromUser> listOfSensors);
 
         IDictionary<string, SensorsFromUser> UpdateSensorsFromUsers(IDictionary<string, SensorsFromUser> listOfSensors);
     }

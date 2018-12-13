@@ -14,6 +14,7 @@ using SmartDormitory.Web.Providers;
 
 namespace SmartDormitory.Web.Controllers
 {
+    [Authorize]
     public class SensorController : Controller
     {
         private readonly IUserManager<User> _userManager; // To do
@@ -29,7 +30,6 @@ namespace SmartDormitory.Web.Controllers
         }
 
         [HttpGet]
-        [Authorize]
         public async Task<IActionResult> Create()
         {
             var newSensor = new SensorViewModel();
@@ -45,7 +45,6 @@ namespace SmartDormitory.Web.Controllers
         }
 
         [HttpPost]
-        [Authorize]
         public async Task<IActionResult> Create(SensorViewModel sensorViewModel)
         {
             if (!this.ModelState.IsValid)
@@ -66,11 +65,10 @@ namespace SmartDormitory.Web.Controllers
                 sensorViewModel.TimeStamp
                 );
 
-            return View();
+            return View(); //RedirectToAction(nameof(Details), sensorViewModel.ID);
         }
 
         [HttpGet]
-        [Authorize]
         public IActionResult Details(int id)
         {
             var sensor = sensorService.GetSensorById(id);
@@ -79,7 +77,38 @@ namespace SmartDormitory.Web.Controllers
         }
 
         [HttpGet]
-        [Authorize]
+        public IActionResult Modify(int id)
+        {
+            var sensor = sensorService.GetSensorById(id);
+
+            return View(sensor);
+        }
+
+        [HttpPost]
+        public IActionResult Modify(SensorViewModel sensorViewModel)
+        {
+            if (!ModelState.IsValid)
+            {
+                return this.View();
+            }
+
+            var sensor = sensorService.GetSensorById(sensorViewModel.ID);
+
+            sensor.Name = sensorViewModel.Name;
+            sensor.Description = sensorViewModel.Description;
+            sensor.PoolInterval = sensorViewModel.PollingIntervalInSeconds;
+            sensor.Latitude = sensorViewModel.Latitude;
+            sensor.Longitude = sensorViewModel.Longitude;
+            sensor.ValueRangeMin = sensorViewModel.ValueRangeMin;
+            sensor.ValueRangeMax = sensorViewModel.ValueRangeMax;
+            sensor.IsPublic = sensorViewModel.IsPublic;
+
+            sensorService.UpdateSensor(editedSensor: sensor);
+
+            return View(sensor);
+        }
+
+        [HttpGet]
         public IActionResult Test(int id)
         {
             var sensor = sensorService.GetSensorById(id);

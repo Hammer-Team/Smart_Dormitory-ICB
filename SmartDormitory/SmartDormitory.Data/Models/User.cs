@@ -5,6 +5,6 @@ namespace SmartDormitory.Data.Models
 {
     public class User : IdentityUser
     {
-        public ICollection<Sensor> Sensors { get; set; }
+        public ICollection<SensorFromUser> Sensors { get; set; }
     }
 }

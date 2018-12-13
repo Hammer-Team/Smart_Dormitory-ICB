@@ -20,9 +20,9 @@ namespace SmartDormitory.Services.External
     {
         private readonly HttpClient _client;
         private readonly DormitoryContext context;
-        private readonly IRepository<Sensor> sensorRepo;
+        private readonly IRepository<SensorFromUser> sensorRepo;
 
-        public RestClientService(DormitoryContext context, HttpClient client, IRepository<Sensor> sensorRepo)
+        public RestClientService(DormitoryContext context, HttpClient client, IRepository<SensorFromUser> sensorRepo)
         {
             this.context = context;
             _client = client ?? throw new ArgumentNullException(nameof(client));
@@ -49,9 +49,9 @@ namespace SmartDormitory.Services.External
             return JsonConvert.DeserializeObject<SensorInfoDTO>(json);
         }
 
-        public IDictionary<string, Sensor> InitialSensorLoad()
+        public IDictionary<string, SensorFromUser> InitialSensorLoad()
         {
-            var result = new Dictionary<string, Sensor>();
+            var result = new Dictionary<string, SensorFromUser>();
 
             var sensors = this.context.Sensors;
 
@@ -81,7 +81,7 @@ namespace SmartDormitory.Services.External
             return result;
         }
 
-        public IDictionary<string, Sensor> CheckForNewSensor(IDictionary<string, Sensor> listOfSensors)
+        public IDictionary<string, SensorFromUser> CheckForNewSensor(IDictionary<string, SensorFromUser> listOfSensors)
         {
             var response = GetAllSensorsAsync("all", "8e4c46fe-5e1d-4382-b7fc-19541f7bf3b0");
 
@@ -105,7 +105,7 @@ namespace SmartDormitory.Services.External
             return listOfSensors;
         }
 
-        private Sensor AddNewSensoreToDatabase(SensorDTO sensorToAdd)
+        private SensorFromUser AddNewSensoreToDatabase(SensorDTO sensorToAdd)
         {
             string sensorId = sensorToAdd.SensorId;
             string description = sensorToAdd.Description;
@@ -117,7 +117,7 @@ namespace SmartDormitory.Services.External
                 (sensorToAdd.MinPollingIntervalInSeconds.ToString(), out int number)
                 ? number : 10;
 
-            var newSensor = new Sensor()
+            var newSensor = new SensorFromUser()
             {
                 ApiId = sensorId,
                 Description = description,
@@ -151,7 +151,7 @@ namespace SmartDormitory.Services.External
             return newSensorType;
         }
 
-        public IDictionary<string, Sensor> UpdateSensors(IDictionary<string, Sensor> listOfSensors)
+        public IDictionary<string, SensorFromUser> UpdateSensors(IDictionary<string, SensorFromUser> listOfSensors)
         {
             //BUG HERE SOMEWHERE!!!
             foreach (var sensor in listOfSensors.Values)
