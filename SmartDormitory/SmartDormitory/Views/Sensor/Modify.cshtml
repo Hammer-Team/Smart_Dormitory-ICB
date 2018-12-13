@@ -1,9 +1,113 @@
-﻿
+﻿@model SmartDormitory.Data.Models.SensorsFromUser
+
 @{
     ViewData["Title"] = "Modify";
+    Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-@model SmartDormitory.Data.Models.SensorsFromUser
+<h2>Modify</h2>
 
-<h2>Modify Logic here</h2>
+<h4>SensorsFromUser</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Modify">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input type="hidden" asp-for="ID" />
+            <div class="form-group">
+                <label asp-for="ApiId" class="control-label"></label>
+                <input asp-for="ApiId" class="form-control" />
+                <span asp-validation-for="ApiId" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Name" class="control-label"></label>
+                <input asp-for="Name" class="form-control" />
+                <span asp-validation-for="Name" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="SensorTypeId" class="control-label"></label>
+                <select asp-for="SensorTypeId" class="form-control" asp-items="ViewBag.SensorTypeId"></select>
+                <span asp-validation-for="SensorTypeId" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Value" class="control-label"></label>
+                <input asp-for="Value" class="form-control" />
+                <span asp-validation-for="Value" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Description" class="control-label"></label>
+                <input asp-for="Description" class="form-control" />
+                <span asp-validation-for="Description" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="PoolInterval" class="control-label"></label>
+                <input asp-for="PoolInterval" class="form-control" />
+                <span asp-validation-for="PoolInterval" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="MeasurmentType" class="control-label"></label>
+                <input asp-for="MeasurmentType" class="form-control" />
+                <span asp-validation-for="MeasurmentType" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Latitude" class="control-label"></label>
+                <input asp-for="Latitude" class="form-control" />
+                <span asp-validation-for="Latitude" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Longitude" class="control-label"></label>
+                <input asp-for="Longitude" class="form-control" />
+                <span asp-validation-for="Longitude" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="ValueRangeMin" class="control-label"></label>
+                <input asp-for="ValueRangeMin" class="form-control" />
+                <span asp-validation-for="ValueRangeMin" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="ValueRangeMax" class="control-label"></label>
+                <input asp-for="ValueRangeMax" class="form-control" />
+                <span asp-validation-for="ValueRangeMax" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <div class="checkbox">
+                    <label>
+                        <input asp-for="Alarm" /> @Html.DisplayNameFor(model => model.Alarm)
+                    </label>
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="checkbox">
+                    <label>
+                        <input asp-for="IsPublic" /> @Html.DisplayNameFor(model => model.IsPublic)
+                    </label>
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="checkbox">
+                    <label>
+                        <input asp-for="IsDeleted" /> @Html.DisplayNameFor(model => model.IsDeleted)
+                    </label>
+                </div>
+            </div>
+            <div class="form-group">
+                <label asp-for="UserId" class="control-label"></label>
+                <select asp-for="UserId" class="form-control" asp-items="ViewBag.UserId"></select>
+                <span asp-validation-for="UserId" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="TimeStamp" class="control-label"></label>
+                <input asp-for="TimeStamp" class="form-control" />
+                <span asp-validation-for="TimeStamp" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Save" class="btn btn-default" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
 

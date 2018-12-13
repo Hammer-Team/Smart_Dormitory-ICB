@@ -17,5 +17,7 @@ namespace SmartDormitory.Services.Contracts
         IEnumerable<SensorsFromUser> GetSensorsByUsername(string username);
 
         Task<IEnumerable<SensorType>> GetSensorTypesAsync();
+
+        void UpdateSensor(SensorsFromUser editedSensor);
     }
 }
