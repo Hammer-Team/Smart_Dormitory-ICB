@@ -11,7 +11,7 @@ namespace SmartDormitory.Data.Context
 {
     public class DormitoryContext : IdentityDbContext<User>
     {
-        public DbSet<SensorFromUser> Sensors { get; set; }
+        public DbSet<Sensor> Sensors { get; set; }
         public DbSet<SensorsFromUser> GetSensorsFromUsers { get; set; }
         public DbSet<SensorType> SensorTypes { get; set; }
 

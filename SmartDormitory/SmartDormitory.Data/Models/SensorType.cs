@@ -8,6 +8,6 @@ namespace SmartDormitory.Data.Models
 
         public string Type { get; set; }
 
-        public IEnumerable<SensorFromUser> Sensors { get; set; }
+        public IEnumerable<Sensor> Sensors { get; set; }
     }
 }

@@ -33,7 +33,7 @@ namespace SmartDormitory.Web.Models
 
         }
 
-        public SensorViewModel(SensorFromUser sensor)
+        public SensorViewModel(Sensor sensor)
         {
             this.ID = ID;
             this.Name = Name;

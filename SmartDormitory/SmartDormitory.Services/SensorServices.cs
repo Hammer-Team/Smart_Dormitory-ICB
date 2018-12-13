@@ -13,9 +13,9 @@ namespace SmartDormitory.Services
     {
         private readonly IRepository<SensorsFromUser> sensorRepo;
         private readonly IRepository<SensorType> sensorTypeRepo;
-        private readonly IRepository<SensorFromUser> apiSensorRepo;
+        private readonly IRepository<Sensor> apiSensorRepo;
 
-        public SensorServices(IRepository<SensorsFromUser> sensorRepo, IRepository<SensorType> sensorTypeRepo, IRepository<SensorFromUser> apiSensorRepo)
+        public SensorServices(IRepository<SensorsFromUser> sensorRepo, IRepository<SensorType> sensorTypeRepo, IRepository<Sensor> apiSensorRepo)
         {
             this.sensorRepo = sensorRepo;
             this.sensorTypeRepo = sensorTypeRepo;
