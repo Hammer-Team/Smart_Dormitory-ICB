@@ -31,20 +31,11 @@
                     <tr>
                         <th>
                             <div class="form-group">
-                                <label asp-for="PollingIntervalInSeconds"></label>
-                                <input asp-for="PollingIntervalInSeconds" class="form-control" />
-                                <span asp-validation-for="PollingIntervalInSeconds" class="text-danger"></span>
-                            </div>
-                        </th>
-                        <th>
-                            <div class="form-group">
                                 <label asp-for="Latitude"></label>
                                 <input asp-for="Latitude" class="form-control" />
                                 <span asp-validation-for="Latitude" class="text-danger"></span>
                             </div>
                         </th>
-                    </tr>
-                    <tr>
                         <th>
                             <div class="form-group">
                                 <label asp-for="Longitude"></label>
@@ -52,6 +43,8 @@
                                 <span asp-validation-for="Longitude" class="text-danger"></span>
                             </div>
                         </th>
+                    </tr>
+                    <tr>
                         <th>
                             <div class="form-group">
                                 <label asp-for="ValueRangeMin"></label>
@@ -59,16 +52,23 @@
                                 <span asp-validation-for="ValueRangeMin" class="text-danger"></span>
                             </div>
                         </th>
-                    </tr>
-                    <tr>
                         <th>
-
                             <div class="form-group">
                                 <label asp-for="ValueRangeMax"></label>
                                 <input asp-for="ValueRangeMax" class="form-control" />
                                 <span asp-validation-for="ValueRangeMax" class="text-danger"></span>
                             </div>
                         </th>
+                    </tr>
+                    <tr>
+                        <th>
+                            <div class="form-group">
+                                <label asp-for="PollingIntervalInSeconds"></label>
+                                <input asp-for="PollingIntervalInSeconds" class="form-control" />
+                                <span asp-validation-for="PollingIntervalInSeconds" class="text-danger"></span>
+                            </div>
+                        </th>
+                        
                         <th>
                             <div class="form-group">
                                 <label asp-for="ApiId"></label>
@@ -79,11 +79,17 @@
                     </tr>
                     <tr>
                         <th>
-
                             <div class="form-group">
                                 <label asp-for="IsPublic"></label>
-                                <input asp-for="IsPublic" class="form-control" type="checkbox"/>
+                                <input asp-for="IsPublic" class="form-control" type="checkbox" />
                                 <span asp-validation-for="IsPublic" class="text-danger"></span>
+                            </div>
+                        </th>
+                        <th>
+                            <div class="form-group">
+                                <label asp-for="Alarm"></label>
+                                <input asp-for="Alarm" class="form-control" type="checkbox" />
+                                <span asp-validation-for="Alarm" class="text-danger"></span>
                             </div>
                         </th>
                     </tr>

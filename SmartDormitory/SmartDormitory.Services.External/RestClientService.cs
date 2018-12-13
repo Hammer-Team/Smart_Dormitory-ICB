@@ -57,9 +57,9 @@ namespace SmartDormitory.Services.External
 
             foreach (var sensor in sensors)
             {
-                if (!result.ContainsKey(sensor.ApiId.ToString()))
+                if (!result.ContainsKey(sensor.ID.ToString()))
                 {
-                    result.Add(sensor.ApiId.ToString(), sensor);
+                    result.Add(sensor.ID.ToString(), sensor);
                 }
             }
             return result;
@@ -156,16 +156,11 @@ namespace SmartDormitory.Services.External
             //BUG HERE SOMEWHERE!!!
             foreach (var sensor in listOfSensors.Values)
             {
-                var senzorTime = DateTime.Parse(sensor.TimeStamp.ToString()).AddSeconds(sensor.PoolInterval);
-                if (DateTime.Parse(sensor.TimeStamp.ToString()).AddSeconds(sensor.PoolInterval) < DateTime.Now)
+                var senzorTime = DateTime.Parse(sensor.TimeStamp).AddSeconds(sensor.PoolInterval);
+                if (DateTime.Parse(sensor.TimeStamp).AddSeconds(sensor.PoolInterval) < DateTime.Now)
                 {
-                    var response = GetSensorById("8e4c46fe-5e1d-4382-b7fc-19541f7bf3b0", sensor.ApiId.ToString());
+                    var response = GetSensorById("8e4c46fe-5e1d-4382-b7fc-19541f7bf3b0", sensor.ApiId);
 
-                    if (sensor.ApiId.ToString().Equals("81a2e1b1-ea5d-4356-8266-b6b42471653e"))
-                    {
-                        var sensorTimestamp = sensor.TimeStamp;
-                        var responseTimestamp = response.TimeStamp;
-                    }
                     sensor.TimeStamp = response.TimeStamp;
                     sensor.Value = response.Value.ToString();
                     context.Update(sensor);
@@ -181,15 +176,11 @@ namespace SmartDormitory.Services.External
             foreach (var sensor in listOfSensors.Values)
             {
                 var date = DateTime.Parse(sensor.TimeStamp.ToString()).AddSeconds(sensor.PoolInterval);
-
-                string senzorTime = sensor.TimeStamp.ToString();
-                if (DateTime.Parse(sensor.TimeStamp.ToString()).AddSeconds(sensor.PoolInterval) < DateTime.Now)
+                string senzorTime = sensor.TimeStamp;
+                if (DateTime.Parse(sensor.TimeStamp).AddSeconds(sensor.PoolInterval) < DateTime.Now)
                 {
-                    var response = context.Sensors
-                        .Where(s => s.ApiId.ToString()
-                        .Equals(sensor.ApiId.ToString()))
-                        .FirstOrDefault();
-
+                    var response = GetSensorById("8e4c46fe-5e1d-4382-b7fc-19541f7bf3b0", sensor.ApiId);
+                    /*var response = context.Sensors.Where(s => s.ApiId.Equals(sensor.ApiId)).FirstOrDefault();*/
                     sensor.TimeStamp = response.TimeStamp;
                     sensor.Value = response.Value.ToString();
                     context.Update(sensor);
