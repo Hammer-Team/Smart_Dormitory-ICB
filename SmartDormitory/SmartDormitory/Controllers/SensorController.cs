@@ -73,15 +73,19 @@ namespace SmartDormitory.Web.Controllers
         {
             var sensor = sensorService.GetSensorById(id);
 
-            return View(sensor);
+            var sensorViewModel = new SensorDetailsViewModel(sensor);
+
+            return View(sensorViewModel);
         }
 
         [HttpGet]
         public IActionResult Modify(int id)
         {
-            var sensor = sensorService.GetSensorById(id);
+            var sensorFromDatabase = sensorService.GetSensorById(id);
 
-            return View(sensor);
+            SensorDetailsViewModel sensorViewModel = new SensorDetailsViewModel(sensorFromDatabase);
+
+            return View(sensorViewModel);
         }
 
         [HttpPost]
@@ -105,15 +109,23 @@ namespace SmartDormitory.Web.Controllers
 
             sensorService.UpdateSensor(editedSensor: sensor);
 
-            return View(sensor);
+            //string actionName = nameof(this.Details);
+            //string controllerName = nameof(SensorController).Replace("Controller", "");
+            //int routeValue = sensor.ID;
+
+            //return RedirectToAction(actionName, controllerName, routeValue);
+
+            return RedirectToAction("Index", "Home");
         }
 
-        [HttpGet]
-        public IActionResult Test(int id)
+        [HttpPost]
+        public IActionResult Delete(int id)
         {
             var sensor = sensorService.GetSensorById(id);
 
-            return Json(sensor);
+            sensorService.Delete(sensor);
+
+            return RedirectToAction("Index", "Home");
         }
     }
 }
