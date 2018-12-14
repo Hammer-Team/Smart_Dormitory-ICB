@@ -1,0 +1,114 @@
+﻿@model SmartDormitory.Data.Models.SensorsFromUser
+
+@{
+    ViewData["Title"] = "TestView";
+}
+
+<h2>TestView</h2>
+
+<div>
+    <h4>SensorsFromUser</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.ApiId)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.ApiId)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Name)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Name)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.SensorType)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.SensorType.Id)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Value)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Value)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Description)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Description)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.PoolInterval)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.PoolInterval)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.MeasurmentType)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.MeasurmentType)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Latitude)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Latitude)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Longitude)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Longitude)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.ValueRangeMin)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.ValueRangeMin)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.ValueRangeMax)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.ValueRangeMax)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Alarm)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Alarm)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.IsPublic)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.IsPublic)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.IsDeleted)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.IsDeleted)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.TimeStamp)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.TimeStamp)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.User)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.User.Id)
+        </dd>
+    </dl>
+</div>
+<div>
+    <a asp-action="Edit" asp-route-id="@Model.ID">Edit</a> |
+    <a asp-action="Index">Back to List</a>
+</div>

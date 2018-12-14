@@ -11,7 +11,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SmartDormitory.Services", "
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SmartDormitory.Tests", "SmartDormitory.Tests\SmartDormitory.Tests.csproj", "{BD84F4FC-28DC-46B9-8BAB-BC855A56FEDD}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SmartDormitory.Services.External", "SmartDormitory.Services.External\SmartDormitory.Services.External.csproj", "{D0F433FF-0CD4-4A81-AFA4-A824E5D6D7C6}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SmartDormitory.Services.External", "SmartDormitory.Services.External\SmartDormitory.Services.External.csproj", "{D0F433FF-0CD4-4A81-AFA4-A824E5D6D7C6}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
