@@ -15,14 +15,14 @@
                     <tr>
                         <th>
                             <div class="form-group">
-                                <label asp-for="Name"></label>
+                                <label>Name</label>
                                 <input asp-for="Name" class="form-control" />
                                 <span asp-validation-for="Name" class="text-danger"></span>
                             </div>
                         </th>
                         <th>
                             <div class="form-group">
-                                <label asp-for="Description"></label>
+                                <label>Description</label>
                                 <input asp-for="Description" class="form-control" />
                                 <span asp-validation-for="Description" class="text-danger"></span>
                             </div>
@@ -31,14 +31,14 @@
                     <tr>
                         <th>
                             <div class="form-group">
-                                <label asp-for="PollingIntervalInSeconds"></label>
+                                <label>Polling Interval (seconds)</label>
                                 <input asp-for="PollingIntervalInSeconds" class="form-control" />
                                 <span asp-validation-for="PollingIntervalInSeconds" class="text-danger"></span>
                             </div>
                         </th>
                         <th>
                             <div class="form-group">
-                                <label asp-for="Latitude"></label>
+                                <label>Latitude</label>
                                 <input asp-for="Latitude" class="form-control" />
                                 <span asp-validation-for="Latitude" class="text-danger"></span>
                             </div>
@@ -47,14 +47,14 @@
                     <tr>
                         <th>
                             <div class="form-group">
-                                <label asp-for="Longitude"></label>
+                                <label>Longitude</label>
                                 <input asp-for="Longitude" class="form-control" />
                                 <span asp-validation-for="Longitude" class="text-danger"></span>
                             </div>
                         </th>
                         <th>
                             <div class="form-group">
-                                <label asp-for="ValueRangeMin"></label>
+                                <label>Min Value</label>
                                 <input asp-for="ValueRangeMin" class="form-control" />
                                 <span asp-validation-for="ValueRangeMin" class="text-danger"></span>
                             </div>
@@ -64,14 +64,14 @@
                         <th>
 
                             <div class="form-group">
-                                <label asp-for="ValueRangeMax"></label>
+                                <label>Max Value</label>
                                 <input asp-for="ValueRangeMax" class="form-control" />
                                 <span asp-validation-for="ValueRangeMax" class="text-danger"></span>
                             </div>
                         </th>
                         <th>
                             <div class="form-group">
-                                <label asp-for="ApiId"></label>
+                                <label>Api Id</label>
                                 <input asp-for="ApiId" class="form-control" />
                                 <span asp-validation-for="ApiId" class="text-danger"></span>
                             </div>
@@ -80,9 +80,15 @@
                     <tr>
                         <th>
                             <div class="form-group">
-                                <label asp-for="IsPublic"></label>
-                                <input asp-for="IsPublic" class="form-control" type="checkbox"/>
-                                <span asp-validation-for="IsPublic" class="text-danger"></span>
+                                <div>
+                                    <label>Is Public</label>
+                                </div>
+                                <div class="checkbox">
+                                    <label class="switch">
+                                        <input asp-for="IsPublic" type="checkbox" />
+                                        <span asp-validation-for="IsPublic" class="slider"></span>
+                                    </label>
+                                </div>
                             </div>
                         </th>
                     </tr>

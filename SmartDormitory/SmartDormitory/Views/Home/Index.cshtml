@@ -201,25 +201,27 @@ else
             <th>Value</th>
             <th>Access Level</th>
             <th></th>
+            <th></th>
         </tr>
         @foreach (SensorsFromUser sensor in Model)
         {
-            <tr>
-                <td>@sensor.Name</td>
-                <td>@sensor.Description</td>
-                <td>@($"{sensor.Value} {sensor.MeasurmentType}")</td>
-                <td>
-                    @if (sensor.IsPublic)
-                    {
-                        <span>public</span>
-                    }
-                    else
-                    {
-                        <span>private</span>
-                    }
-                </td>
-                <td><a class="btn btn-success" asp-controller="Sensor" asp-action="Details" asp-route-id="@sensor.ID">Details</a></td>
-            </tr>
+        <tr>
+            <td>@sensor.Name</td>
+            <td>@sensor.Description</td>
+            <td>@($"{sensor.Value} {sensor.MeasurmentType}")</td>
+            <td>
+                @if (sensor.IsPublic)
+                {
+                    <span>Public</span>
+                }
+                else
+                {
+                    <span>Private</span>
+                }
+            </td>
+            <td><a class="btn btn-success" asp-controller="Sensor" asp-action="Details" asp-route-id="@sensor.ID">Details</a></td>
+            <td><a class="btn btn-dark" asp-controller="Sensor" asp-action="Modify" asp-route-id="@sensor.ID">Modify</a></td>
+        </tr>
         }
     </table>
 }
