@@ -7,9 +7,6 @@ using SmartDormitory.Services.Contracts;
 using SmartDormitory.Web.Controllers;
 using SmartDormitory.Web.Models;
 using SmartDormitory.Web.Providers;
-using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace SmartDormitory.Tests.WebTests.ControllerTests.SensorControllerTests
 {
