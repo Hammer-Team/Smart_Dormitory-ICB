@@ -89,7 +89,7 @@
     function myPeriodicMethod() {
 
         $.ajax({
-            url: "/Sensor/Test/@Model.ID",
+            url: "/Sensor/GetNewValue/@Model.ID",
             success: function (data) {
                 update(parseFloat(data.value))
             },

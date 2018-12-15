@@ -173,6 +173,8 @@ namespace SmartDormitory.Services.External
 
         public IDictionary<string, SensorsFromUser> UpdateSensorsFromUsers(IDictionary<string, SensorsFromUser> listOfSensors)
         {
+            listOfSensors = InitialSensorsFromUsersLoad();
+
             foreach (var sensor in listOfSensors.Values)
             {
                 var date = DateTime.Parse(sensor.TimeStamp.ToString()).AddSeconds(sensor.PoolInterval);

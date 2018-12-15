@@ -127,5 +127,13 @@ namespace SmartDormitory.Web.Controllers
 
             return RedirectToAction("Index", "Home");
         }
+
+        [HttpGet]
+        [Authorize]
+        public IActionResult GetNewValue(int id)
+        {
+            var sensor = sensorService.GetSensorById(id);
+            return Json(sensor);
+        }
     }
 }
