@@ -107,14 +107,14 @@
 
     var jg5;
     function addJustGade() {
-
+        
     document.addEventListener("DOMContentLoaded", function (event) {
         var defs2 = {
             label: "Value",
             value: @Model.Value,
             min: @Model.ValueRangeMin,
-            max: 100,
-            decimals: 0,
+            max: @Model.ValueRangeMax,
+            decimals: 1,
             gaugeWidthScale: 0.6,
             pointer: true,
             pointerOptions: {

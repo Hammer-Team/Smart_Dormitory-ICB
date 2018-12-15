@@ -45,6 +45,7 @@ namespace SmartDormitory.Web.Controllers
         }
 
         [HttpPost]
+        //[Authorize(User.Identity.IsAuthenticated)]
         public async Task<IActionResult> Create(SensorViewModel sensorViewModel)
         {
             if (!this.ModelState.IsValid)
@@ -52,7 +53,7 @@ namespace SmartDormitory.Web.Controllers
                 return this.View();
             }
 
-            var newMovie = await sensorService.CreateSensorAsync(
+            var newSensor = await sensorService.CreateSensorAsync(
                 sensorViewModel.Name, 
                 sensorViewModel.Description,
                 sensorViewModel.Type,
@@ -65,7 +66,8 @@ namespace SmartDormitory.Web.Controllers
                 sensorViewModel.TimeStamp
                 );
 
-            return View(); //RedirectToAction(nameof(Details), sensorViewModel.ID);
+            //return View(); //
+            return this.RedirectToAction("Details", "Sensor", new { id = newSensor.ID });
         }
 
         [HttpGet]

@@ -10,6 +10,7 @@ namespace SmartDormitory.Web.Areas.Identity.Services
 {
     public class EmailSender : IEmailSender
     {
+        //#NotWorking... Why? No one knows... :( 
         public Task SendEmailAsync(string email, string subject, string htmlMessage)
         {
             var client = new SmtpClient("shaban9726@gmail.com")
