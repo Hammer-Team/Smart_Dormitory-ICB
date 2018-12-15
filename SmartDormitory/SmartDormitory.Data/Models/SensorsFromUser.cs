@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace SmartDormitory.Data.Models
+﻿namespace SmartDormitory.Data.Models
 {
     public class SensorsFromUser
     {

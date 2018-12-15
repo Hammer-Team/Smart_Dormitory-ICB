@@ -1,14 +1,12 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.ChangeTracking;
 using SmartDormitory.Data.Context;
-using SmartDormitory.Data.Models;
-using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
 namespace SmartDormitory.Data.Repository
 {
-    public class Repository<T> : IRepository<T> 
+    public class Repository<T> : IRepository<T>
         where T : class
     {
         private readonly DormitoryContext context;
@@ -59,6 +57,7 @@ namespace SmartDormitory.Data.Repository
         public void Update(T entity)
         {
             EntityEntry entry = context.Entry(entity);
+
             if (entry.State == EntityState.Detached)
             {
                 context.Set<T>().Attach(entity);
@@ -70,6 +69,11 @@ namespace SmartDormitory.Data.Repository
         public async Task SaveAsync()
         {
             await context.SaveChangesAsync();
+        }
+
+        public void Delete(T entity)
+        {
+            context.Set<T>().Remove(entity);
         }
     }
 }

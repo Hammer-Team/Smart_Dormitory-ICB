@@ -30,22 +30,6 @@ namespace SmartDormitory.Data.Context
                 jsonManager.RegisterJson<User>("users.json");
                 jsonManager.RegisterJson<IdentityUserRole<string>>("userRoles.json");
                 jsonManager.RegisterJson<IdentityRole>("roles.json");
-                //jsonManager.RegisterJson<Sensor>("sensors.json");
-                //jsonManager.RegisterJson<SensorType>("sensorTypes.json");
-
-                //var usersJson = File.ReadAllText(@".\JsonData\users.json");
-                //var userRolesJson = File.ReadAllText(@".\JsonData\roles.json");
-                //var rolesJson = File.ReadAllText(@".\JsonData\roles.json");
-                //var sensorsJson = File.ReadAllText(@".\JsonData\roles.json");
-
-                //var users = JsonConvert.DeserializeObject<User[]>(usersJson);
-                //var roles = JsonConvert.DeserializeObject<IdentityRole[]>(rolesJson);
-                //var userRoles = JsonConvert.DeserializeObject<IdentityUserRole<string>[]>(userRolesJson);
-
-                //modelBuilder.Entity<User>().HasData(users);
-                //modelBuilder.Entity<IdentityRole>().HasData(roles);
-                //modelBuilder.Entity<IdentityUserRole<string>>().HasData(userRoles);
-
             //}
             //catch (Exception)
             //{

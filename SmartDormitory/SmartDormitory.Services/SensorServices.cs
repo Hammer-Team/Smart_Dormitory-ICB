@@ -80,6 +80,13 @@ namespace SmartDormitory.Services
         public void UpdateSensor(SensorsFromUser editedSensor)
         {
             sensorRepo.Update(editedSensor);
+            sensorRepo.Save();
+        }
+
+        public void Delete(SensorsFromUser entity)
+        {
+            sensorRepo.Delete(entity);
+            sensorRepo.Save();
         }
     }
 }

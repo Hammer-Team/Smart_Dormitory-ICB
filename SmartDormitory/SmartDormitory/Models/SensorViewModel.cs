@@ -51,5 +51,24 @@ namespace SmartDormitory.Web.Models
             this.TimeStamp = DateTime.Now;
             this.UserId = UserId;
         }
+
+        public SensorViewModel(SensorsFromUser sensor)
+        {
+            this.ID = ID;
+            this.Name = Name;
+            this.Description = Description;
+            this.PollingIntervalInSeconds = PollingIntervalInSeconds;
+            this.URL = URL;
+            this.Type = Type;
+            this.Latitude = Latitude;
+            this.Longitude = Longitude;
+            this.Alarm = Alarm;
+            this.IsPublic = IsPublic;
+            this.ApiId = ApiId;
+            this.ValueRangeMin = ValueRangeMin;
+            this.ValueRangeMax = ValueRangeMax;
+            this.TimeStamp = DateTime.Now;
+            this.UserId = UserId;
+        }
     }
 }

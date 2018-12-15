@@ -201,6 +201,7 @@ else
             <th>Value</th>
             <th>Access Level</th>
             <th></th>
+            <th></th>
         </tr>
         @foreach (SensorsFromUser sensor in Model)
         {
@@ -211,15 +212,15 @@ else
             <td>
                 @if (sensor.IsPublic)
                 {
-                    <span>public</span>
+                    <span>Public</span>
                 }
                 else
                 {
-                    <span>private</span>
+                    <span>Private</span>
                 }
             </td>
-            <td><a class="btn btn-success" asp-controller="Sensor" asp-action="Modify" asp-route-id="@sensor.ID">Modify</a></td>
             <td><a class="btn btn-success" asp-controller="Sensor" asp-action="Details" asp-route-id="@sensor.ID">Details</a></td>
+            <td><a class="btn btn-dark" asp-controller="Sensor" asp-action="Modify" asp-route-id="@sensor.ID">Modify</a></td>
         </tr>
         }
     </table>
