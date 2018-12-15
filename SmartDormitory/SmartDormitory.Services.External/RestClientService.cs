@@ -57,9 +57,9 @@ namespace SmartDormitory.Services.External
 
             foreach (var sensor in sensors)
             {
-                if (!result.ContainsKey(sensor.ID.ToString()))
+                if (!result.ContainsKey(sensor.ApiId.ToString()))
                 {
-                    result.Add(sensor.ID.ToString(), sensor);
+                    result.Add(sensor.ApiId.ToString(), sensor);
                 }
             }
             return result;
@@ -179,8 +179,8 @@ namespace SmartDormitory.Services.External
                 string senzorTime = sensor.TimeStamp;
                 if (DateTime.Parse(sensor.TimeStamp).AddSeconds(sensor.PoolInterval) < DateTime.Now)
                 {
-                    var response = GetSensorById("8e4c46fe-5e1d-4382-b7fc-19541f7bf3b0", sensor.ApiId);
-                    /*var response = context.Sensors.Where(s => s.ApiId.Equals(sensor.ApiId)).FirstOrDefault();*/
+                    //var response = GetSensorById("8e4c46fe-5e1d-4382-b7fc-19541f7bf3b0", sensor.ApiId);
+                    var response = context.Sensors.Where(s => s.ApiId.Equals(sensor.ApiId)).FirstOrDefault();
                     sensor.TimeStamp = response.TimeStamp;
                     sensor.Value = response.Value.ToString();
                     context.Update(sensor);
@@ -194,7 +194,10 @@ namespace SmartDormitory.Services.External
         private double[] GetMinMaxValues(string input)
         {
             var numbers = Regex.Matches(input, @"(\+| -)?(\d+)(\,|\.)?(\d*)?");
-            var result = new double[] { 0, 1 };
+            var result = new double[2];
+            result[0] = 0;
+            result[1] = 1;
+            
             if (numbers.Count > 0)
             {
                 double.TryParse(numbers[0].ToString(), out result[0]);

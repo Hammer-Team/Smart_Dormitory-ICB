@@ -13,7 +13,9 @@ namespace SmartDormitory.Services
     public class TimedHostedService : IHostedService, IDisposable
     {
         private readonly IServiceProvider service;
-        private Timer timer;
+        private Timer timerForCheckNewSensor;
+        private Timer timerForUpdateSensor;
+        private Timer timerForUpdateUserSensor;
         private IDictionary<string, Sensor> listOfSensors;
         private IDictionary<string, SensorsFromUser> listOfSensorsFromUsers;
 
@@ -28,12 +30,12 @@ namespace SmartDormitory.Services
 
             string reportUserSensors = InitialSensorFromUsersLoad();
 
-            this.timer = new Timer(CheckForNewSensor, null, TimeSpan.Zero, TimeSpan.FromSeconds(10));
+            this.timerForCheckNewSensor = new Timer(CheckForNewSensor, null, TimeSpan.Zero, TimeSpan.FromSeconds(10));
 
-            this.timer = new Timer(UpdateSensor, null, TimeSpan.Zero, TimeSpan.FromSeconds(9));
+            this.timerForUpdateSensor = new Timer(UpdateSensorFromUsers, null, TimeSpan.Zero, TimeSpan.FromSeconds(5));
 
-            this.timer = new Timer(UpdateSensorFromUsers, null, TimeSpan.Zero, TimeSpan.FromSeconds(10));
-
+            this.timerForUpdateUserSensor = new Timer(UpdateSensor, null, TimeSpan.Zero, TimeSpan.FromSeconds(5));
+            
             return Task.CompletedTask;
         }
 
@@ -92,14 +94,17 @@ namespace SmartDormitory.Services
 
         public Task StopAsync(CancellationToken cancellationToken)
         {
-            this.timer?.Change(Timeout.Infinite, 0);
-
+            this.timerForCheckNewSensor?.Change(Timeout.Infinite, 0);
+            this.timerForUpdateSensor?.Change(Timeout.Infinite, 0);
+            this.timerForUpdateUserSensor?.Change(Timeout.Infinite, 0);
             return Task.CompletedTask;
         }
 
         public void Dispose()
         {
-            this.timer?.Dispose();
+            this.timerForCheckNewSensor?.Dispose();
+            this.timerForUpdateSensor?.Dispose();
+            this.timerForUpdateUserSensor?.Dispose();
         }
     }
 }
