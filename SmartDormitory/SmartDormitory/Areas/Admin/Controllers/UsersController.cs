@@ -45,61 +45,72 @@ namespace SmartDormitory.Web.Areas.Admin.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> LockUser(UserModalModelView input)
+        public async Task<IActionResult> ChangeUserSettings(UserModalModelView input)
         {
-            var user = _userManager.Users.Where(u => u.Id == input.ID).FirstOrDefault();
+            if (input.IsAdmin) await this.AsignAdminRole(input.ID);
+            else await this.RemoveAdminRole(input.ID);
+
+            if (input.IsLocked) await this.LockUser(input.ID);
+            else await this.UnlockUser(input.ID);
+
+            if (!string.IsNullOrEmpty(input.ConfirmPassword))
+            {
+                await this.ChangePassword(input);
+            }
+
+            return this.RedirectToAction(nameof(Index));
+        }
+
+        public async Task LockUser(string userID)
+        {
+            var user = _userManager.Users.Where(u => u.Id == userID).FirstOrDefault();
             if (user is null)
             {
                 this.StatusMessage = "Error: User not found!";
-                return this.RedirectToAction(nameof(Index));
+                return;
             }
 
             var enableLockOutResult = await _userManager.SetLockoutEnabledAsync(user, true);
             if (!enableLockOutResult.Succeeded)
             {
                 this.StatusMessage = "Error: Could enable the lockout on the user!";
-                return this.RedirectToAction(nameof(Index));
+                return;
             }
             var lockoutTimeResult = await _userManager.SetLockoutEndDateAsync(user, DateTime.Today.AddYears(10));
             if (!lockoutTimeResult.Succeeded)
             {
                 this.StatusMessage = "Error: Could not add time to user's lockout!";
-                return this.RedirectToAction(nameof(Index));
+                return;
             }
             this.StatusMessage = "The user has been successfully locked for 10 years!";
-            return this.RedirectToAction(nameof(Index));
         }
 
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public async Task<IActionResult> UnlockUser(UserModalModelView input)
+        public async Task UnlockUser(string userID)
         {
-            var user = _userManager.Users.Where(u => u.Id == input.ID).FirstOrDefault();
+            var user = _userManager.Users.Where(u => u.Id == userID).FirstOrDefault();
             if (user is null)
             {
                 this.StatusMessage = "Error: User not found!";
-                return this.RedirectToAction(nameof(Index));
+                return;
             }
 
             var lockoutTimeResult = await _userManager.SetLockoutEndDateAsync(user, DateTime.Now);
             if (!lockoutTimeResult.Succeeded)
             {
                 this.StatusMessage = "Error: Could not add time to user's lockout!";
-                return this.RedirectToAction(nameof(Index));
+                return;
             }
+
             this.StatusMessage = "The user has been successfully unlocked!";
-            return this.RedirectToAction(nameof(Index));
         }
 
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public async Task<IActionResult> ChangePassword(UserModalModelView input)
+        public async Task ChangePassword(UserModalModelView input)
         {
             var user = _userManager.Users.Where(u => u.Id == input.ID).FirstOrDefault();
             if (user is null)
             {
                 this.StatusMessage = "Error: User not found!";
-                return this.RedirectToAction(nameof(Index));
+                return;
             }
 
             foreach (var validator in _userManager.PasswordValidators)
@@ -108,41 +119,43 @@ namespace SmartDormitory.Web.Areas.Admin.Controllers
                 if (!result.Succeeded)
                 {
                     this.StatusMessage = $"Error: {string.Join(" ", result.Errors.Select(e => e.Description)).Replace(".", "!")}";
-                    return this.RedirectToAction(nameof(Index));
+                    return;
                 }
             }
 
             if (!ModelState.IsValid)
             {
                 this.StatusMessage = "Error: Passwords do not match!";
-                return this.RedirectToAction(nameof(Index));
+                return;
             }
 
             var removeResult = await _userManager.RemovePasswordAsync(user);
             if (!removeResult.Succeeded)
             {
                 this.StatusMessage = "Error: Could not remove the old password!";
-                return this.RedirectToAction(nameof(Index));
+                return;
             }
             var addPasswordResult = await _userManager.AddPasswordAsync(user, input.NewPassword);
             if (!addPasswordResult.Succeeded)
             {
                 this.StatusMessage = "Error: Could not change the password!";
-                return this.RedirectToAction(nameof(Index));
+                return;
             }
             this.StatusMessage = "The user's password has been changed!";
-            return this.RedirectToAction(nameof(Index));
         }
 
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public async Task<IActionResult> AsignAdminRole(UserModalModelView input)
+        public async Task AsignAdminRole(string userID)
         {
-            User user = _userManager.Users.Where(u => u.Id == input.ID).FirstOrDefault();
+            User user = _userManager.Users.Where(u => u.Id == userID).FirstOrDefault();
 
             await _userManager.Instance.AddToRoleAsync(user, "Administrator");
+        }
 
-            return this.RedirectToAction(nameof(Index));
+        public async Task RemoveAdminRole(string userID)
+        {
+            User user = _userManager.Users.Where(u => u.Id == userID).FirstOrDefault();
+
+            await _userManager.Instance.RemoveFromRoleAsync(user, "Administrator");
         }
     }
 }
