@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
-using System.Linq;
-using System.Threading.Tasks;
+﻿using System.ComponentModel.DataAnnotations;
 
 namespace SmartDormitory.Web.Areas.Admin.Models
 {
@@ -10,14 +6,19 @@ namespace SmartDormitory.Web.Areas.Admin.Models
     {
         [Required]
         public string ID { get; set; }
-        [Required]
+
+        //[Required]
         [DataType(DataType.Password)]
-        [Display(Name = "NewPassword")]
+        [Display(Name = "New Password")]
         public string NewPassword { get; set; }
 
         [DataType(DataType.Password)]
         [Display(Name = "Confirm new password")]
-        [Compare("NewPassword", ErrorMessage = "The password and confirmation password do not match.")]
+        //[Compare("NewPassword", ErrorMessage = "The password and confirmation password do not match.")]
         public string ConfirmPassword { get; set; }
+
+        public bool IsAdmin { get; set; }
+
+        public bool IsLocked { get; set; }
     }
 }
