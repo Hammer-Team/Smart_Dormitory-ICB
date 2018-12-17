@@ -18,20 +18,20 @@ namespace SmartDormitory.Tests.WebTests.ControllerTests
     public class ModifyActionPostShould
     {
         [TestMethod]
-        public async Task CallCorrectServiceMethod()
+        public void CallCorrectServiceMethod()
         {
             //Arrange
             var sensor = new SensorsFromUser();
             var model = new SensorViewModel() { Name = "SomeSensor" };
             var sensorServiceMock = new Mock<SensorServices>();
-            sensorServiceMock
-                .Setup(ss => ss.UpdateSensor(sensor));
+            //sensorServiceMock
+                //.Setup(ss => ss.UpdateSensor(sensor));
 
             var sensorCacheMock = new Mock<IMemoryCache>();
             var userManagerMock = new Mock<IUserManager<User>>();
             var sut = new SensorController(sensorServiceMock.Object, sensorCacheMock.Object, userManagerMock.Object);
             //Act
-            var result = sut.Modify(model) as ViewResult;
+            var result = sut.Modify(model) as RedirectToActionResult;
             //Assert
             sensorServiceMock.Verify(s => s.UpdateSensor(sensor));
         }
