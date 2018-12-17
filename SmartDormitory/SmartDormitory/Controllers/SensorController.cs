@@ -32,7 +32,7 @@ namespace SmartDormitory.Web.Controllers
         [HttpGet]
         public async Task<IActionResult> Create()
         {
-            var newSensor = new SensorViewModel();
+            var newSensor = new SensorCreateViewModel();
             var cachedSensorTypes = await _memoryCache.GetOrCreateAsync("Types", async entry =>
             {
                 entry.SlidingExpiration = TimeSpan.FromHours(2);
@@ -41,12 +41,14 @@ namespace SmartDormitory.Web.Controllers
                 newSensor.TypeList = s;
                 return s;
             });
+            newSensor.ApiIds = sensorService.GetApiSensorIds();
+
             return View(newSensor);
         }
 
         [HttpPost]
         //[Authorize(User.Identity.IsAuthenticated)]
-        public async Task<IActionResult> Create(SensorViewModel sensorViewModel)
+        public async Task<IActionResult> Create(SensorCreateViewModel sensorViewModel)
         {
             if (!this.ModelState.IsValid)
             {
@@ -91,7 +93,7 @@ namespace SmartDormitory.Web.Controllers
         }
 
         [HttpPost]
-        public IActionResult Modify(SensorViewModel sensorViewModel)
+        public IActionResult Modify(SensorCreateViewModel sensorViewModel)
         {
             if (!ModelState.IsValid)
             {

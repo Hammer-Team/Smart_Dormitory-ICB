@@ -50,6 +50,11 @@ namespace SmartDormitory.Services
             return sensorToAdd;
         }
 
+        public IEnumerable<string> GetApiSensorIds()
+        {
+            return apiSensorRepo.All().Select(s => s.ApiId);
+        }
+
         public SensorsFromUser GetSensorById(int id)
         {
             return sensorRepo.All().SingleOrDefault(s => s.ID == id);

@@ -1,14 +1,11 @@
 ﻿using Microsoft.AspNetCore.Mvc.Rendering;
 using SmartDormitory.Data.Models;
 using System;
-using System.Collections;
 using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
-using System.Linq;
 
 namespace SmartDormitory.Web.Models
 {
-    public class SensorViewModel
+    public class SensorCreateViewModel
     {
         public int ID { get; set; }
         public string Name { get; set; }
@@ -22,18 +19,19 @@ namespace SmartDormitory.Web.Models
         public string UserId { get; set; }
         public double ValueRangeMin { get; set; }
         public double ValueRangeMax { get; set; }
-        public DateTime TimeStamp { get; set; } 
+        public DateTime TimeStamp { get; set; }
         public string ApiId { get; set; }
         public int PollingIntervalInSeconds { get; set; }
         public IEnumerable<SelectListItem> TypeList { get; set; }
         public ICollection<string> Types { get; set; }
+        public IEnumerable<string> ApiIds { get; set; }
 
-        public SensorViewModel()
+        public SensorCreateViewModel()
         {
 
         }
 
-        public SensorViewModel(Sensor sensor)
+        public SensorCreateViewModel(SensorsFromUser sensor)
         {
             this.ID = ID;
             this.Name = Name;
@@ -52,7 +50,7 @@ namespace SmartDormitory.Web.Models
             this.UserId = UserId;
         }
 
-        public SensorViewModel(SensorsFromUser sensor)
+        public SensorCreateViewModel(SensorsFromUser sensor, IEnumerable<string> apiIds)
         {
             this.ID = ID;
             this.Name = Name;
@@ -69,6 +67,7 @@ namespace SmartDormitory.Web.Models
             this.ValueRangeMax = ValueRangeMax;
             this.TimeStamp = DateTime.Now;
             this.UserId = UserId;
+            this.ApiIds = apiIds;
         }
     }
 }

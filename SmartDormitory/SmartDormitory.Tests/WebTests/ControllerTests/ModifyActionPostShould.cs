@@ -22,7 +22,7 @@ namespace SmartDormitory.Tests.WebTests.ControllerTests
         {
             //Arrange
             var sensor = new SensorsFromUser();
-            var model = new SensorViewModel() { Name = "SomeSensor" };
+            var model = new SensorCreateViewModel() { Name = "SomeSensor" };
             var sensorServiceMock = new Mock<SensorServices>();
             sensorServiceMock
                 .Setup(ss => ss.UpdateSensor(sensor));
@@ -40,7 +40,7 @@ namespace SmartDormitory.Tests.WebTests.ControllerTests
         public void ReturnCorrectViewModel()
         {
             //Arrange
-            var model = new SensorViewModel();
+            var model = new SensorCreateViewModel();
             var sensor = new SensorsFromUser();
             var sensorServiceMock = new Mock<ISensorService>();
             sensorServiceMock
@@ -51,7 +51,7 @@ namespace SmartDormitory.Tests.WebTests.ControllerTests
             //Act
             var result = sut.Modify(model) as ViewResult;
             //Assert
-            Assert.IsInstanceOfType(result.Model, typeof(SensorViewModel));
+            Assert.IsInstanceOfType(result.Model, typeof(SensorCreateViewModel));
         }
     }
 }
