@@ -17,9 +17,9 @@ namespace SmartDormitory.Web.Controllers
     [Authorize]
     public class SensorController : Controller
     {
-        private readonly IUserManager<User> _userManager; // To do
-        private readonly IMemoryCache _memoryCache; // To Do
-        private readonly ISensorService sensorService; // To Do
+        private readonly IUserManager<User> _userManager;
+        private readonly IMemoryCache _memoryCache; 
+        private readonly ISensorService sensorService; 
         private string StatusMessage { get; set; }
 
         public SensorController(ISensorService sensorService, IMemoryCache memoryCache, IUserManager<User> userManager)

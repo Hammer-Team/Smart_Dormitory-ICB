@@ -15,6 +15,11 @@
     margin: auto;
 }
 
+.highlight {
+    color: white;
+    font-weight: bold;
+}
+
 .center-vertical {
     position: relative;
     top: 50%;
