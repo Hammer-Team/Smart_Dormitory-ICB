@@ -65,25 +65,20 @@
                         <partial name="_LoginPartial" />
                         @*<ul class="nav navbar-nav navbar-right">
                                     <li class="nav-item"><a href="#" class="primary_btn">Login</a></li>
-                            </ul>*@
+                        </ul>*@
                     </div>
                 </div>
             </nav>
         </div>
     </header>
     <partial name="_CookieConsentPartial" />
-    @if (ViewData.ContainsKey("isHeadtagsRendered") && !(bool)ViewData["isHeadtagsRendered"])
-    {
-        <div class="container body-content">
-            @RenderBody()
-        </div>
+    <div id="page-top-offset"></div>
 
-        ViewData["isHeadtagsRendered"] = false;
-    }
-    else
-    {
-        @RenderBody()
-    }
+    @*<div class="container body-content">
+            @RenderBody()
+        </div>*@
+
+    @RenderBody()
     <!--================Footer Area =================-->
     <!--================End Footer Area =================-->
     <environment include="Development">
