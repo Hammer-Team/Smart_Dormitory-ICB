@@ -1,4 +1,4 @@
-﻿@model SmartDormitory.Web.Models.SensorViewModel
+﻿@model SmartDormitory.Web.Models.SensorCreateViewModel
 @{
     ViewData["Title"] = "Create";
 }
@@ -71,8 +71,17 @@
                         <th>
                             <div class="form-group">
                                 <label asp-for="ApiId"></label>
-                                <input asp-for="ApiId" class="form-control" />
+                                <select asp-for="ApiId" class="nice-select">
+                                    @foreach (string api in @Model.ApiIds)
+                                    {
+                                        <option value="@api">@api</option>
+                                    }
+                                </select>
                                 <span asp-validation-for="ApiId" class="text-danger"></span>
+
+                                @*<label asp-for="ApiId"></label>
+                                <input asp-for="ApiId" class="form-control" />
+                                <span asp-validation-for="ApiId" class="text-danger"></span>*@
                             </div>
                         </th>
                     </tr>

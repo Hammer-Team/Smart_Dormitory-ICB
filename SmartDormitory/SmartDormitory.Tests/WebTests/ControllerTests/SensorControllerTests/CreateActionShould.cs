@@ -49,7 +49,7 @@ namespace SmartDormitory.Tests.WebTests.ControllerTests.SensorControllerTests
             //Act
             var result = await sut.Create() as ViewResult;
             //Assert
-            Assert.IsInstanceOfType(result.Model, typeof(SensorViewModel));
+            Assert.IsInstanceOfType(result.Model, typeof(SensorCreateViewModel));
         }
 
         [TestMethod]

@@ -10,6 +10,8 @@ namespace SmartDormitory.Services.Contracts
         Task<SensorsFromUser> CreateSensorAsync(string name, string description, string type,
             string latitude, string longitude, bool alarm, bool isPublic, string UserId, string ApiId, DateTime TimeStamp);
 
+        IEnumerable<string> GetApiSensorIds();
+
         SensorsFromUser GetSensorById(int id);
 
         IEnumerable<SensorsFromUser> GetAllPublicSensors();

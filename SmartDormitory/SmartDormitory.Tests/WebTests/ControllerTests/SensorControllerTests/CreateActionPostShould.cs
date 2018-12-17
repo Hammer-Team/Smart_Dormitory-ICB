@@ -33,7 +33,7 @@ namespace SmartDormitory.Tests.WebTests.ControllerTests.SensorControllerTests
             //Arrange
             var newSensor = new SensorsFromUser();
 
-            var model = new SensorViewModel() { Name = sensorName, Description = description, Type = type, Latitude =latitude,
+            var model = new SensorCreateViewModel() { Name = sensorName, Description = description, Type = type, Latitude =latitude,
             Longitude = logitude, Alarm = true, IsPublic = true, ApiId = ApiId, TimeStamp = date};
             var sensorServiceMock = new Mock<ISensorService>();
             sensorServiceMock
