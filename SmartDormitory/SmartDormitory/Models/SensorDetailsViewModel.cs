@@ -26,6 +26,8 @@ namespace SmartDormitory.Web.Models
 
         public int PollingInterval { get; set; }
 
+        public string MeasurmentType { get; set; }
+
         public SensorDetailsViewModel(SensorsFromUser sensor)
         {
             this.ID = sensor.ID;
@@ -39,6 +41,7 @@ namespace SmartDormitory.Web.Models
             this.ValueRangeMin = sensor.ValueRangeMin;
             this.ValueRangeMax = sensor.ValueRangeMax;
             this.PollingInterval = sensor.PoolInterval;
+            this.MeasurmentType = sensor.MeasurmentType;
         }
 
         public string GetAlarmStatus() =>

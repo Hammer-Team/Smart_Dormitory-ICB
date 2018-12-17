@@ -61,6 +61,7 @@ namespace SmartDormitory
             services.AddScoped<IRestClientService, RestClientService>();
 
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
+            
 
         }
 
@@ -89,8 +90,11 @@ namespace SmartDormitory
 
             app.UseAuthentication();
 
+
             app.UseMvc(routes =>
             {
+                
+
                 routes.MapRoute(
                    name: "adminArea",
                    template: "{area:exists}/{controller=Users}/{action=Index}/{id?}");
@@ -98,6 +102,10 @@ namespace SmartDormitory
                 routes.MapRoute(
                     name: "default",
                     template: "{controller=Home}/{action=Index}/{id?}");
+
+                routes.MapRoute(
+                    name: "error",
+                    template: "/404");
             });
         }
     }

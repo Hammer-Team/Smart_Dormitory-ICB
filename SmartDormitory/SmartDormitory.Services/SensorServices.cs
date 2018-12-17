@@ -36,7 +36,8 @@ namespace SmartDormitory.Services
                 IsPublic = isPublic,
                 UserId = UserId,
                 ApiId = ApiId,
-                TimeStamp = DateTime.Now.ToString("O")//"yyyy-MM-ddTHH:mm:ss.FFFFFFF"
+                Value = apiSensorRepo.All().Where(s => ApiId == s.ApiId).Select(s => s.Value).FirstOrDefault(),
+            TimeStamp = DateTime.Now.ToString("O")//"yyyy-MM-ddTHH:mm:ss.FFFFFFF"
             };
             var test = sensorRepo.All().Where(s => ApiId == s.ApiId).ToList();
             var test2 = sensorRepo.All().ToList();
