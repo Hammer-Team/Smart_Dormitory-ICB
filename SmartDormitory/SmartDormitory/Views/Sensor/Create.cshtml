@@ -2,111 +2,106 @@
 @{
     ViewData["Title"] = "Create";
 }
-<h2>Create</h2>
-<meta name="viewport" content="width=device-width, initial-scale=1">
+<div class="container center " style="width: 700px;">
+    <h2>Create</h2>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <form asp-controller="Sensor" asp-action="Create" method="post">
+        <div style="overflow-x:auto;">
+            <table>
+                <div asp-validation-summary="All" class="text-danger"></div>
+                <tr>
+                    <th>
+                        <div class="form-group">
+                            <label>Name</label>
+                            <input asp-for="Name" class="form-control" />
+                            <span asp-validation-for="Name" class="text-danger"></span>
+                        </div>
+                    </th>
+                    <th>
+                        <div class="form-group">
+                            <label>Description</label>
+                            <input asp-for="Description" class="form-control" />
+                            <span asp-validation-for="Description" class="text-danger"></span>
+                        </div>
+                    </th>
+                </tr>
+                <tr>
+                    <th>
+                        <div class="form-group">
+                            <label>Latitude</label>
+                            <input asp-for="Latitude" class="form-control" />
+                            <span asp-validation-for="Latitude" class="text-danger"></span>
+                        </div>
+                    </th>
+                    <th>
+                        <div class="form-group">
+                            <label>Longitude</label>
+                            <input asp-for="Longitude" class="form-control" />
+                            <span asp-validation-for="Longitude" class="text-danger"></span>
+                        </div>
+                    </th>
+                </tr>
+                <tr>
+                    <th>
+                        <div class="form-group">
+                            <label>Min Value</label>
+                            <input asp-for="ValueRangeMin" class="form-control" />
+                            <span asp-validation-for="ValueRangeMin" class="text-danger"></span>
+                        </div>
+                    </th>
+                    <th>
+                        <div class="form-group">
+                            <label>Max Value</label>
+                            <input asp-for="ValueRangeMax" class="form-control" />
+                            <span asp-validation-for="ValueRangeMax" class="text-danger"></span>
+                        </div>
+                    </th>
+                </tr>
+                <tr>
+                    <th>
+                        <div>
+                            <label asp-for="ApiId"></label>
+                        </div>
+                        <div class="form-group">
+                            <select asp-for="ApiId" class="nice-select" style="font-size: x-small">
+                                @foreach (string api in @Model.ApiIds)
+                                {
+                                    <option value="@api" style="font-size:x-small">@api</option>
+                                }
+                            </select>
+                            <span asp-validation-for="ApiId" class="text-danger"></span>
+                        </div>
+                    </th>
+                    <th>
+                        <div class="form-group">
+                            <label>Polling Interval (seconds)</label>
+                            <input asp-for="PollingIntervalInSeconds" class="form-control" />
+                            <span asp-validation-for="PollingIntervalInSeconds" class="text-danger"></span>
+                        </div>
+                    </th>
 
-<div class="row" >
-    <div class="col-md-10">
+                </tr>
+                <tr>
+                    <th>
+                        <div class="form-group">
+                            <label asp-for="IsPublic"></label>
+                            <input asp-for="IsPublic" class="form-control" type="checkbox" />
+                            <span asp-validation-for="IsPublic" class="text-danger"></span>
+                        </div>
+                    </th>
+                    <th>
+                        <div class="form-group">
+                            <label asp-for="Alarm"></label>
+                            <input asp-for="Alarm" class="form-control" type="checkbox" />
+                            <span asp-validation-for="Alarm" class="text-danger"></span>
+                        </div>
+                    </th>
+                </tr>
+            </table>
 
-        <form asp-controller="Sensor" asp-action="Create" method="post">
-            <div style="overflow-x:auto;">
-                <table>
-                    <div asp-validation-summary="All" class="text-danger"></div>
-                    <tr>
-                        <th>
-                            <div class="form-group">
-                                <label>Name</label>
-                                <input asp-for="Name" class="form-control" />
-                                <span asp-validation-for="Name" class="text-danger"></span>
-                            </div>
-                        </th>
-                        <th>
-                            <div class="form-group">
-                                <label>Description</label>
-                                <input asp-for="Description" class="form-control" />
-                                <span asp-validation-for="Description" class="text-danger"></span>
-                            </div>
-                        </th>
-                    </tr>
-                    <tr>
-                        <th>
-                            <div class="form-group">
-                                <label>Polling Interval (seconds)</label>
-                                <input asp-for="PollingIntervalInSeconds" class="form-control" />
-                                <span asp-validation-for="PollingIntervalInSeconds" class="text-danger"></span>
-                            </div>
-                        </th>
-                        <th>
-                            <div class="form-group">
-                                <label>Latitude</label>
-                                <input asp-for="Latitude" class="form-control" />
-                                <span asp-validation-for="Latitude" class="text-danger"></span>
-                            </div>
-                        </th>
-                        <th>
-                            <div class="form-group">
-                                <label>Longitude</label>
-                                <input asp-for="Longitude" class="form-control" />
-                                <span asp-validation-for="Longitude" class="text-danger"></span>
-                            </div>
-                        </th>
-                    </tr>
-                    <tr>
-                        <th>
-                            <div class="form-group">
-                                <label>Min Value</label>
-                                <input asp-for="ValueRangeMin" class="form-control" />
-                                <span asp-validation-for="ValueRangeMin" class="text-danger"></span>
-                            </div>
-                        </th>
-                        <th>
-                            <div class="form-group">
-                                <label>Max Value</label>
-                                <input asp-for="ValueRangeMax" class="form-control" />
-                                <span asp-validation-for="ValueRangeMax" class="text-danger"></span>
-                            </div>
-                        </th>
-                    </tr>
-                    <tr>
-                        <th>
-                            <div class="form-group">
-                                <label asp-for="ApiId"></label>
-                                <select asp-for="ApiId" class="nice-select">
-                                    @foreach (string api in @Model.ApiIds)
-                                    {
-                                        <option value="@api">@api</option>
-                                    }
-                                </select>
-                                <span asp-validation-for="ApiId" class="text-danger"></span>
-
-                                @*<label asp-for="ApiId"></label>
-                                <input asp-for="ApiId" class="form-control" />
-                                <span asp-validation-for="ApiId" class="text-danger"></span>*@
-                            </div>
-                        </th>
-                    </tr>
-                    <tr>
-                        <th>
-                            <div class="form-group">
-                                <label asp-for="IsPublic"></label>
-                                <input asp-for="IsPublic" class="form-control" type="checkbox"/>
-                                <span asp-validation-for="IsPublic" class="text-danger"></span>
-                            </div>
-                        </th>
-                        <th>
-                            <div class="form-group">
-                                <label asp-for="Alarm"></label>
-                                <input asp-for="Alarm" class="form-control" type="checkbox" />
-                                <span asp-validation-for="Alarm" class="text-danger"></span>
-                            </div>
-                        </th>
-                    </tr>
-                </table>
-
-                <button type="submit" class="btn btn-default">Create</button>
-            </div>
-        </form>
-    </div>
+            <button type="submit" class="btn btn-default">Create</button>
+        </div>
+    </form>
 </div>
 
 @section scripts {

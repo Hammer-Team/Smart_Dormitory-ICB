@@ -44,12 +44,13 @@ namespace SmartDormitory.Controllers
             return View(sensors);
         }
 
-        public IActionResult About()
-        {
-            ViewData["Message"] = "Your application description page.";
+        public IActionResult About() => View();
 
-            return View();
-        }
+        public IActionResult Gallery() => View();
+
+        public IActionResult Blog() => View();
+
+        public IActionResult BlogDetails() => View();
 
         [Authorize(Roles = "Admin")]
         public IActionResult Contact()
